@@ -40,6 +40,7 @@ module.exports = function (grunt) {
       }
     },
     watch: {
+
       express: {
           files: [
               '<%= yeoman.app %>/<%= yeoman.views %>/{,*//*}*.html',
@@ -57,10 +58,21 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['copy:styles']
+        tasks: ['copy:styles', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
+      }
+    },
+    autoprefixer: {
+      options: ['last 1 version'],
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '.tmp/styles/',
+          src: '{,*/}*.css',
+          dest: '.tmp/styles/'
+        }]
       }
     },
     clean: {
@@ -188,7 +200,7 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            'lib/**/*',
+            'bower_components/**/*',
             'images/{,*/}*.{gif,webp}',
             'fonts/*'
           ]
@@ -216,7 +228,7 @@ module.exports = function (grunt) {
           src: [
             'package.json',
             'server.js',
-            'app/**/*'
+            'lib/**/*'
           ]
         }]
       },  
@@ -229,12 +241,18 @@ module.exports = function (grunt) {
     },
     concurrent: {
       server: [
+        'coffee:dist',
+        'compass:server',
         'copy:styles'
       ],
       test: [
+        'coffee',
+        'compass',
         'copy:styles'
       ],
       dist: [
+        'coffee',
+        'compass:dist',
         'copy:styles',
         'imagemin',
         'svgmin',
@@ -285,6 +303,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'concurrent:server',
+      'autoprefixer',
       'express:dev',
       'open',
       'watch'
@@ -294,6 +313,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
+    'autoprefixer',
     'karma'
   ]);
 
@@ -301,6 +321,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'useminPrepare',
     'concurrent:dist',
+    'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',
@@ -318,7 +339,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-  //  'jshint',
+    'jshint',
     'test',
     'build'
   ]);

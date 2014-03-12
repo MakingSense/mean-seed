@@ -11,17 +11,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'public/lib/jquery/jquery.js',
-      'public/lib/angular/angular.js',
-      'public/lib/angular-mocks/angular-mocks.js',
-      'public/lib/angular-resource/angular-resource.js',
-      'public/lib/angular-cookies/angular-cookies.js',
-      'public/lib/angular-sanitize/angular-sanitize.js',
-      'public/lib/angular-route/angular-route.js',
-      'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'public/lib/angular-http-auth/src/http-auth-interceptor.js',
-      'public/scripts/*.js',
-      'public/scripts/**/*.js',
+      'app/bower_components/jquery/jquery.js',
+      'app/bower_components/angular/angular.js',
+      'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/angular-resource/angular-resource.js',
+      'app/bower_components/angular-cookies/angular-cookies.js',
+      'app/bower_components/angular-sanitize/angular-sanitize.js',
+      'app/bower_components/angular-route/angular-route.js',
+      'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'app/bower_components/angular-http-auth/src/http-auth-interceptor.js',
+      'app/scripts/*.js',
+      'app/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],

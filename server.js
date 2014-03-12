@@ -7,27 +7,27 @@ var express = require('express'),
     path = require('path'),
     fs = require('fs'),
     mongoStore = require('connect-mongo')(express),
-    config = require('./app/config/config');
+    config = require('./lib/config/config');
 
 var app = express();
 
 // Connect to database
-var db = require('./app/db/mongo').db;
+var db = require('./lib/db/mongo').db;
 
 // Bootstrap models
-var modelsPath = path.join(__dirname, 'app/models');
+var modelsPath = path.join(__dirname, 'lib/models');
 fs.readdirSync(modelsPath).forEach(function (file) {
   require(modelsPath + '/' + file);
 });
 
-var pass = require('./app/config/pass');
+var pass = require('./lib/config/pass');
 
 // App Configuration
 app.configure('development', function(){
   app.use(express.static(path.join(__dirname, '.tmp')));
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, 'app')));
   app.use(express.errorHandler());
-  app.set('views', __dirname + '/public/views');
+  app.set('views', __dirname + '/app/views');
 });
 
 app.configure('production', function(){
@@ -64,7 +64,7 @@ app.use(passport.session());
 app.use(app.router);
 
 //Bootstrap routes
-require('./app/config/routes')(app);
+require('./lib/config/routes')(app);
 
 // Start server
 var port = process.env.PORT || 3000;

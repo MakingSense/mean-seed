@@ -1,7 +1,7 @@
-MEANP-seed
+MEAN-seed
 ================
 
-A bootstrapper application that uses Mongo, Express, Angular, Node, Passport. 
+A bootstrapper Angular application that uses Express, Passport, MongoDB. 
  
 ### Setup
 Run `npm install`, followed by `bower install` to grab the dependencies.

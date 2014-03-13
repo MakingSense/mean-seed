@@ -14,7 +14,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     yeoman: {
       // configurable paths
-      app: require('./bower.json').publicPath || 'public',
+      app: require('./bower.json').appPath || 'app',
       dist: 'public',
       views: 'views'
     },
@@ -48,7 +48,7 @@ module.exports = function (grunt) {
               '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
               '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
               'server.js',
-              'api/{,*//*}*.{js,json}'
+              'lib/{,*//*}*.{js,json}'
           ],
           tasks: ['express:dev'],
           options: {
@@ -228,7 +228,7 @@ module.exports = function (grunt) {
           src: [
             'package.json',
             'server.js',
-            'api/**/*'
+            'lib/**/*'
           ]
         }]
       },  
@@ -241,12 +241,18 @@ module.exports = function (grunt) {
     },
     concurrent: {
       server: [
-               'copy:styles'
+        'coffee:dist',
+        'compass:server',
+        'copy:styles'
       ],
       test: [
+        'coffee',
+        'compass',
         'copy:styles'
       ],
       dist: [
+        'coffee',
+        'compass:dist',
         'copy:styles',
         'imagemin',
         'svgmin',
@@ -333,7 +339,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-   // 'jshint',
+    'jshint',
     'test',
     'build'
   ]);

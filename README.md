@@ -1,14 +1,14 @@
-MEAN-seed
+MEANP-seed
 ================
 
-A bootstrapper Angular application that uses Express, Passport, MongoDB. 
+A bootstrapper application that uses MongoDB, Express, Angular, Node, Passport.
  
 ### Setup
-Run `npm install`, followed by `bower install` to grab the dependencies.
+Run 'npm install', followed by 'bower install' to grab the dependencies.
 
 ### Running the app
-Run `grunt server` to start the app in development mode with livereload, or run `grunt server:dist` to run it in a minified and optimized production build.
+Run 'grunt server' to start the app in development mode with livereload.
 
 ### Testing
-Run `grunt test` to start the karma test runner.
+Run 'grunt test' to start the karma test runner.
  

@@ -199,7 +199,7 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            'bower_components/**/*',
+            'lib/**/*',
             'images/{,*/}*.{gif,webp}',
             'fonts/*'
           ]
@@ -241,6 +241,7 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'copy:styles'
+
       ],
       test: [
         'copy:styles'

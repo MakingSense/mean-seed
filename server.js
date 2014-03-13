@@ -33,7 +33,7 @@ app.configure('development', function(){
 app.configure('production', function(){
   app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
   app.use(express.static(path.join(__dirname, '.dist')));
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/.dist/views');
 });
 
 app.engine('html', require('ejs').renderFile);

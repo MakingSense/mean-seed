@@ -4,24 +4,24 @@
 module.exports = function(config) {
   config.set({
     // base path, that will be used to resolve files and exclude
-    basePath: '',
+    basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
-      'app/bower_components/jquery/jquery.js',
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/bower_components/angular-resource/angular-resource.js',
-      'app/bower_components/angular-cookies/angular-cookies.js',
-      'app/bower_components/angular-sanitize/angular-sanitize.js',
-      'app/bower_components/angular-route/angular-route.js',
-      'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'app/bower_components/angular-http-auth/src/http-auth-interceptor.js',
-      'app/scripts/*.js',
-      'app/scripts/**/*.js',
+      'public/bower_components/jquery/jquery.js',
+      'public/bower_components/angular/angular.js',
+      'public/bower_components/angular-mocks/angular-mocks.js',
+      'public/bower_components/angular-resource/angular-resource.js',
+      'public/bower_components/angular-cookies/angular-cookies.js',
+      'public/bower_components/angular-sanitize/angular-sanitize.js',
+      'public/bower_components/angular-route/angular-route.js',
+      'public/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'public/bower_components/angular-http-auth/src/http-auth-interceptor.js',
+      'public/scripts/*.js',
+      'public/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],

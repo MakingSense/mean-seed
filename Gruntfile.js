@@ -14,8 +14,8 @@ module.exports = function (grunt) {
   grunt.initConfig({
     yeoman: {
       // configurable paths
-      app: require('./bower.json').appPath || 'app',
-      dist: 'public',
+      app: require('./bower.json').publicPath || 'public',
+      dist: '.dist',
       views: 'views'
     },
     express: {
@@ -105,11 +105,10 @@ module.exports = function (grunt) {
         reporter: require('jshint-stylish')
       },
       all: [
-        'Gruntfile.js',
+       // 'Gruntfile.js',
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ]
     },
-
     rev: {
       dist: {
         files: {
@@ -185,7 +184,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.app %>/<%= yeoman.views %>',
           src: ['*.html', 'partials/{,*/}*.html'],
-          dest: '<%= yeoman.views %>'
+          dest: '<%= yeoman.dist %>/<%= yeoman.views %>'
         }]
       }
     },
@@ -241,18 +240,12 @@ module.exports = function (grunt) {
     },
     concurrent: {
       server: [
-        'coffee:dist',
-        'compass:server',
         'copy:styles'
       ],
       test: [
-        'coffee',
-        'compass',
         'copy:styles'
       ],
       dist: [
-        'coffee',
-        'compass:dist',
         'copy:styles',
         'imagemin',
         'svgmin',
@@ -261,7 +254,7 @@ module.exports = function (grunt) {
     },
     karma: {
       unit: {
-        configFile: 'karma.conf.js',
+        configFile: 'test/karma.conf.js',
         singleRun: true
       }
     },
@@ -339,7 +332,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'jshint',
+   // 'jshint',
     'test',
     'build'
   ]);

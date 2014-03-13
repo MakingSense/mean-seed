@@ -1,9 +1,8 @@
 node_modules
-public
 .tmp
-.sass-cache
-app/bower_components
-heroku
+.dist
 .idea
-/views
-/views
+.sass-cache
+public/bower_components
+heroku
+

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularPassportApp')
+angular.module('meanp')
   .controller('LoginCtrl', function ($scope, Auth, $location) {
     $scope.error = {};
     $scope.user = {};

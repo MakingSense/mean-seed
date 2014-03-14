@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularPassportApp')
+angular.module('meanp')
 /**
  * Removes server error when user updates input
  */

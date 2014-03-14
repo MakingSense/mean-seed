@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularPassportApp')
+angular.module('meanp')
   .controller('NavbarCtrl', function ($scope, Auth, $location) {
     $scope.menu = [{
       "title": "Blogs",

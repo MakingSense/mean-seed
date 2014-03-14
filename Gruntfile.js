@@ -82,7 +82,6 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/*',
-            '<%= yeoman.views %>/*',
             '!<%= yeoman.dist %>/.git*'
           ]
         }]
@@ -128,7 +127,7 @@ module.exports = function (grunt) {
       }
     },
     usemin: {
-      html: ['<%= yeoman.views %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/<%= yeoman.views %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>']
@@ -261,8 +260,14 @@ module.exports = function (grunt) {
     },
     cdnify: {
       dist: {
-        html: ['<%= yeoman.views %>/*.html']
+        html: ['<%= yeoman.dist %>/<%= yeoman.views %>/*.html']
       }
+    },
+    concat: {
+          dist: {
+              src: ['<%= yeoman.app %>/scripts/**/*.js', '<%= yeoman.app %>/scripts/*.js'],
+              dest: '.tmp/concat/scripts/scripts.js'
+          }
     },
     ngmin: {
       dist: {
@@ -323,17 +328,18 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'clean:server',
   ]);
 
   grunt.registerTask('heroku', [
     'build',
     'clean:heroku',
-    'copy:heroku'    
+    'copy:heroku'
   ]);
 
   grunt.registerTask('default', [
-   // 'jshint',
+    'jshint',
     'test',
     'build'
   ]);

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularPassportApp', [
+angular.module('meanp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',

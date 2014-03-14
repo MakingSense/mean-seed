@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('angularPassportApp')
+angular.module('meanp')
   .controller('MainCtrl', function ($scope) {
   });

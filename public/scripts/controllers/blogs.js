@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularPassportApp')
+angular.module('meanp')
   .controller('BlogsCtrl', function ($scope, Blogs, $location, $routeParams, $rootScope) {
 
     $scope.create = function() {

@@ -299,6 +299,10 @@ module.exports = function (grunt) {
       return grunt.task.run(['build', 'express:prod', 'open', 'express-keepalive']);
     }
 
+    if (target === 'ci') {
+      return grunt.task.run(['build']);
+    }
+
     grunt.task.run([
       'clean:server',
       'concurrent:server',
@@ -329,7 +333,7 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin',
-    'clean:server',
+    'clean:server'
   ]);
 
   grunt.registerTask('heroku', [

@@ -3,7 +3,7 @@
 describe('Controller: BlogsCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('angularPassportApp'));
+  beforeEach(module('meanp'));
 
   var BlogsCtrl,
     scope,

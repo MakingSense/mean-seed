@@ -2,8 +2,6 @@ node_modules
 .tmp
 .dist
 .idea
-.sass-cache
-public/bower_components
 heroku
 
 public/lib/

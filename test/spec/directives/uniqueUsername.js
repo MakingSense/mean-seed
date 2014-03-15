@@ -3,7 +3,7 @@
 describe('Directive: uniqueUsername', function () {
 
   // load the directive's module
-  beforeEach(module('angularPassportApp'));
+  beforeEach(module('meanp'));
 
   var element, container,
     scope, $httpBackend;

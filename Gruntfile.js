@@ -335,7 +335,7 @@ module.exports = function (grunt) {
     'clean:server'
   ]);
 
-  grunt.registerTask('heroku', [
+  grunt.registerTask('heroku:production', [
     'build',
     'clean:heroku',
     'copy:heroku'

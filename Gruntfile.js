@@ -217,8 +217,7 @@ module.exports = function (grunt) {
           dot: true,
           dest: 'heroku',
           src: [
-            '<%= yeoman.dist %>/**',
-            '<%= yeoman.views %>/**'
+            '<%= yeoman.dist %>/**'
           ]
         }, {
           expand: true,
@@ -226,7 +225,7 @@ module.exports = function (grunt) {
           src: [
             'package.json',
             'server.js',
-            'lib/**/*'
+            'api/**/*'
           ]
         }]
       },  

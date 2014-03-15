@@ -32,8 +32,8 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
-  app.use(express.static(path.join(__dirname, '.dist')));
-  app.set('views', __dirname + '/.dist/views');
+  app.use(express.static(path.join(__dirname, 'heroku/.dist')));
+  app.set('views', __dirname + 'heroku/.dist/views');
 });
 
 app.engine('html', require('ejs').renderFile);

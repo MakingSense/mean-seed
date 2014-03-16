@@ -30,6 +30,12 @@ app.configure('development', function(){
   app.set('views', __dirname + '/public/views');
 });
 
+app.configure('distribution', function(){
+    app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
+    app.use(express.static(path.join(__dirname, '.dist')));
+    app.set('views', __dirname + '/.dist/views');
+});
+
 app.configure('production', function(){
   app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
   app.use(express.static(path.join(__dirname, 'heroku/.dist')));

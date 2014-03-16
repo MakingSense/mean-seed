@@ -27,6 +27,12 @@ module.exports = function (grunt) {
                 script: 'server.js'
             }
         },
+        dist: {
+            options: {
+                script: 'server.js',
+                node_env: 'distribution'
+            }
+        },
         prod: {
             options: {
                 script: 'server.js',
@@ -81,7 +87,7 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '.tmp',
-            '<%= yeoman.dist %>/*',
+            '<%= yeoman.dist %>',
             '!<%= yeoman.dist %>/.git*'
           ]
         }]
@@ -90,6 +96,8 @@ module.exports = function (grunt) {
         files: [{
           dot: true,
           src: [
+            'public/scripts/',
+            'public/styles/',
             'heroku/*',
             '!heroku/.git*',
             '!heroku/Procfile'                 
@@ -215,19 +223,10 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          dest: 'heroku',
-          src: [
-            '<%= yeoman.dist %>/**'
-          ]
-        }, {
-          expand: true,
-          dest: 'heroku',
-          src: [
-            'package.json',
-            'server.js',
-            'api/**/*'
-          ]
-        }]
+          cwd: '.dist/',
+          dest: 'public/',
+          src: [  '**' ]
+        } ]
       },  
       styles: {
         expand: true,
@@ -295,7 +294,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('server', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'express:prod', 'open', 'express-keepalive']);
+      return grunt.task.run(['build', 'express:dist', 'open', 'express-keepalive']);
     }
 
     if (target === 'ci') {
@@ -338,7 +337,8 @@ module.exports = function (grunt) {
   grunt.registerTask('heroku:production', [
     'build',
     'clean:heroku',
-    'copy:heroku'
+    'copy:heroku',
+    'clean:dist'
   ]);
 
   grunt.registerTask('default', [

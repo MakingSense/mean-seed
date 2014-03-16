@@ -30,16 +30,16 @@ app.configure('development', function(){
   app.set('views', __dirname + '/public/views');
 });
 
-app.configure('distribution', function(){
+app.configure('staging', function(){
     app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
-    app.use(express.static(path.join(__dirname, '.dist')));
-    app.set('views', __dirname + '/.dist/views');
+    app.use(express.static(path.join(__dirname, 'staging')));
+    app.set('views', __dirname + '/staging/views');
 });
 
 app.configure('production', function(){
   app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
-  app.use(express.static(path.join(__dirname, 'heroku/.dist')));
-  app.set('views', __dirname + '/heroku/.dist/views');
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.set('views', __dirname + '/public/views');
 });
 
 app.engine('html', require('ejs').renderFile);

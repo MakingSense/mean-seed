@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').publicPath || 'public',
-      dist: '.dist',
+      dist: 'staging',
       views: 'views'
     },
     express: {
@@ -27,10 +27,10 @@ module.exports = function (grunt) {
                 script: 'server.js'
             }
         },
-        dist: {
+        staging: {
             options: {
                 script: 'server.js',
-                node_env: 'distribution'
+                node_env: 'staging'
             }
         },
         prod: {
@@ -223,7 +223,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '.dist/',
+          cwd: '<%= yeoman.dist %>/',
           dest: 'public/',
           src: [  '**' ]
         } ]
@@ -293,8 +293,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('server', function (target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'express:dist', 'open', 'express-keepalive']);
+    if (target === 'staging') {
+      return grunt.task.run(['build', 'express:staging', 'open', 'express-keepalive']);
     }
 
     if (target === 'ci') {

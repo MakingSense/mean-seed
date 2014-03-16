@@ -303,7 +303,7 @@ module.exports = function (grunt) {
     }
 
     if (target === 'ci') {
-      return grunt.task.run(['build']);
+      return grunt.task.run(['build','test']);
     }
 
     grunt.task.run([

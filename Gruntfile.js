@@ -18,6 +18,11 @@ module.exports = function (grunt) {
       dist: 'staging',
       views: 'views'
     },
+      bower: {
+          install: {
+              //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
+          }
+      },
     express: {
         options: {
             port: process.env.PORT || 9000
@@ -319,6 +324,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'bower',
     'clean:dist',
     'useminPrepare',
     'concurrent:dist',

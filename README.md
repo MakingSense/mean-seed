@@ -1,4 +1,4 @@
-MEANP-seed   [[Build Status](https://drone.io/github.com/mravinale/meanp-seed/status.png)](https://drone.io/github.com/mravinale/meanp-seed/latest)
+MEANP-seed   [![Build Status](https://drone.io/github.com/mravinale/meanp-seed/status.png)](https://drone.io/github.com/mravinale/meanp-seed/latest)
 ================
 
 A bootstrapper application that uses MongoDB, Express, Angular, Node, Passport,

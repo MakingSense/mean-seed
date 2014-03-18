@@ -6,11 +6,7 @@ angular.module('meanp')
     $scope.user = {};
 
     $scope.login = function(form) {
-      Auth.login('password', {
-          'email': $scope.user.email,
-          'password': $scope.user.password
-        },
-        function(err) {
+      Auth.login('password', $scope.user , function(err) {
           $scope.errors = {};
 
           if (!err) {

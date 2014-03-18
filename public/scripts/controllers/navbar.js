@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('meanp')
-  .controller('NavbarCtrl', function ($scope, Auth, $location) {
+angular.module('meanp').controller('NavbarCtrl', function ($scope, Auth, $location) {
     $scope.menu = [{
       "title": "Blogs",
       "link": "blogs"
@@ -19,4 +18,5 @@ angular.module('meanp')
         }
       });
     };
-  });
+
+});

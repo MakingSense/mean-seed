@@ -30,7 +30,7 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div ng-include="" src="'partials/navbar.html'"></div>
+        <div ng-include="" src="'modules/base/partials/navbar.html'"></div>
         <div class="container" ng-view=""></div>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -59,18 +59,18 @@
 
         <!-- build:js({.tmp,public}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/navbar.js"></script>
-        <script src="scripts/controllers/signup.js"></script>
-        <script src="scripts/controllers/blogs.js"></script>
-        <script src="scripts/directives/uniqueUsername.js"></script>
-        <script src="scripts/services/Auth.js"></script>
-        <script src="scripts/services/User.js"></script>
-        <script src="scripts/directives/onFocus.js"></script>
-        <script src="scripts/directives/mongooseError.js"></script>
-        <script src="scripts/services/Session.js"></script>
-        <script src="scripts/services/Blogs.js"></script>
+        <script src="scripts/modules/base/controllers/main.js"></script>
+        <script src="scripts/modules/base/controllers/login.js"></script>
+        <script src="scripts/modules/base/controllers/navbar.js"></script>
+        <script src="scripts/modules/base/controllers/signup.js"></script>
+        <script src="scripts/modules/blogs/controllers/blogs.js"></script>
+        <script src="scripts/modules/base/directives/uniqueUsername.js"></script>
+        <script src="scripts/modules/base/services/Auth.js"></script>
+        <script src="scripts/modules/base/services/User.js"></script>
+        <script src="scripts/modules/base/directives/onFocus.js"></script>
+        <script src="scripts/modules/base/directives/mongooseError.js"></script>
+        <script src="scripts/modules/base/services/Session.js"></script>
+        <script src="scripts/modules/blogs/services/Blogs.js"></script>
         <!-- endbuild -->
 
     </body>

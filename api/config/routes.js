@@ -31,7 +31,7 @@ module.exports = function(app) {
   app.param('blogId', blogs.blog);
 
   // Angular Routes
-  app.get('/partials/*', function(req, res) {
+  app.get('/**/*', function(req, res) {
     var requestedView = path.join('./', req.url);
     res.render(requestedView);
   });

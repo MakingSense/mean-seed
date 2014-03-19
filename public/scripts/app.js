@@ -11,31 +11,31 @@ angular.module('meanp', [
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'partials/main.html',
+        templateUrl: 'modules/base/main.html',
         controller: 'MainCtrl'
       })
       .when('/blogs', {
-        templateUrl: 'partials/blogs/list.html',
+        templateUrl: 'modules/blogs/list.html',
         controller: 'BlogsCtrl'
       })
       .when('/blogs/create', {
-        templateUrl: 'partials/blogs/create.html',
+        templateUrl: 'modules/blogs/create.html',
         controller: 'BlogsCtrl'
       })
       .when('/blogs/:blogId/edit', {
-        templateUrl: 'partials/blogs/edit.html',
+        templateUrl: 'modules/blogs/edit.html',
         controller: 'BlogsCtrl'
       })
       .when('/blogs/:blogId', {
-        templateUrl: 'partials/blogs/view.html',
+        templateUrl: 'modules/blogs/view.html',
         controller: 'BlogsCtrl'
       })
       .when('/login', {
-        templateUrl: 'partials/login.html',
+        templateUrl: 'modules/base/login.html',
         controller: 'LoginCtrl'
       })
       .when('/signup', {
-        templateUrl: 'partials/signup.html',
+        templateUrl: 'modules/base/signup.html',
         controller: 'SignupCtrl'
       })
       .otherwise({

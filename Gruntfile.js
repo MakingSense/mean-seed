@@ -36,4 +36,8 @@ module.exports = function (grunt) {
    'bower',
    'karma'
   ]);
+
+  grunt.registerTask('heroku:production', [
+    'bower'
+  ]);
 };

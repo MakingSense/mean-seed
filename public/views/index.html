@@ -33,31 +33,17 @@
         <div ng-include="" src="'modules/base/partials/navbar.html'"></div>
         <div class="container" ng-view=""></div>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-        <script>
-           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-           ga('create', 'UA-XXXXX-X');
-           ga('send', 'pageview');
-        </script>
-
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/angular/angular.min.js"></script>
         <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
-        <!-- build:js(public) scripts/modules.js -->
         <script src="lib/angular-resource/angular-resource.js"></script>
         <script src="lib/angular-cookies/angular-cookies.js"></script>
         <script src="lib/angular-sanitize/angular-sanitize.js"></script>
         <script src="lib/angular-route/angular-route.js"></script>
         <script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
         <script src="lib/angular-http-auth/src/http-auth-interceptor.js"></script>
-        <!-- endbuild -->
 
-        <!-- build:js({.tmp,public}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/modules/base/controllers/main.js"></script>
         <script src="scripts/modules/base/controllers/login.js"></script>
@@ -71,7 +57,6 @@
         <script src="scripts/modules/base/directives/mongooseError.js"></script>
         <script src="scripts/modules/base/services/Session.js"></script>
         <script src="scripts/modules/blogs/services/Blogs.js"></script>
-        <!-- endbuild -->
 
     </body>
 </html>

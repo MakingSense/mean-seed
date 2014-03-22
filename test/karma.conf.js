@@ -22,7 +22,6 @@ module.exports = function(config) {
       'public/lib/angular-http-auth/src/http-auth-interceptor.js',
       'public/scripts/*.js',
       'public/scripts/**/*.js',
-      'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
 

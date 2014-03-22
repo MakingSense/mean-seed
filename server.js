@@ -30,12 +30,6 @@ app.configure('development', function(){
   app.set('views', __dirname + '/public/views');
 });
 
-app.configure('staging', function(){
-    app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
-    app.use(express.static(path.join(__dirname, 'staging')));
-    app.set('views', __dirname + '/staging/views');
-});
-
 app.configure('production', function(){
   app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
   app.use(express.static(path.join(__dirname, 'public')));

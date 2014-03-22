@@ -11,31 +11,31 @@ angular.module('meanp', [
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/modules/base/main.html',
+        templateUrl: 'modules/base/views/main.html',
         controller: 'MainCtrl'
       })
       .when('/blogs', {
-        templateUrl: 'views/modules/blogs/list.html',
+        templateUrl: 'modules/blogs/views/list.html',
         controller: 'BlogsCtrl'
       })
       .when('/blogs/create', {
-        templateUrl: 'views/modules/blogs/create.html',
+        templateUrl: 'modules/blogs/views/create.html',
         controller: 'BlogsCtrl'
       })
       .when('/blogs/:blogId/edit', {
-        templateUrl: 'views/modules/blogs/edit.html',
+        templateUrl: 'modules/blogs/views/edit.html',
         controller: 'BlogsCtrl'
       })
       .when('/blogs/:blogId', {
-        templateUrl: 'views/modules/blogs/view.html',
+        templateUrl: 'modules/blogs/views/view.html',
         controller: 'BlogsCtrl'
       })
       .when('/login', {
-        templateUrl: 'views/modules/base/login.html',
+        templateUrl: 'modules/base/views/login.html',
         controller: 'LoginCtrl'
       })
       .when('/signup', {
-        templateUrl: 'views/modules/base/signup.html',
+        templateUrl: 'modules/base/views/signup.html',
         controller: 'SignupCtrl'
       })
       .otherwise({
@@ -57,7 +57,7 @@ angular.module('meanp', [
 
     // On catching 401 errors, redirect to the login page.
     $rootScope.$on('event:auth-loginRequired', function() {
-      $location.path('/login');
+     // $location.path('/login');
       return false;
     });
   });

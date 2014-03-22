@@ -20,8 +20,8 @@ module.exports = function(config) {
       'public/lib/angular-route/angular-route.js',
       'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'public/lib/angular-http-auth/src/http-auth-interceptor.js',
-      'public/scripts/*.js',
-      'public/scripts/**/*.js',
+      'test/app-test.js',
+      'public/scripts/modules/**/*.js',
       'test/spec/**/*.js'
     ],
 

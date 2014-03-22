@@ -11,37 +11,37 @@ angular.module('meanp', [
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'modules/base/main.html',
+        templateUrl: 'views/modules/base/main.html',
         controller: 'MainCtrl'
       })
       .when('/blogs', {
-        templateUrl: 'modules/blogs/list.html',
+        templateUrl: 'views/modules/blogs/list.html',
         controller: 'BlogsCtrl'
       })
       .when('/blogs/create', {
-        templateUrl: 'modules/blogs/create.html',
+        templateUrl: 'views/modules/blogs/create.html',
         controller: 'BlogsCtrl'
       })
       .when('/blogs/:blogId/edit', {
-        templateUrl: 'modules/blogs/edit.html',
+        templateUrl: 'views/modules/blogs/edit.html',
         controller: 'BlogsCtrl'
       })
       .when('/blogs/:blogId', {
-        templateUrl: 'modules/blogs/view.html',
+        templateUrl: 'views/modules/blogs/view.html',
         controller: 'BlogsCtrl'
       })
       .when('/login', {
-        templateUrl: 'modules/base/login.html',
+        templateUrl: 'views/modules/base/login.html',
         controller: 'LoginCtrl'
       })
       .when('/signup', {
-        templateUrl: 'modules/base/signup.html',
+        templateUrl: 'views/modules/base/signup.html',
         controller: 'SignupCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
   })
 
   .run(function ($rootScope, $location, Auth) {

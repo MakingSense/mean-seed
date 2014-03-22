@@ -23,21 +23,16 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 var pass = require('./api/config/pass');
 
 // App Configuration
-app.configure('development', function(){
-  app.use(express.static(path.join(__dirname, '.tmp')));
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.use(express.errorHandler());
-  app.set('views', __dirname + '/public/views');
+app.configure( function(){
+    app.use(express.errorHandler());
+    app.use(express.methodOverride());
+    app.use(express.bodyParser());
+    app.use(express.static(__dirname + '/public'));
 });
 
-app.configure('production', function(){
-  app.use(express.favicon(path.join(__dirname, 'public', 'favicon.ico')));
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.set('views', __dirname + '/public/views');
-});
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+//app.engine('html', require('ejs').renderFile);
+//app.set('view engine', 'html');
 app.use(express.logger('dev'));
 
 // cookieParser should be above session

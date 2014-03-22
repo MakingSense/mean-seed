@@ -30,18 +30,5 @@ module.exports = function(app) {
   //Setting up the blogId param
   app.param('blogId', blogs.blog);
 
-  // Angular Routes
-  app.get('/**/*', function(req, res) {
-    var requestedView = path.join('./', req.url);
-    res.render(requestedView);
-  });
-
-  app.get('/*', function(req, res) {
-    if(req.user) {
-      res.cookie('user', JSON.stringify(req.user.user_info));
-    }
-
-    res.render('index.html');
-  });
 
 }

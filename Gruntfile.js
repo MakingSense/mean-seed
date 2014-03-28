@@ -69,16 +69,21 @@ module.exports = function (grunt) {
 
   });
 
+  grunt.registerTask('default', [
+    //  'jshint',
+    'bower'
+  ]);
+
   grunt.registerTask('server', [
   //  'jshint',
    'bower',
-      'express:dev',
-      'open',
-      'watch'
+   'express:dev',
+   'open',
+   'watch'
   ]);
 
   grunt.registerTask('test', [
-        //  'jshint',
+     //  'jshint',
     'bower',
     'karma'
   ]);

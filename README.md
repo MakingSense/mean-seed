@@ -11,10 +11,7 @@ inspired by:
 Run 'npm install', to grab the dependencies.
 
 ### Running the app for development
-Run 'grunt server' to start the app in development mode with livereload.
-
-### Running the app for staging
-Run 'grunt server:staging' to start the app using optimized code!.
+Run 'grunt server' to start the app in development mode with client-server livereload.
 
 ### Testing
 Run 'grunt test' to start the karma test runner.

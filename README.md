@@ -7,7 +7,16 @@ inspired by:
  * angular-passport 
  * MEAN stack
  
-### Setup
+### Setup Linux:
+sudo npm install
+sudo npm install -g bower
+sudo npm install -g grunt-cli
+
+### Setup Windows, open the console with admin permissions
+npm install
+npm install -g bower
+npm install -g grunt-cli
+
 Run 'npm install', to grab the dependencies.
 Then 'npm install -g grunt-cli'
 

@@ -27,14 +27,65 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+    express: {
+          options: {
+              port: process.env.PORT || 9000
+          },
+          dev: {
+              options: {
+                  script: 'server.js'
+              }
+          }
+      },
+    open: {
+          server: {
+              url: 'http://localhost:<%= express.options.port %>'
+          }
+      },
+    watch: {
+          express: {
+              files: [
+                  'server.js',
+                  'api/{,*//*}*.{js,json}'
+              ],
+              tasks: ['express:dev'],
+              options: {
+                  livereload: true,
+                  nospawn: true //Without this option specified express won't be reloaded
+              }
+          },
+          livereload: {
+              options: {
+                  livereload: { livereload: true }
+              },
+              files: [
+                  '<%= yeoman.app %>{,*/}*.html',
+                  '<%= yeoman.app %>/modules/**/views/{,*/}*.html',
+                  '<%= yeoman.app %>/styles/{,*/}*.css'
+              ]
+          }
+      }
 
   });
 
   grunt.registerTask('default', [
+    //  'jshint',
+    'bower'
+  ]);
+
+  grunt.registerTask('server', [
   //  'jshint',
    'bower',
-   'karma'
+   'express:dev',
+   'open',
+   'watch'
+  ]);
+
+  grunt.registerTask('test', [
+     //  'jshint',
+    'bower',
+    'karma'
   ]);
 
   grunt.registerTask('heroku:production', [

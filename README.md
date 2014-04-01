@@ -9,6 +9,7 @@ inspired by:
  
 ### Setup
 Run 'npm install', to grab the dependencies.
+Then 'npm install -g grunt-cli'
 
 ### Running the app for development
 Run 'grunt server' to start the app in development mode with client-server livereload.

@@ -32,12 +32,11 @@ angular.module('meanp').service('blogService', function ($http) {
 
     //update blogItem matching by id
     this.update = function (blogItemId, blogItem) {
-        $http.put('/api/blogs/'+blogItemId, blogItem);
+        return $http.put('/api/blogs/'+blogItemId, blogItem);
     };
 
     //remove blogItem matching by id
     this.remove = function (blogItemId) {
-        $http.delete('/api/blogs/'+blogItemId);
-
+        return $http.delete('/api/blogs/'+blogItemId);
     };
 });

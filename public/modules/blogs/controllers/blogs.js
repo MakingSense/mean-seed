@@ -5,16 +5,11 @@ angular.module('meanp')
 
     $scope.create = function() {
 
-        var post = {
-            title: this.title,
-            content: this.content
-        };
-
-        blogService.create(post)
+        blogService.create($scope.blog)
             .success(function (response, status, headers, config) {
-                this.title = "";
-                this.content = "";
-                $location.path("blogs/" + response._id);
+                $scope.blog.title = "";
+                $scope.blog.content = "";
+                $location.path("/blogs/" + response._id);
             })
             .error(function(error, status, headers, config) {
                 //TODO: remove console logs, and add toaster notification in red color
@@ -22,8 +17,8 @@ angular.module('meanp')
             });
     };
 
-    $scope.remove = function(blog) {
-        remove(blog.id)
+    $scope.remove = function() {
+        blogService.remove($routeParams.blogId)
             .success(function (response, status, headers, config) {
                 $location.path("/blogs");
             })
@@ -33,23 +28,32 @@ angular.module('meanp')
     };
 
     $scope.update = function() {
-      var blog = $scope.blog;
-      blog.$update(function() {
-        $location.path('blogs/' + blog._id);
-      });
+        blogService.update($routeParams.blogId, $scope.blog)
+            .success(function (response, status, headers, config) {
+                $location.path('/blogs/' + response._id);
+            })
+            .error(function(error, status, headers, config) {
+                console.log(error)
+            });
     };
 
     $scope.find = function() {
-      Blogs.query(function(blogs) {
-        $scope.blogs = blogs;
-      });
+        blogService.getAll()
+            .success(function (response, status, headers, config) {
+                $scope.blogs = response;
+            })
+            .error(function(error, status, headers, config) {
+                console.log(error)
+            });
     };
 
     $scope.findOne = function() {
-      Blogs.get({
-        blogId: $routeParams.blogId
-      }, function(blog) {
-        $scope.blog = blog;
-      });
+        blogService.getById($routeParams.blogId)
+            .success(function (response, status, headers, config) {
+                $scope.blog = response;
+            })
+            .error(function(error, status, headers, config) {
+                console.log(error)
+            });
     };
   });

@@ -31,7 +31,7 @@ describe('Controller: BlogsCtrl', function () {
       $routeParams: routeParams
     });
 
-    $httpBackend.expectGET('api/blogs/' + blog.id).respond(blog);
+    $httpBackend.expectGET('/api/blogs/' + blog.id).respond(blog);
     scope.findOne();
     $httpBackend.flush();
     expect(scope.blog.name).toBe(blog.name)
@@ -43,7 +43,7 @@ describe('Controller: BlogsCtrl', function () {
       $routeParams: routeParams
     });
 
-    $httpBackend.expectGET('api/blogs').respond(blogs);
+    $httpBackend.expectGET('/api/blogs').respond(blogs);
     scope.find();
     $httpBackend.flush();
     expect(scope.blogs[0].name).toBe(blogs[0].name)

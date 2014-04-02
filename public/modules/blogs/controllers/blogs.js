@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('meanp')
-  .controller('BlogsCtrl', function ($scope, Blogs, $location, $routeParams, $rootScope, blogService) {
+  .controller('BlogsCtrl', function ($scope, $location, $routeParams, $rootScope, blogService) {
 
     $scope.create = function() {
 

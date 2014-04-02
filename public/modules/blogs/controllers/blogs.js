@@ -1,49 +1,59 @@
 'use strict';
 
 angular.module('meanp')
-  .controller('BlogsCtrl', function ($scope, Blogs, $location, $routeParams, $rootScope) {
+  .controller('BlogsCtrl', function ($scope, $location, $routeParams, $rootScope, blogService) {
 
     $scope.create = function() {
-      var blog = new Blogs({
-        title: this.title,
-        content: this.content
-      });
-      blog.$save(function(response) {
-        $location.path("blogs/" + response._id);
-      });
 
-      this.title = "";
-      this.content = "";
+        blogService.create($scope.blog)
+            .success(function (response, status, headers, config) {
+                $scope.blog.title = "";
+                $scope.blog.content = "";
+                $location.path("/blogs/" + response._id);
+            })
+            .error(function(error, status, headers, config) {
+                //TODO: remove console logs, and add toaster notification in red color
+                console.log(error);
+            });
     };
 
-    $scope.remove = function(blog) {
-      blog.$remove();
-
-      for (var i in $scope.blogs) {
-        if ($scope.blogs[i] == blog) {
-          $scope.blogs.splice(i, 1);
-        }
-      }
+    $scope.remove = function() {
+        blogService.remove($routeParams.blogId)
+            .success(function (response, status, headers, config) {
+                $location.path("/blogs");
+            })
+            .error(function(error, status, headers, config) {
+                console.log(error)
+            });
     };
 
     $scope.update = function() {
-      var blog = $scope.blog;
-      blog.$update(function() {
-        $location.path('blogs/' + blog._id);
-      });
+        blogService.update($routeParams.blogId, $scope.blog)
+            .success(function (response, status, headers, config) {
+                $location.path('/blogs/' + response._id);
+            })
+            .error(function(error, status, headers, config) {
+                console.log(error)
+            });
     };
 
     $scope.find = function() {
-      Blogs.query(function(blogs) {
-        $scope.blogs = blogs;
-      });
+        blogService.getAll()
+            .success(function (response, status, headers, config) {
+                $scope.blogs = response;
+            })
+            .error(function(error, status, headers, config) {
+                console.log(error)
+            });
     };
 
     $scope.findOne = function() {
-      Blogs.get({
-        blogId: $routeParams.blogId
-      }, function(blog) {
-        $scope.blog = blog;
-      });
+        blogService.getById($routeParams.blogId)
+            .success(function (response, status, headers, config) {
+                $scope.blog = response;
+            })
+            .error(function(error, status, headers, config) {
+                console.log(error)
+            });
     };
   });

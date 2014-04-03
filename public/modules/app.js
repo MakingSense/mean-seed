@@ -44,20 +44,28 @@ angular.module('meanp', [
     $locationProvider.html5Mode(false);
   })
 
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location, sessionService) {
 
     //watching the value of the currentUser variable.
     $rootScope.$watch('currentUser', function(currentUser) {
       // if no currentUser and on a page that requires authorization then try to update it
       // will trigger 401s if user does not have a valid session
       if (!currentUser && ([ '/', '/login', '/logout', '/signup'].indexOf($location.path()) == -1 )) {
-        Auth.currentUser();
+
+          sessionService.getCurrentUser()
+              .success(function (response, status, headers, config) {
+               $rootScope.currentUser = response;
+              })
+              .error(function(error, status, headers, config) {
+                  $location.path('/login');
+                  console.log(error)
+              });
       }
     });
 
     // On catching 401 errors, redirect to the login page.
     $rootScope.$on('event:auth-loginRequired', function() {
-     // $location.path('/login');
+      $location.path('/login');
       return false;
     });
   });

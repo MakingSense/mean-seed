@@ -18,7 +18,7 @@ describe('Controller: LoginCtrl', function () {
     });
 
     // mock angular form
-    scope.optionsForm = {model:{}};
+    scope.optionsForm = {model:{}, email:{$error:{}}};
     scope.optionsForm.model.$setValidity = function() {};
 
     // mock user
@@ -26,7 +26,7 @@ describe('Controller: LoginCtrl', function () {
   }));
 
   it('should set scope.errors[field] on mongoose errors', function () {
-    $httpBackend.expectPOST('/auth/session').respond(400, {errors:{'model': {type:'Test Error'}}});
+    $httpBackend.expectPOST('/auth/session/').respond(400, {errors:{'model': {type:'Test Error'}}});
 
     scope.login(scope.optionsForm);
     $httpBackend.flush();

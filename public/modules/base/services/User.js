@@ -1,11 +1,13 @@
 'use strict';
 
-angular.module('meanp')
-  .factory('User', function ($resource) {
-    return $resource('/auth/users/:id/', {},
-      {
-        'update': {
-          method:'PUT'
-        }
-      });
-  });
+/* Services */
+angular.module('meanp').service('userService', function ($http) {
+
+    this.create = function (postData) {
+        return $http.post('/auth/users', postData);
+    };
+
+    this.remove = function (blogItemId) {
+        return $http.delete('/auth/users/'+blogItemId);
+    };
+});

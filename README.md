@@ -1,25 +1,23 @@
 MEANP-seed   [![Build Status](https://drone.io/github.com/mravinale/meanp-seed/status.png)](https://drone.io/github.com/mravinale/meanp-seed/latest)
 ================
 
-A bootstrapper application that uses MongoDB, Express, Angular, Node, Passport,
+A bootstrapp application based on MongoDB, Express, Angular, Node, Passport, 
+inspired by [angular-passport](https://github.com/DaftMonk/angular-passport) 
  
-inspired by:
- * angular-passport 
- * MEAN stack
- 
-### Setup Linux:
-* sudo npm install
-* sudo npm install -g bower
-* sudo npm install -g grunt-cli
+### Setup :
+```
+npm install
+npm install -g bower
+npm install -g grunt-cli
+```
+read more about installing [Bower](http://bower.io/) and [Grunt client](http://gruntjs.com/getting-started)
 
-### Setup Windows, open the console with admin permissions
-* npm install
-* npm install -g bower
-* npm install -g grunt-cli
 
 ### Running the app for development
-Run 'grunt server' to start the app in development mode with client-server livereload.
+Run 
+```grunt server```
+to start the app in development mode with client-server livereload.
 
 ### Testing
-Run 'grunt test' to start the karma test runner.
+Run ```grunt test``` to start the karma test runner.
  

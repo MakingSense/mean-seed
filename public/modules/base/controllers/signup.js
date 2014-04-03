@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('meanp').controller('SignupCtrl', function ($scope,$rootScope, Auth, $location, userService) {
+angular.module('meanp').controller('SignupCtrl', function ($scope,$rootScope, $location, userService) {
 
 		$scope.register = function(form) {
             $scope.errors = {};
@@ -16,19 +16,6 @@ angular.module('meanp').controller('SignupCtrl', function ($scope,$rootScope, Au
                         $scope.errors[field] = error.type;
                     });
                 });
-/*
-			Auth.createUser( $scope.user , function(err) {
-			  $scope.errors = {};
 
-			  if (!err) {
-				$location.path('/');
-			  } else {
-				angular.forEach(err.errors, function(error, field) {
-				  form[field].$setValidity('mongoose', false);
-				  $scope.errors[field] = error.type;
-				});
-			  }
-			});
-*/
 	    };
 });

@@ -1,23 +1,25 @@
 'use strict';
 
 angular.module('meanp')
-  .controller('LoginCtrl', function ($scope, Auth, $location) {
-    $scope.error = {};
-    $scope.user = {};
+  .controller('LoginCtrl', function ($scope, $rootScope,sessionService, $location) {
+    $scope.errors =  {};
+    $scope.submitted = false;
 
     $scope.login = function(form) {
-      Auth.login('password', $scope.user , function(err) {
-          $scope.errors = {};
+        $scope.submitted = true;
+        if(form.email.$error.required) return;
 
-          if (!err) {
-            $location.path('/');
-          } else {
-            angular.forEach(err.errors, function(error, field) {
-              form[field].$setValidity('mongoose', false);
-              $scope.errors[field] = error.type;
+        sessionService.create('password',$scope.user)
+            .success(function (response, status, headers, config) {
+                $rootScope.currentUser = response;
+                $location.path('/');
+            })
+            .error(function(response, status, headers, config) {
+                angular.forEach(response.errors, function(error, field) {
+                    form[field].$setValidity('mongoose', false);
+                    $scope.errors[field] = error.type;
+                });
+                $scope.errors.other = response.message;
             });
-            $scope.error.other = err.message;
-          }
-      });
     };
   });

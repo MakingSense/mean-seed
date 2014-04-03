@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('meanp').controller('NavbarCtrl', function ($scope, Auth, $location) {
+angular.module('meanp').controller('NavbarCtrl', function ($scope,$rootScope, sessionService, $location) {
     $scope.menu = [{
       "title": "Blogs",
       "link": "blogs"
@@ -12,11 +12,15 @@ angular.module('meanp').controller('NavbarCtrl', function ($scope, Auth, $locati
     }];
 
     $scope.logout = function() {
-      Auth.logout(function(err) {
-        if(!err) {
-          $location.path('/login');
-        }
-      });
+        sessionService.remove()
+            .success(function (response, status) {
+                $rootScope.currentUser = null;
+                $location.path('/login');
+            })
+            .error(function(response, status) {
+                console.log(response);
+            });
+
     };
 
 });

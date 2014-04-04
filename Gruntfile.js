@@ -64,7 +64,25 @@ module.exports = function (grunt) {
                   '<%= yeoman.app %>/modules/**/views/{,*/}*.html',
                   '<%= yeoman.app %>/styles/{,*/}*.css'
               ]
+          },
+          styles: {
+            // Which files to watch (all .less files recursively in the less directory)
+            files: ['assets/style/**/*.less'],
+            tasks: ['less'],
+            options: {
+              nospawn: true
+            }
           }
+      },
+      less: {
+        development: {
+          options: {
+            paths: ["assets/css"]
+          },
+          files: {
+            "public/styles/main.css": "public/assets/less/main.less"
+          }
+        }
       }
 
   });
@@ -91,4 +109,6 @@ module.exports = function (grunt) {
   grunt.registerTask('heroku:production', [
     'bower'
   ]);
+
+  grunt.loadNpmTasks('grunt-contrib-less');
 };

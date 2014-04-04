@@ -35,5 +35,8 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-less": "~0.11.0"
   }
 }

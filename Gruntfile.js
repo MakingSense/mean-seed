@@ -67,7 +67,7 @@ module.exports = function (grunt) {
           },
           styles: {
             // Which files to watch (all .less files recursively in the less directory)
-            files: ['assets/style/**/*.less'],
+            files: ['assets/less/*.less'],
             tasks: ['less'],
             options: {
               nospawn: true
@@ -77,20 +77,18 @@ module.exports = function (grunt) {
       less: {
         development: {
           options: {
-            paths: ["assets/css"]
+            compress: true,
+            yuicompress: true,
+            optimization: 2
           },
           files: {
-            "public/styles/main.css": "public/assets/less/main.less"
+            "assets/styles/main.css": "assets/less/main.less"
           }
         }
       }
 
   });
-
-  grunt.registerTask('default', [
-    //  'jshint',
-    'bower'
-  ]);
+  
 
   grunt.registerTask('server', [
   //  'jshint',
@@ -111,4 +109,12 @@ module.exports = function (grunt) {
   ]);
 
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('default', [
+    //  'jshint',
+    'bower',
+    'watch'
+  ]);
+
 };

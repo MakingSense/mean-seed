@@ -1,6 +1,6 @@
 {
   "name": "meanp-seed",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "express": "~3.4.3",
     "passport": "~0.1.15",
@@ -34,27 +34,9 @@
     "node": ">=0.8.0"
   },
   "scripts": {
-    "test": "grunt test",
-    "start": "node server.js"
+    "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-watch": "~0.5.2",
     "grunt-contrib-less": "~0.11.0"
-  },
-  "description": "MEANP-seed   [![Build Status](https://drone.io/github.com/mravinale/meanp-seed/status.png)](https://drone.io/github.com/mravinale/meanp-seed/latest) ================",
-  "main": "Gruntfile.js",
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/snakefooc/meanp-seed.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/snakefooc/meanp-seed/issues"
-  },
-  "homepage": "https://github.com/snakefooc/meanp-seed"
+  }
 }

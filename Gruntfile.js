@@ -68,7 +68,7 @@ module.exports = function (grunt) {
           },
           styles: {
             // Which files to watch (all .less files recursively in the less directory)
-            files: ['assets/less/*.less'],
+            files: ['<%= yeoman.app %>/assets/less/*.less'],
             tasks: ['less'],
             options: {
               nospawn: true
@@ -83,7 +83,7 @@ module.exports = function (grunt) {
             optimization: 2
           },
           files: {
-            "assets/styles/main.css": "assets/less/main.less"
+            "<%= yeoman.app %>/assets/styles/main.css": "<%= yeoman.app %>/assets/less/main.less"
           }
         }
       }

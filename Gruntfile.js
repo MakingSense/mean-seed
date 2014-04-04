@@ -65,15 +65,31 @@ module.exports = function (grunt) {
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.js',
                   '<%= yeoman.app %>/styles/{,*/}*.css'
               ]
+          },
+          styles: {
+            // Which files to watch (all .less files recursively in the less directory)
+            files: ['assets/less/*.less'],
+            tasks: ['less'],
+            options: {
+              nospawn: true
+            }
           }
+      },
+      less: {
+        development: {
+          options: {
+            compress: true,
+            yuicompress: true,
+            optimization: 2
+          },
+          files: {
+            "assets/styles/main.css": "assets/less/main.less"
+          }
+        }
       }
 
   });
-
-  grunt.registerTask('default', [
-    //  'jshint',
-    'bower'
-  ]);
+  
 
   grunt.registerTask('server', [
   //  'jshint',
@@ -92,4 +108,14 @@ module.exports = function (grunt) {
   grunt.registerTask('heroku:production', [
     'bower'
   ]);
+
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('default', [
+    //  'jshint',
+    'bower',
+    'watch'
+  ]);
+
 };

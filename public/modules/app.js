@@ -6,7 +6,8 @@ angular.module('meanp', [
   'ngSanitize',
   'ngRoute',
   'http-auth-interceptor',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'autofill-directive'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -65,7 +66,7 @@ angular.module('meanp', [
 
     // On catching 401 errors, redirect to the login page.
     $rootScope.$on('event:auth-loginRequired', function() {
-      $location.path('/login');
+      $location.path('/logi n');
       return false;
     });
   });

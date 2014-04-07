@@ -13,6 +13,7 @@
     "angular-route": "~1.2.0",
     "angular-http-auth": "*",
     "angular-bootstrap": "~0.7.0",
-    "angular-mocks": "~1.2.0"
+    "angular-mocks": "~1.2.0",
+    "autofill-directive":"~2.0.0"
   }
 }

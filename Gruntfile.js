@@ -63,27 +63,16 @@ module.exports = function (grunt) {
                   '<%= yeoman.app %>{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.js',
-                  '<%= yeoman.app %>/styles/{,*/}*.css'
+                  '<%= yeoman.app %>/css/{,*/}*.css'
               ]
-          },
-          styles: {
-            // Which files to watch (all .less files recursively in the less directory)
-            files: ['<%= yeoman.app %>/assets/scss/*.scss'],
-            tasks: ['less'],
-            options: {
-              nospawn: true
-            }
           }
       },
-      less: {
+
+      sass: {
         development: {
-          options: {
-            compress: true,
-            yuicompress: true,
-            optimization: 2
-          },
+          
           files: {
-            "<%= yeoman.app %>/assets/styles/main.css": "<%= yeoman.app %>/assets/scss/main.scss"
+            "<%= yeoman.app %>/assets/css/main.css": "<%= yeoman.app %>/assets/scss/main.scss"
           }
         }
       }

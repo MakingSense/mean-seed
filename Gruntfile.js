@@ -68,14 +68,43 @@ module.exports = function (grunt) {
           }
       },
 
-      sass: {
-        development: {
-          
-          files: {
-            "<%= yeoman.app %>/assets/css/main.css": "<%= yeoman.app %>/assets/scss/main.scss"
-          }
-        }
-      }
+      // Execute concurrent tasks in Grunt
+     concurrent: {
+       watch: {
+         tasks: ['watch', 'compass:watch'],
+         options: {
+             logConcurrentOutput: true
+         }
+       }
+     },
+
+     // Compass tasks for Grunt
+     compass: {                  // Task  
+       watch: {
+         options: {
+             watch: true,
+             sassDir: 'sass',
+             cssDir: 'public/css',
+             environment: 'development',
+             trace: true,
+             force: true
+         }
+       },
+       dist: {                   // Target
+         options: {              // Target options
+           sassDir: 'sass',
+           cssDir: 'public/css',
+           environment: 'production'
+         }
+       },
+       dev: {                    // Another target
+         options: {
+           sassDir: 'sass',
+           cssDir: 'public/css',
+           environment: 'development'
+         }
+       }
+     }
 
   });
   
@@ -84,6 +113,7 @@ module.exports = function (grunt) {
   //  'jshint',
    'bower',
    'express:dev',
+   'concurrent:watch',
    'open',
    'watch'
   ]);
@@ -98,7 +128,12 @@ module.exports = function (grunt) {
     'bower'
   ]);
 
-  grunt.loadNpmTasks('grunt-contrib-sass');
+   // Include Compass Tasks
+  grunt.loadNpmTasks('grunt-contrib-compass');
+
+  // Let Grunt run concurrent tasks
+  grunt.loadNpmTasks('grunt-concurrent');
+
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', [

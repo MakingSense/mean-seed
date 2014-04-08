@@ -68,7 +68,7 @@ module.exports = function (grunt) {
           },
           styles: {
             // Which files to watch (all .less files recursively in the less directory)
-            files: ['<%= yeoman.app %>/assets/less/*.less'],
+            files: ['<%= yeoman.app %>/assets/scss/*.scss'],
             tasks: ['less'],
             options: {
               nospawn: true
@@ -83,7 +83,7 @@ module.exports = function (grunt) {
             optimization: 2
           },
           files: {
-            "<%= yeoman.app %>/assets/styles/main.css": "<%= yeoman.app %>/assets/less/main.less"
+            "<%= yeoman.app %>/assets/styles/main.css": "<%= yeoman.app %>/assets/scss/main.scss"
           }
         }
       }
@@ -109,7 +109,7 @@ module.exports = function (grunt) {
     'bower'
   ]);
 
-  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', [

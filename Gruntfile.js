@@ -63,48 +63,30 @@ module.exports = function (grunt) {
                   '<%= yeoman.app %>{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.js',
-                  '<%= yeoman.app %>/css/{,*/}*.css'
+                  '<%= yeoman.app %>/styles/{,*/}*.css'
               ]
+          },
+          styles: {
+            // Which files to watch (all .less files recursively in the less directory)
+            files: ['<%= yeoman.app %>/assets/less/*.less'],
+            tasks: ['less'],
+            options: {
+              nospawn: true
+            }
           }
       },
-
-      // Execute concurrent tasks in Grunt
-     concurrent: {
-       watch: {
-         tasks: ['watch', 'compass:watch'],
-         options: {
-             logConcurrentOutput: true
-         }
-       }
-     },
-
-     // Compass tasks for Grunt
-     compass: {                  // Task  
-       watch: {
-         options: {
-             watch: true,
-             sassDir: 'sass',
-             cssDir: 'public/css',
-             environment: 'development',
-             trace: true,
-             force: true
-         }
-       },
-       dist: {                   // Target
-         options: {              // Target options
-           sassDir: 'sass',
-           cssDir: 'public/css',
-           environment: 'production'
-         }
-       },
-       dev: {                    // Another target
-         options: {
-           sassDir: 'sass',
-           cssDir: 'public/css',
-           environment: 'development'
-         }
-       }
-     }
+      less: {
+        development: {
+          options: {
+            compress: true,
+            yuicompress: true,
+            optimization: 2
+          },
+          files: {
+            "<%= yeoman.app %>/assets/styles/main.css": "<%= yeoman.app %>/assets/less/main.less"
+          }
+        }
+      }
 
   });
   
@@ -113,7 +95,6 @@ module.exports = function (grunt) {
   //  'jshint',
    'bower',
    'express:dev',
-   'concurrent:watch',
    'open',
    'watch'
   ]);
@@ -128,18 +109,12 @@ module.exports = function (grunt) {
     'bower'
   ]);
 
-   // Include Compass Tasks
-  grunt.loadNpmTasks('grunt-contrib-compass');
-
-  // Let Grunt run concurrent tasks
-  grunt.loadNpmTasks('grunt-concurrent');
-
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', [
     //  'jshint',
-    'bower',
-    'watch'
+    'bower'
   ]);
 
 };

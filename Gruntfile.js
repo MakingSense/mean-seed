@@ -138,7 +138,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     //  'jshint',
-    'bower'
+    'bower',
+    'watch'
   ]);
 
 };

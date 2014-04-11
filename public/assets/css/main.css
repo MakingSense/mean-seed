@@ -1785,3 +1785,7 @@ a.list-group-item {
     -webkit-border-radius: 4px 0 4px 4px;
     -moz-border-radius: 4px 0 4px 4px;
     border-radius: 4px 0 4px 4px; }
+
+/* line 3, ../sass/main.scss */
+body {
+  padding: 58px 0 0; }

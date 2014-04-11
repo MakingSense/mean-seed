@@ -3937,7 +3937,7 @@ form .btn {
     padding-top: 0; }
 
   /* line 986, ../sass/main.scss */
-  #header .navbar .navbar-inner ul li a {
+  #header .navbar .navbar-header ul li a {
     padding-left: 0; }
 
   /* line 998, ../sass/main.scss */
@@ -4019,13 +4019,13 @@ form .btn {
   #header .navbar {
     position: relative; }
     /* line 1100, ../sass/main.scss */
-    #header .navbar .navbar-inner ul {
+    #header .navbar .navbar-header ul {
       width: 75%;
       margin: 0 auto;
       display: block;
       text-align: center; }
       /* line 1107, ../sass/main.scss */
-      #header .navbar .navbar-inner ul li {
+      #header .navbar .navbar-header ul li {
         background-color: #ecf0f1;
         text-align: center;
         padding: 12px;

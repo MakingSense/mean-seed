@@ -43,6 +43,14 @@ module.exports = function (grunt) {
               url: 'http://localhost:<%= express.options.port %>'
           }
       },
+    compass: {
+      dist: {
+        options: {
+          config: '<%= yeoman.app %>/config.rb',
+          cssDir: '<%= yeoman.app %>/assets/css'
+        }
+      }
+    },
     watch: {
           express: {
               files: [
@@ -63,31 +71,10 @@ module.exports = function (grunt) {
                   '<%= yeoman.app %>{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.js',
-                  '<%= yeoman.app %>/styles/{,*/}*.css'
+                  '<%= yeoman.app %>/assets/sass/{,*/}*.scss'
               ]
-          },
-          styles: {
-            // Which files to watch (all .less files recursively in the less directory)
-            files: ['<%= yeoman.app %>/assets/less/*.less'],
-            tasks: ['less'],
-            options: {
-              nospawn: true
-            }
           }
-      },
-      less: {
-        development: {
-          options: {
-            compress: true,
-            yuicompress: true,
-            optimization: 2
-          },
-          files: {
-            "<%= yeoman.app %>/assets/styles/main.css": "<%= yeoman.app %>/assets/less/main.less"
-          }
-        }
       }
-
   });
   
 
@@ -109,7 +96,7 @@ module.exports = function (grunt) {
     'bower'
   ]);
 
-  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', [

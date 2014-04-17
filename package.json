@@ -29,8 +29,9 @@
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "0.10.9",
     "karma-ng-html2js-preprocessor": "~0.1.0",
-    "grunt-contrib-compass": "~0.7.2",
-    "grunt-concurrent": "~0.5.0"
+    "grunt-concurrent": "~0.5.0",
+    "grunt-sass": "*",
+      "grunt-contrib-jshint" : "*"
   },
   "engines": {
     "node": ">=0.8.0"

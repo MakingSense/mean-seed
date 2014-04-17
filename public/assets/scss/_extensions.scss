@@ -1,4 +1,6 @@
 
+@import "variables";
+
 .container{
   max-width: $width;
   margin: 0 auto;  
@@ -7,12 +9,10 @@
 .stretchy-bg{
   background-position: center center;
   background-repeat: none;
-  @include background-size(cover);
+ // @include background-size(cover);
 }
 
 .big-image{
   height: $base-line-height * 50;
-  @include respond-to( $breakpoint ){ 
-    height: $base-line-height * 70; 
-  }
+  // @include respond-to( $breakpoint ){ height: $base-line-height * 70;  }
 }

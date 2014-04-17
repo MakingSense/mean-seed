@@ -3,6 +3,11 @@
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+
   grunt.initConfig({
     yeoman: {
       // configurable paths
@@ -55,6 +60,10 @@ module.exports = function (grunt) {
                   nospawn: true //Without this option specified express won't be reloaded
               }
           },
+          css: {
+              files: 'public/assets/scss/*.scss',
+              tasks: ['sass']
+          },
           livereload: {
               options: {
                   livereload: { livereload: true }
@@ -63,78 +72,45 @@ module.exports = function (grunt) {
                   '<%= yeoman.app %>{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.js',
-                  '<%= yeoman.app %>/css/{,*/}*.css'
+                  '<%= yeoman.app %>/assets/scss/{,*/}*.scss'
               ]
           }
       },
-
-      // Execute concurrent tasks in Grunt
-     concurrent: {
-       watch: {
-         tasks: ['watch', 'compass:watch'],
-         options: {
-             logConcurrentOutput: true
-         }
-       }
-     },
-
-     // Compass tasks for Grunt
-     compass: {                  // Task  
-       watch: {
-         options: {
-             watch: true,
-             sassDir: 'sass',
-             cssDir: 'public/css',
-             environment: 'development',
-             trace: true,
-             force: true
-         }
-       },
-       dist: {                   // Target
-         options: {              // Target options
-           sassDir: 'sass',
-           cssDir: 'public/css',
-           environment: 'production'
-         }
-       },
-       dev: {                    // Another target
-         options: {
-           sassDir: 'sass',
-           cssDir: 'public/css',
-           environment: 'development'
-         }
-       }
-     }
+      concurrent: {
+          test: ['sass','jshint', 'karma']
+      },
+      sass: {
+          dist: {
+              options: {
+                  includePaths: ['public/assets/scss/'],
+                  outputStyle: 'nested'
+              },
+              files: {
+                  'public/assets/css/main.css': 'public/assets/scss/main.scss'
+              }
+          }
+      }
 
   });
   
 
   grunt.registerTask('server', [
-  //  'jshint',
    'bower',
+   'sass',
    'express:dev',
-   'concurrent:watch',
    'open',
    'watch'
   ]);
 
   grunt.registerTask('test', [
-     //  'jshint',
     'bower',
-    'karma'
+    'concurrent:test'
   ]);
 
   grunt.registerTask('heroku:production', [
     'bower'
   ]);
 
-   // Include Compass Tasks
-  grunt.loadNpmTasks('grunt-contrib-compass');
-
-  // Let Grunt run concurrent tasks
-  grunt.loadNpmTasks('grunt-concurrent');
-
-  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', [
     //  'jshint',

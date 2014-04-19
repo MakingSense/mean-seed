@@ -3,6 +3,11 @@
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+
   grunt.initConfig({
     yeoman: {
       // configurable paths
@@ -43,14 +48,6 @@ module.exports = function (grunt) {
               url: 'http://localhost:<%= express.options.port %>'
           }
       },
-    compass: {
-      dist: {
-        options: {
-          config: '<%= yeoman.app %>/config.rb',
-          cssDir: '<%= yeoman.app %>/assets/css'
-        }
-      }
-    },
     watch: {
           express: {
               files: [
@@ -63,6 +60,10 @@ module.exports = function (grunt) {
                   nospawn: true //Without this option specified express won't be reloaded
               }
           },
+          css: {
+              files: 'public/assets/scss/*.scss',
+              tasks: ['sass']
+          },
           livereload: {
               options: {
                   livereload: { livereload: true }
@@ -71,33 +72,45 @@ module.exports = function (grunt) {
                   '<%= yeoman.app %>{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.js',
-                  '<%= yeoman.app %>/assets/sass/{,*/}*.scss'
+                  '<%= yeoman.app %>/assets/scss/{,*/}*.scss'
               ]
           }
+      },
+      concurrent: {
+          test: ['sass','jshint', 'karma']
+      },
+      sass: {
+          dist: {
+              options: {
+                  includePaths: ['public/assets/scss/'],
+                  outputStyle: 'nested'
+              },
+              files: {
+                  'public/assets/css/main.css': 'public/assets/scss/main.scss'
+              }
+          }
       }
+
   });
   
 
   grunt.registerTask('server', [
-  //  'jshint',
    'bower',
+   'sass',
    'express:dev',
    'open',
    'watch'
   ]);
 
   grunt.registerTask('test', [
-     //  'jshint',
     'bower',
-    'karma'
+    'concurrent:test'
   ]);
 
   grunt.registerTask('heroku:production', [
     'bower'
   ]);
 
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('default', [
     //  'jshint',

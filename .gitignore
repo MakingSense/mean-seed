@@ -4,5 +4,3 @@ node_modules
 heroku
 staging
 public/lib/
-.sass-cache
-config.codekit

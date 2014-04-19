@@ -8,14 +8,3 @@ exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
   res.send(401);
 }
 
-/**
- * Blog authorizations routing middleware
- */
-exports.blog = {
-  hasAuthorization: function(req, res, next) {
-    if (req.blog.creator._id.toString() !== req.user._id.toString()) {
-      return res.send(403);
-    }
-    next();
-  }
-};

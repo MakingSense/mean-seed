@@ -4,6 +4,7 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -60,9 +61,13 @@ module.exports = function (grunt) {
                   nospawn: true //Without this option specified express won't be reloaded
               }
           },
-          css: {
-              files: 'public/assets/scss/*.scss',
+          sass: {
+              files: ['public/assets/sass/*.scss'],
               tasks: ['sass']
+          },
+          less: {
+            files: ['public/assets/less/*.less'],
+            tasks: ['less']
           },
           livereload: {
               options: {
@@ -72,7 +77,7 @@ module.exports = function (grunt) {
                   '<%= yeoman.app %>{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.html',
                   '<%= yeoman.app %>/modules/**/**/{,*/}*.js',
-                  '<%= yeoman.app %>/assets/scss/{,*/}*.scss'
+                  '<%= yeoman.app %>/assets/sass/{,*/}*.scss'
               ]
           }
       },
@@ -82,11 +87,23 @@ module.exports = function (grunt) {
       sass: {
           dist: {
               options: {
-                  includePaths: ['public/assets/scss/'],
+                  includePaths: ['public/assets/sass/'],
                   outputStyle: 'nested'
               },
               files: {
-                  'public/assets/css/main.css': 'public/assets/scss/main.scss'
+                  'public/assets/css/main.css': 'public/assets/sass/main.scss'
+              }
+          }
+      },
+      less: {
+          development: {
+              options: {
+                  compress: true,
+                  yuicompress: true,
+                  optimization: 2
+              },
+              files: {
+                  "public/assets/css/main.css": "public/assets/less/main.less"
               }
           }
       }

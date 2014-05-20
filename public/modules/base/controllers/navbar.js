@@ -1,15 +1,6 @@
 'use strict';
 
 angular.module('meanp').controller('NavbarCtrl', function ($scope,$rootScope, sessionService, $location) {
-    $scope.menu = [{
-      "title": "Blogs",
-      "link": "blogs"
-    }];
-
-    $scope.authMenu = [{
-      "title": "Create New Blog",
-      "link": "blogs/create"
-    }];
 
     $scope.logout = function() {
         sessionService.remove()

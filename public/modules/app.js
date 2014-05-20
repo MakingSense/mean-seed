@@ -15,22 +15,6 @@ angular.module('meanp', [
         templateUrl: 'modules/base/views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/blogs', {
-        templateUrl: 'modules/blogs/views/list.html',
-        controller: 'BlogsCtrl'
-      })
-      .when('/blogs/create', {
-        templateUrl: 'modules/blogs/views/create.html',
-        controller: 'BlogsCtrl'
-      })
-      .when('/blogs/:blogId/edit', {
-        templateUrl: 'modules/blogs/views/edit.html',
-        controller: 'BlogsCtrl'
-      })
-      .when('/blogs/:blogId', {
-        templateUrl: 'modules/blogs/views/view.html',
-        controller: 'BlogsCtrl'
-      })
       .when('/login', {
         templateUrl: 'modules/base/views/login.html',
         controller: 'LoginCtrl'
@@ -66,7 +50,7 @@ angular.module('meanp', [
 
     // On catching 401 errors, redirect to the login page.
     $rootScope.$on('event:auth-loginRequired', function() {
-      $location.path('/logi n');
+      $location.path('/login');
       return false;
     });
   });

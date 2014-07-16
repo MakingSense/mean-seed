@@ -17,6 +17,6 @@ angular.module('meanp').service('sessionService', function ($http) {
     };
 
     this.getCurrentUser = function () {
-        return $http.delete('/auth/session/');
+        return $http.get('/auth/session/');
     };
 });

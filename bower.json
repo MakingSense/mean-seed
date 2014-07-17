@@ -1,19 +1,21 @@
 {
-  "name": "meanp-seed",
-  "version": "0.0.0",
-  "dependencies": {
-    "angular": "~1.2.1",
-    "json3": "~3.2.4",
-    "es5-shim": "~2.1.0",
-    "jquery": "~1.10.2",
-    "bootstrap": "~3.0.0",
-    "angular-resource": "~1.2.0",
-    "angular-cookies": "~1.2.0",
-    "angular-sanitize": "~1.2.0",
-    "angular-route": "~1.2.0",
-    "angular-http-auth": "*",
-    "angular-bootstrap": "~0.7.0",
-    "angular-mocks": "~1.2.0",
-    "autofill-directive":"~2.0.0"
-  }
+    "name": "meanp-seed",
+    "version": "0.0.0",
+    "dependencies": {
+        "angular": "~1.2.1",
+        "json3": "~3.2.4",
+        "es5-shim": "~2.1.0",
+        "jquery": "~1.10.2",
+        "bootstrap": "~3.0.0",
+        "angular-resource": "~1.2.0",
+        "angular-cookies": "~1.2.0",
+        "angular-sanitize": "~1.2.0",
+        "angular-route": "~1.2.0",
+        "angular-http-auth": "*",
+        "angular-bootstrap": "~0.7.0",
+        "autofill-directive":"~2.0.0"
+    },
+    "devDependencies": {
+        "angular-mocks": "~1.2.0"
+    }
 }

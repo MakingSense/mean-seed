@@ -14,10 +14,21 @@ var app = express();
 // Connect to database
 var db = require('./api/db/mongo').db;
 
-// Bootstrap models
-var modelsPath = path.join(__dirname, 'api/models');
-fs.readdirSync(modelsPath).forEach( function (file) { require(modelsPath + '/' + file); });
-
+// boostrap Models and Routes
+fs.readdirSync(__dirname + '/api/').forEach(function(dir){
+    if(dir != '.DS_Store' && dir != 'config' && dir != 'db'){
+        fs.readdirSync(__dirname + '/api/' + dir + '/models').forEach(function(file){
+            if(dir + '.js' == file || file == 'user.js' && dir == 'base'){
+                require(__dirname + '/api/' + dir + '/models/' + file);
+            }
+        })
+        fs.readdirSync(__dirname + '/api/' + dir + '/routes').forEach(function(file){
+            if(dir + '.js' == file){
+                require(__dirname + '/api/' + dir + '/routes/' + file);
+            }
+        })
+    }
+})
 var pass = require('./api/config/passport');
 
 // Environments configuration
@@ -42,7 +53,7 @@ app.use(passport.session());
 
 // Bootstrap routes
 app.use(app.router);
-require('./api/config/routes')(app);
+require('./api/base/routes/base')(app);
 
 // Start server
 var port = process.env.PORT || 3000;

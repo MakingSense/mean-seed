@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path'),
-    auth = require('../config/auth');
+    auth = require('../../config/auth');
 
 module.exports = function(app) {
   // User Routes
@@ -18,7 +18,7 @@ module.exports = function(app) {
   app.get('/auth/session', auth.ensureAuthenticated, session.session);
   app.post('/auth/session', session.login);
   app.del('/auth/session', session.logout);
-
+  //===== meanp-cli hook =====//
 
 
 }

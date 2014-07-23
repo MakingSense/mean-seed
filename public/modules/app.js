@@ -23,6 +23,7 @@ angular.module('meanp', [
         templateUrl: 'modules/base/views/signup.html',
         controller: 'SignupCtrl'
       })
+      //===== meanp-cli hook =====//
       .otherwise({
         redirectTo: '/'
       });

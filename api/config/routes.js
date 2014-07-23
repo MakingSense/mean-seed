@@ -18,7 +18,7 @@ module.exports = function(app) {
   app.get('/auth/session', auth.ensureAuthenticated, session.session);
   app.post('/auth/session', session.login);
   app.del('/auth/session', session.logout);
-
+  //===== meanp-cli hook =====//
 
 
 }

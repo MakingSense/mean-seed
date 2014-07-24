@@ -1,63 +1,90 @@
 'use strict';
 
-var fs = require('fs'),
-    path = require('path');
-
-var baseRgx = /(.*).(js)$/;
-function excluded (path){
-    var dir = path.substr(path.lastIndexOf('/') + 1)
-    if(dir == '.DS_Store' || dir == 'config' || dir == 'db'){
-        return true;
-    }
-    return false;
-}
-function modulePath(dir, name) {
-    return path.join(process.cwd(), dir, name);
-}
-function Module (name) {
-    var name = name.toLowerCase();
-    var dependencies = [];
-    walk(modulePath('/api/' + name, '/controllers'), null, function(resource) {
-        dependencies.push(resource);
-        require(resource);
-    });
-    walk(modulePath('/api/' + name, '/models'), null, function(resource) {
-        dependencies.push(resource);
-        require(resource);
-    });
-    var addToApp = function(app){
-        walk(modulePath('/api/' + name,'/routes'), null, function(resource) {
-            require(resource)(app);
-        });
-    }
-    var module = {
-        name: name,
-        dependencies: dependencies,
-        routes: addToApp
-    }
-    return module;
+var fs = require('fs');
+var path = require('path');
+var util = require('./util');
+var modules = [];
+var globals = {
+    controllers: []
 };
-function walk(wpath, excludeDir, callback) {
-    if (!fs.existsSync(wpath) || excluded(wpath)) return;
-    fs.readdirSync(wpath).forEach(function(file) {
-        var newPath = path.join(wpath, file);
-        if(!excluded(newPath)){
-            var stat = fs.statSync(newPath);
-            if (stat.isFile() && baseRgx.test(file)) {
-                console.log(file + ' was readed');
-                callback(newPath);
-            } else if (stat.isDirectory() && !(excludeDir instanceof Array) && file !== excludeDir) {
-                walk(newPath, excludeDir, callback);
-            } else if (stat.isDirectory()) {
-                for(var i in excludeDir){
-                    if(excludeDir[i] !== file){
-                        console.log(newPath)
-                        walk(newPath, excludeDir, callback);
-                    }
-                }
+
+
+var generateModules = function(app){
+    findModules();
+    modules.forEach(function(module){
+        fs.readdirSync('./api/' + module.name).forEach(function(file){
+            if(file && file == 'index.js' || file == 'base.js'){
+                require('./api/' + module.name + '/' + file)(app, new meanpScaffolding());
             }
+        });
+    });
+}
+var findModules = function () {
+    modules = [];
+    fs.readdirSync('./public/modules/').forEach(function(moduleName){
+        if(moduleName != '.DS_Store' && moduleName != 'config' && moduleName != 'db' && moduleName.indexOf('.') == -1){
+            var packageJson = require('./public/modules/'+ moduleName +'/package.json');
+            modules.push({
+                name: moduleName,
+                source: path.join(process.cwd(), './public/modules/'),
+                version: packageJson.version,
+                active: true
+            })
         }
     });
+    return modules;
 }
-exports.Module = Module;
-exports.walk = walk;
+var activeModules = function(){
+    var result = [];
+    for(var i in modules){
+        if(modules[i].active){
+            result.push(modules[i]);
+        }
+    }
+    return result;
+}
+var enableAll = function(){
+    findModules();
+    for(var i in modules){
+        modules[i].active = true;
+    }
+    return true;
+}
+var disableAll = function(){
+    findModules();
+    for(var i in modules){
+        modules[i].active = false;
+    }
+    return true;
+}
+var enableModule = function(name) {
+    if(!name){ return };
+    findModules();
+    for(var i in modules){
+        if(modules[i].name == name){
+            modules[i].active = true;
+        }
+    }
+}
+var disableModule = function(name) {
+    if(!name){ return };
+    findModules();
+    for(var i in modules){
+        if(modules[i].name == name){
+            modules[i].active = false;
+        }
+    }
+}
+function meanpScaffolding (){
+    this.init = generateModules;
+    this.globals = globals;
+    this.actions = {
+        list: findModules,
+        listActive: activeModules,
+        enableAll: enableAll,
+        disableAll: disableAll,
+        enableModule: enableModule,
+        disableModule: disableModule
+    }
+}
+module.exports = exports = new meanpScaffolding();

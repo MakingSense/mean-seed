@@ -8,7 +8,7 @@ var express = require('express'),
     fs = require('fs'),
     mongoStore = require('connect-mongo')(express),
     config = require('./api/config/config'),
-    util = require('./util.js');
+    meanpModule = require('./util.js');
 
 var app = express();
 
@@ -42,10 +42,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Bootstrap routes
+meanpModule.init(app)
 app.use(app.router);
 // require('./api/config/routes')(app);
-var base = util.Module('base').routes(app);
 // Start server
+
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
     console.log('listening on port %d in %s mode', port, app.get('env'));

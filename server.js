@@ -7,30 +7,13 @@ var express = require('express'),
     path = require('path'),
     fs = require('fs'),
     mongoStore = require('connect-mongo')(express),
-    config = require('./api/config/config');
+    config = require('./api/config/config'),
+    modulepath =require('app-module-path');
 
 var app = express();
 
 // Connect to database
 var db = require('./api/db/mongo').db;
-
-// boostrap Models and Routes
-fs.readdirSync(__dirname + '/api/').forEach(function(dir){
-    if(dir != '.DS_Store' && dir != 'config' && dir != 'db'){
-        fs.readdirSync(__dirname + '/api/' + dir + '/models').forEach(function(file){
-            if(dir + '.js' == file || file == 'user.js' && dir == 'base'){
-                require(__dirname + '/api/' + dir + '/models/' + file);
-            }
-        })
-        fs.readdirSync(__dirname + '/api/' + dir + '/routes').forEach(function(file){
-            if(dir + '.js' == file){
-                require(__dirname + '/api/' + dir + '/routes/' + file);
-            }
-        })
-    }
-})
-var pass = require('./api/config/passport');
-
 // Environments configuration
 app.configure( function(){
     app.use(express.errorHandler());
@@ -53,8 +36,23 @@ app.use(passport.session());
 
 // Bootstrap routes
 app.use(app.router);
-require('./api/base/routes/base')(app);
-
+// boostrap Models and Routes
+fs.readdirSync(__dirname + '/api/').forEach(function(dir){
+    if(dir != '.DS_Store' && dir != 'config' && dir != 'db'){
+        modulepath.addPath(__dirname + '/api/' + dir); //Add's path of module to require
+        fs.readdirSync(__dirname + '/api/' + dir + '/models').forEach(function(file){
+            if(dir + '.js' == file || file == 'user.js' && dir == 'base'){
+                require(__dirname + '/api/' + dir + '/models/' + file);
+            }
+        })
+        fs.readdirSync(__dirname + '/api/' + dir + '/routes').forEach(function(file){
+            if(dir + '.js' == file){
+                require(__dirname + '/api/' + dir + '/routes/' + file)(app); // We pass the app object to the routes function
+            }
+        })
+    }
+})
+var pass = require('./api/config/passport');
 // Start server
 var port = process.env.PORT || 3000;
 app.listen(port, function () {

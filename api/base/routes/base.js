@@ -5,7 +5,7 @@ var path = require('path'),
 
 module.exports = function(app) {
   // User Routes
-  var users = require('../controllers/users');
+  var users = require('controllers/users');
   app.post('/auth/users', users.create);
   app.get('/auth/users/:userId', users.show);
 
@@ -14,11 +14,8 @@ module.exports = function(app) {
   app.get('/auth/check_username/:username', users.exists);
 
   // Session Routes
-  var session = require('../controllers/session');
+  var session = require('controllers/session');
   app.get('/auth/session', auth.ensureAuthenticated, session.session);
   app.post('/auth/session', session.login);
   app.del('/auth/session', session.logout);
-  //===== meanp-cli hook =====//
-
-
 }

@@ -7,7 +7,8 @@
         "mongoose": "~3.5.5",
         "ejs": "~0.8.4",
         "underscore": "~1.5.2",
-        "connect-mongo": "~0.4.0"
+        "connect-mongo": "~0.4.0",
+        "app-module-path": "^0.3.2-beta"
     },
     "devDependencies": {
         "passport-local": "~0.1.6",

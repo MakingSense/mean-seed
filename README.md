@@ -10,10 +10,9 @@ npm install
 npm install -g bower
 npm install -g grunt-cli
 npm install -g generator-meanp
-
+bower install --allow-root
 ```
 read more about installing [Bower](http://bower.io/) and [Grunt client](http://gruntjs.com/getting-started)
-Our own cli tool for making easier on dev's [meanp-cli](http://github.com/MakingSense/meanp-cli)
 
 ### Installing MongoDB:
 

@@ -8,7 +8,7 @@
         "ejs": "~0.8.4",
         "underscore": "~1.5.2",
         "connect-mongo": "~0.4.0",
-        "node-hook": "~0.1.0"
+        "app-module-path": "^0.3.2-beta"
     },
     "devDependencies": {
         "passport-local": "~0.1.6",

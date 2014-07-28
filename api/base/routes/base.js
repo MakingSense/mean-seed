@@ -1,11 +1,11 @@
 'use strict';
 
 var path = require('path'),
-    auth = require('config/auth');
+    auth = require('../../config/auth');
 
 module.exports = function(app) {
   // User Routes
-  var users = require('base/controllers/users');
+  var users = meanpInject('users.js', 'c');
   app.post('/auth/users', users.create);
   app.get('/auth/users/:userId', users.show);
 
@@ -14,7 +14,7 @@ module.exports = function(app) {
   app.get('/auth/check_username/:username', users.exists);
 
   // Session Routes
-  var session = require('base/controllers/session');
+  var session = meanpInject('session.js', 'c');
   app.get('/auth/session', auth.ensureAuthenticated, session.session);
   app.post('/auth/session', session.login);
   app.del('/auth/session', session.logout);

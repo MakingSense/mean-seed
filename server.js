@@ -8,12 +8,11 @@ var express = require('express'),
     fs = require('fs'),
     mongoStore = require('connect-mongo')(express),
     config = require('./api/config/config'),
-    modulepath =require('app-module-path');
+    mapDI =require('./api/config/mapDI');
 
 var app = express();
-modulepath.addPath(__dirname + '/api/'); //Add's path of api to require
 // Connect to database
-var db = require('db/mongo').db;
+var db = require('./api/db/mongo').db;
 // Environments configuration
 app.configure( function(){
     app.use(express.errorHandler());
@@ -44,6 +43,11 @@ fs.readdirSync(__dirname + '/api/').forEach(function(dir){
                 require(__dirname + '/api/' + dir + '/models/' + file);
             }
         })
+        fs.readdirSync(__dirname + '/api/' + dir + '/controllers').forEach(function(file){
+            if(file != '.DS_Store'){
+                require(__dirname + '/api/' + dir + '/controllers/' + file);
+            }
+        })
         fs.readdirSync(__dirname + '/api/' + dir + '/routes').forEach(function(file){
             if(dir + '.js' == file){
                 require(__dirname + '/api/' + dir + '/routes/' + file)(app); // We pass the app object to the routes function
@@ -51,7 +55,7 @@ fs.readdirSync(__dirname + '/api/').forEach(function(dir){
         })
     }
 })
-var pass = require('config/passport');
+var pass = require('./api/config/passport');
 // Start server
 var port = process.env.PORT || 3000;
 app.listen(port, function () {

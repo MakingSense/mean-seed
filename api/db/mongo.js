@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    config = require('config/config')
+    config = require('../config/config')
 exports.mongoose = mongoose;
 
 var mongoOptions = { db: { safe: true } };

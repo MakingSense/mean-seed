@@ -2,11 +2,8 @@
 <div class="navbar navbar-default " role="navigation" ng-controller="NavbarCtrl">
     <div class="container">
         <div class="navbar-header"><a class="navbar-brand" href="#" name="top">MEANP App</a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" ng-repeat="module in menu">
+                <span class="icon-bar"><a ng-href="#{{module.path}}">{{module.name}}</a></span>
             </button>
         </div>
 

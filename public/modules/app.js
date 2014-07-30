@@ -23,13 +23,14 @@ angular.module('meanp', [
         templateUrl: 'modules/base/views/signup.html',
         controller: 'SignupCtrl'
       })
+      //===== meanp-cli hook =====//
       .otherwise({
         redirectTo: '/'
       });
     $locationProvider.html5Mode(false);
   })
 
-  .run(function ($rootScope, $location, sessionService) {
+  .run(function ($rootScope, $location, sessionService, menuService) {
 
     //watching the value of the currentUser variable.
     $rootScope.$watch('currentUser', function(currentUser) {
@@ -40,6 +41,15 @@ angular.module('meanp', [
           sessionService.getCurrentUser()
               .success(function (response, status, headers, config) {
                $rootScope.currentUser = response;
+              })
+              .error(function(error, status, headers, config) {
+                  $location.path('/login');
+                  console.log(error)
+              });
+          menuService.get()
+              .success(function(response, status, headers, config){
+                $rootScope.menu = response;
+                console.log(response)
               })
               .error(function(error, status, headers, config) {
                   $location.path('/login');

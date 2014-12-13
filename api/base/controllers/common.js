@@ -1,6 +1,6 @@
 'use strict';
 
-exports.list = function (req, res) {
+exports.menu = function (req, res) {
 	var menus = require('config/menus');
   	res.json(menus);
 };

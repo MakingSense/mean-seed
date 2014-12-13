@@ -18,6 +18,7 @@ module.exports = function(app) {
   app.get('/auth/session', auth.ensureAuthenticated, session.session);
   app.post('/auth/session', session.login);
   app.del('/auth/session', session.logout);
-  var menus = require('base/controllers/menus');
-  app.get('/api/menus/', auth.ensureAuthenticated, menus.list);
+
+  var common = require('base/controllers/common.js');
+  app.get('/api/menu/', auth.ensureAuthenticated, common.menu);
 }

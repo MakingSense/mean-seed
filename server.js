@@ -38,7 +38,7 @@ app.use(passport.session());
 app.use(app.router);
 // boostrap Models and Routes
 fs.readdirSync(__dirname + '/api/').forEach(function(dir){
-    if(dir != '.DS_Store' && dir != 'config' && dir != 'db'){
+    if(dir != '.DS_Store' && dir != 'config' && dir != 'templates' && dir != 'db'){
         fs.readdirSync(__dirname + '/api/' + dir + '/models').forEach(function(file){
             if(dir + '.js' == file || file == 'user.js' && dir == 'base'){
                 require(__dirname + '/api/' + dir + '/models/' + file);

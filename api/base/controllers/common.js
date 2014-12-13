@@ -1,6 +1,6 @@
 'use strict';
 
 exports.menu = function (req, res) {
-	var menus = require('config/menus');
+	var menus = require('templates/menus');
   	res.json(menus);
 };

@@ -37,7 +37,20 @@ app.use(passport.session());
 // Bootstrap routes
 app.use(app.router);
 // boostrap Models and Routes
-require('config/initModules')(app);
+fs.readdirSync(__dirname + '/api/').forEach(function(dir){
+    if(dir != '.DS_Store' && dir != 'config' && dir != 'db'){
+        fs.readdirSync(__dirname + '/api/' + dir + '/models').forEach(function(file){
+            if(dir + '.js' == file || file == 'user.js' && dir == 'base'){
+                require(__dirname + '/api/' + dir + '/models/' + file);
+            }
+        })
+        fs.readdirSync(__dirname + '/api/' + dir + '/routes').forEach(function(file){
+            if(dir + '.js' == file){
+                require(__dirname + '/api/' + dir + '/routes/' + file)(app); // We pass the app object to the routes function
+            }
+        })
+    }
+})
 var pass = require('config/passport');
 // Start server
 var port = process.env.PORT || 3000;

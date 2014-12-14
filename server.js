@@ -36,6 +36,7 @@ app.use(passport.session());
 
 // Bootstrap routes
 app.use(app.router);
+
 // boostrap Models and Routes
 fs.readdirSync(__dirname + '/api/').forEach(function(dir){
     if(dir != '.DS_Store' && dir != 'config' && dir != 'templates' && dir != 'db'){
@@ -50,7 +51,8 @@ fs.readdirSync(__dirname + '/api/').forEach(function(dir){
             }
         })
     }
-})
+});
+
 var pass = require('config/passport');
 // Start server
 var port = process.env.PORT || 3000;

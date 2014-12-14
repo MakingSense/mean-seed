@@ -4,6 +4,7 @@ angular.module('meanp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngStorage',
   'ngRoute',
   'http-auth-interceptor',
   'ui.bootstrap',
@@ -30,22 +31,25 @@ angular.module('meanp', [
     $locationProvider.html5Mode(false);
   })
 
-  .run(function ($rootScope, $location, sessionService, menuService) {
+  .run(function ($rootScope, $location, sessionService, menuService,$sessionStorage) {
 
     //watching the value of the currentUser variable.
     $rootScope.$watch('currentUser', function(currentUser) {
       // if no currentUser and on a page that requires authorization then try to update it
       // will trigger 401s if user does not have a valid session
-      if (!currentUser && ['/login', '/logout', '/signup'].indexOf($location.path()) == -1) {
+      $rootScope.currentUser = $sessionStorage.currentUser? $sessionStorage.currentUser : $rootScope.currentUser;
+
+      if (!$rootScope.currentUser && ['/login', '/logout', '/signup'].indexOf($location.path()) == -1) {
 
           sessionService.getCurrentUser()
               .success(function (response, status, headers, config) {
-               $rootScope.currentUser = response;
+                  $sessionStorage.currentUser = response;
               })
               .error(function(error, status, headers, config) {
                   $location.path('/login');
                   console.log(error)
               });
+
           menuService.get()
               .success(function(response, status, headers, config){
                 $rootScope.menu = response;

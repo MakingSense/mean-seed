@@ -20,7 +20,7 @@ Go to [MongoDB official downloads](http://www.mongodb.org/downloads) and follow 
 
 ### Running the app for development:
 Run 
-```grunt server```
+```grunt dev```
 to start the app in development mode with client-server livereload. (Remember to have the mongoDB running)
 
 ### Testing

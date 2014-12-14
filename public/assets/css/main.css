@@ -1,83 +1,47 @@
-.container, body article.page .content {
-  max-width: 600px;
-  margin: 0 auto; }
+body{
+    background: url(../img/desk-blur.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
-.stretchy-bg, body article.page .big-image, body article.page .big-image {
-  background-position: center center;
-  background-repeat: none; }
+.form-signin input[type="text"] {
+    margin-bottom: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signin .form-control {
 
-.big-image, body article.page .big-image {
-  height: 300px; }
-
-body {
-  font-family: 'PT Serif', serif;
-  color: #555;
-  padding: 20px;
-  padding: 0;
-  margin: 0;
-  -webkit-backface-visibility: hidden;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  /* Responsive typography, yay! */
-  font-size: 80%;
-  /* Page-wrap styles.  */ }
-  body h1 {
-    font-family: 'Source Sans Pro', serif; }
-  body h1, body h2, body h3, body h4, body h5, body h6 {
-    color: #333; }
-  body article.page {
-    -webkit-transform-origin: bottom center;
-    /* Class applied when when page fades away. */
-    /* The large image that accompanies every post. */
-    /* The content. */ }
-    body article.page.hidden {
-      display: none; }
-    body article.page.next .big-image, body article.page.next body article.page .big-image, body article.page body article.page.next .big-image {
-      cursor: pointer; }
-    body article.page.next .big-image .inner, body article.page.next .big-image body article.page .big-image, body article.page body article.page.next .big-image .big-image {
-      opacity: 1; }
-    body article.page.content-hidden .content {
-      display: none; }
-    body article.page.fade-up-out {
-      opacity: 0; }
-    body article.page .big-image {
-      font-size: 80%; }
-      body article.page .big-image .inner, body article.page .big-image body article.page .big-image, body article.page body article.page .big-image .big-image {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        opacity: 0; }
-        body article.page .big-image .inner .fader, body article.page .big-image .inner body article.page .big-image, body article.page body article.page .big-image .inner .big-image {
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.3); }
-          body article.page .big-image .inner .fader .text, body article.page .big-image .inner .fader body article.page .big-image, body article.page body article.page .big-image .inner .fader .big-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 80%; }
-            body article.page .big-image .inner .fader .text a, body article.page .big-image .inner .fader .text body article.page .big-image, body article.page body article.page .big-image .inner .fader .text .big-image, body article.page .big-image .inner .fader .text h1, body article.page .big-image .inner .fader .text body article.page .big-image, body article.page body article.page .big-image .inner .fader .text .big-image, body article.page .big-image .inner .fader .text h2, body article.page .big-image .inner .fader .text body article.page .big-image, body article.page body article.page .big-image .inner .fader .text .big-image {
-              color: white; }
-            body article.page .big-image .inner .fader .text a, body article.page .big-image .inner .fader .text body article.page .big-image, body article.page body article.page .big-image .inner .fader .text .big-image {
-              color: white;
-              border-bottom: 1px solid white;
-              text-decoration: none;
-              font-style: italic; }
-            body article.page .big-image .inner .fader .text h1, body article.page .big-image .inner .fader .text body article.page .big-image, body article.page body article.page .big-image .inner .fader .text .big-image {
-              margin: 0; }
-            body article.page .big-image .inner .fader .text h2, body article.page .big-image .inner .fader .text body article.page .big-image, body article.page body article.page .big-image .inner .fader .text .big-image {
-              margin: 0;
-              font-style: italic;
-              font-weight: normal; }
-    body article.page .content {
-      padding: 0 3em; }
-      body article.page .content h3 {
-        color: #999;
-        font-family: 'Source Sans Pro', serif;
-        font-weight: 400; }
-      body article.page .content h2.description {
-        font-weight: normal;
-        font-style: italic; }
-      body article.page .content p:last-child {
-        margin-bottom: rhythm(10); }
+    position: relative;
+    font-size: 16px;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.vertical-offset-100 {
+    padding-top: 100px;
+}
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+.panel {
+    margin-top: 70px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}

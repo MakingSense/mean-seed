@@ -1,4 +1,4 @@
-MEANP-seed  
+MEAN-seed  
 ================
 
 A bootstrapp application based on MongoDB, Express, Angular, Node, Passport, 

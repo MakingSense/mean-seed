@@ -20,5 +20,5 @@ module.exports = function(app) {
   app.del('/auth/session', session.logout);
 
   var common = require('base/controllers/common.js');
-  app.get('/api/menu/', auth.ensureAuthenticated, common.menu);
+  app.get('/api/common/menu/', auth.ensureAuthenticated, common.menu);
 }

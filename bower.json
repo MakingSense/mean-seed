@@ -1,5 +1,5 @@
 {
-    "name": "meanp-seed",
+    "name": "mean-seed",
     "version": "0.0.0",
     "dependencies": {
         "angular": "~1.2.1",

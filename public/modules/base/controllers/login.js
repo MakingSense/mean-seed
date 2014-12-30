@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('meanp')
+angular.module('mean')
   .controller('LoginCtrl', function ($scope, $rootScope,sessionService, $location) {
     $scope.errors =  {};
     $scope.submitted = false;

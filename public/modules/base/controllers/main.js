@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('meanp').controller('MainCtrl', function ($scope) {
+angular.module('mean').controller('MainCtrl', function ($scope) {
 
 });

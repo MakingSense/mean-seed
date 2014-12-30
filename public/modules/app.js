@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('meanp', [
+angular.module('mean', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -24,7 +24,7 @@ angular.module('meanp', [
         templateUrl: 'modules/base/views/signup.html',
         controller: 'SignupCtrl'
       })
-      //===== meanp-cli hook =====//
+      //===== mean-cli hook =====//
       .otherwise({
         redirectTo: '/'
       });

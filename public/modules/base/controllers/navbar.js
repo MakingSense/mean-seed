@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('meanp').controller('NavbarCtrl', function ($scope,$rootScope, sessionService, $location, $sessionStorage) {
+angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, sessionService, $location, $sessionStorage) {
 
     $scope.logout = function() {
         sessionService.remove()

@@ -27,7 +27,7 @@ app.use(express.methodOverride());
 
 // express/mongo session storage
 app.use(express.session({
-  secret: 'MEANP', store: new mongoStore({ url: config.db, collection: 'sessions' })
+  secret: 'MEAN', store: new mongoStore({ url: config.db, collection: 'sessions' })
 }));
 
 // Use passport session

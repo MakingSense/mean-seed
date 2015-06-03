@@ -1,7 +1,25 @@
-{
-    "base": {
-    	"name": "Home",
-    	"path": "/",
-    	"subMenu": null
-    }
-}
+[{
+  "name": "Home",
+  "path": "/",
+  "subMenu": null
+}, {
+  "name": "Products",
+  "path": null,
+  "subMenu": [{
+    "name": "Product 1",
+    "path": "/products/1/",
+    "subMenu": null
+  }, {
+    "name": "Product 2",
+    "path": "/products/2/",
+    "subMenu": null
+  }, {
+    "name": "Product 3",
+    "path": "/products/3/",
+    "subMenu": null
+  }]
+}, {
+  "name": "Contact",
+  "path": "/contact/",
+  "subMenu": null
+}]

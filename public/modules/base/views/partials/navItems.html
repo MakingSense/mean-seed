@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li ng-repeat="module in items" ng-class="{dropdown: module.subMenu}">
+    <a ng-href="#{{module.path}}" ng-if="!module.subMenu">{{module.name}}</a>
+    <a class="dropdown-toggle" ng-if="module.subMenu" data-toggle="dropdown" href="#">{{module.name}}<b class="caret"></b></a>
+    <ul class="dropdown-menu" ng-if="module.subMenu">
+      <li ng-repeat="submenu in module.subMenu">
+        <a ng-href="#{{submenu.path}}" >{{submenu.name}}</a>
+      </li>
+    </ul>
+  </li>
+</ul>

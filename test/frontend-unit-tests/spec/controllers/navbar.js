@@ -1,20 +1,19 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: NavbarCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('meanp'));
+  beforeEach(module('mean'));
 
-  var MainCtrl,
+  var NavbarCtrl,
     scope,
     $httpBackend;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    NavbarCtrl = $controller('NavbarCtrl', {
       $scope: scope
     });
   }));
-
 });

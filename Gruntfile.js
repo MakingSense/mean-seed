@@ -7,6 +7,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-mocha-test');
 
     grunt.initConfig({
         yeoman: {
@@ -29,7 +30,7 @@ module.exports = function (grunt) {
         },
         karma: {
             unit: {
-                configFile: 'test/karma.conf.js',
+                configFile: 'test/frontend-unit-tests/karma.conf.js',
                 singleRun: true
             }
         },
@@ -89,10 +90,18 @@ module.exports = function (grunt) {
                     'public/assets/css/main.css': 'public/assets/scss/main.scss'
                 }
             }
+        },
+        mochaTest: {
+            test: {
+                options: {
+                    reporter: 'spec',
+                    // Including it here makes the app-module-path magic work as expected
+                    require: 'test/backend-unit-tests/spec/server-test.js'
+                },
+                src: ['test/backend-unit-tests/spec/**/*.js']
+            }
         }
-
     });
-
 
     grunt.registerTask('dev', [
         'bower',
@@ -117,7 +126,6 @@ module.exports = function (grunt) {
     grunt.registerTask('heroku:production', [
         'bower'
     ]);
-
 
     grunt.registerTask('default', [
         //  'jshint',

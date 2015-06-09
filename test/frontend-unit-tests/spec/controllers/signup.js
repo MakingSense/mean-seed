@@ -3,7 +3,7 @@
 describe('Controller: SignupCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('meanp'));
+  beforeEach(module('mean'));
 
   var SignupCtrl,
     scope,

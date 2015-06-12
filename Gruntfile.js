@@ -8,6 +8,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-protractor-runner');
 
     grunt.initConfig({
         yeoman: {
@@ -78,7 +79,7 @@ module.exports = function (grunt) {
             }
         },
         concurrent: {
-            test: ['sass', 'jshint', 'karma']
+            test: ['sass', 'jshint', 'karma', 'mochaTest']
         },
         sass: {
             dist: {
@@ -100,6 +101,17 @@ module.exports = function (grunt) {
                 },
                 src: ['test/backend-unit-tests/spec/**/*.js']
             }
+        },
+        protractor: {
+            options: {
+                configFile: 'test/e2e-tests/protractor.conf.js',
+                keepAlive: true, // If false, the grunt process stops when the test fails.
+                noColor: false, // If true, protractor will not use colors in its output.
+                args: {
+                    // Arguments passed to the command
+                }
+            },
+            all: { } // Grunt requires at least one target
         }
     });
 

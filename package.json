@@ -1,42 +1,47 @@
 {
-    "name": "mean-seed",
-    "version": "0.0.1",
-    "dependencies": {
-        "express": "~3.4.3",
-        "passport": "~0.1.15",
-        "mongoose": "~3.5.5",
-        "ejs": "~0.8.4",
-        "underscore": "~1.5.2",
-        "connect-mongo": "~0.4.0",
-        "app-module-path": "^0.3.2-beta"
-    },
-    "devDependencies": {
-        "passport-local": "~0.1.6",
-        "grunt": "~0.4.1",
-        "grunt-cli": "0.1.13",
-        "jshint-stylish": "~0.1.3",
-        "load-grunt-tasks": "~0.2.0",
-        "grunt-karma": "~0.6.2",
-        "grunt-bower-task": "~0.3.4",
-        "grunt-contrib-watch": "~0.5.2",
-        "grunt-express-server": "~0.4.5",
-        "grunt-open": "~0.2.0",
-        "grunt-concurrent": "~0.5.0",
-        "grunt-sass": "*",
-        "grunt-contrib-jshint" : "*",
-        "karma-ng-scenario": "~0.1.0",
-        "karma-requirejs": "~0.2.0",
-        "karma-firefox-launcher": "~0.1.0",
-        "karma-html2js-preprocessor": "~0.1.0",
-        "karma-script-launcher": "~0.1.0",
-        "karma-chrome-launcher": "~0.1.0",
-        "karma-jasmine": "~0.1.3",
-        "karma-coffee-preprocessor": "~0.1.0",
-        "karma-phantomjs-launcher": "~0.1.0",
-        "karma": "0.10.9",
-        "karma-ng-html2js-preprocessor": "~0.1.0"
-    },
-    "engines": {
-        "node": ">=0.8.0"
-    }
+  "name": "mean-seed",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "~3.4.3",
+    "passport": "~0.1.15",
+    "mongoose": "~3.5.5",
+    "ejs": "~0.8.4",
+    "underscore": "~1.5.2",
+    "connect-mongo": "~0.4.0",
+    "app-module-path": "^0.3.2-beta"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-bower-task": "~0.3.4",
+    "grunt-cli": "0.1.13",
+    "grunt-concurrent": "~0.5.0",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "~0.5.2",
+    "grunt-express-server": "~0.4.5",
+    "grunt-karma": "~0.6.2",
+    "grunt-mocha-test": "^0.12.7",
+    "grunt-open": "~0.2.0",
+    "grunt-protractor-runner": "^2.0.0",
+    "grunt-sass": "*",
+    "jshint-stylish": "~0.1.3",
+    "karma": "0.10.9",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.3",
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "karma-ng-scenario": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma-requirejs": "~0.2.0",
+    "karma-script-launcher": "~0.1.0",
+    "load-grunt-tasks": "~0.2.0",
+    "mocha": "^2.2.5",
+    "passport-local": "~0.1.6",
+    "should": "^6.0.3",
+    "sinon": "^1.15.3"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
 }

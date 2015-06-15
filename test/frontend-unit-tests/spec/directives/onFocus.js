@@ -3,7 +3,7 @@
 describe('Directive: onFocus', function () {
 
   // load the directive's module
-  beforeEach(module('meanp'));
+  beforeEach(module('mean'));
 
   var element, container,
     scope;

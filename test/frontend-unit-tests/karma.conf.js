@@ -4,7 +4,7 @@
 module.exports = function(config) {
   config.set({
     // base path, that will be used to resolve files and exclude
-    basePath: '../',
+    basePath: '../../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
@@ -20,10 +20,9 @@ module.exports = function(config) {
       'public/lib/angular-route/angular-route.js',
       'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'public/lib/angular-http-auth/src/http-auth-interceptor.js',
-      'test/app-test.js',
+      'test/frontend-unit-tests/app-test.js',
       'public/modules/base/**/*.js',
-      'public/modules/blogs/**/*.js',
-      'test/spec/**/*.js'
+      'test/frontend-unit-tests/spec/**/*.js'
     ],
 
     // list of files / patterns to exclude

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('meanp', [
+angular.module('mean', [
   'ngCookies',
   'ngResource',
   'ngSanitize',

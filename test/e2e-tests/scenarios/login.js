@@ -41,4 +41,26 @@ describe('Login', function() {
     });
   });
 
+  it('should notify that the email is not registered', function() {
+    var submit = element(by.css('.loginForm button'));
+    var errors = element.all(by.css('.error'));
+
+    browser.get("/#/login");
+
+    element(by.model('user.email')).sendKeys('e2e_test@domain.com');
+    element(by.model('user.password')).sendKeys('123');
+
+    submit.click();
+
+    var visibleErrors = errors.filter(function (elem) {
+      return elem.isDisplayed();
+    });
+
+    expect(visibleErrors.count()).toEqual(1);
+
+    visibleErrors.each(function (elem) {
+      expect (elem.getText()).toEqual('Email is not registered.');
+    });
+  });
+
 });

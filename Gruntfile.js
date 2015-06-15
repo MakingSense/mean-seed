@@ -79,7 +79,7 @@ module.exports = function (grunt) {
             }
         },
         concurrent: {
-            test: ['sass', 'jshint', 'karma', 'mochaTest']
+            test: ['sass', 'jshint', 'karma']
         },
         sass: {
             dist: {
@@ -142,6 +142,13 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
         //  'jshint',
         'bower'
+    ]);
+
+    grunt.registerTask('e2e-tests', [
+        'bower',
+        'express:dev',
+        'open',
+        'protractor'
     ]);
 
 };

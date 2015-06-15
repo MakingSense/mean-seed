@@ -20,5 +20,9 @@ exports.config = {
     defaultTimeoutInterval: 30000
   },
 
-  baseUrl: 'http://localhost:9000/'
+  baseUrl: 'http://localhost:9000/',
+
+  // This is currently used to set the database prior to tests running, but
+  // it can be used for something else if needed
+  beforeLaunch: './beforeLaunch'
 };

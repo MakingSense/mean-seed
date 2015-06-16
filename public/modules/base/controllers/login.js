@@ -1,17 +1,19 @@
 'use strict';
 
 angular.module('mean')
-  .controller('LoginCtrl', function ($scope, $rootScope,sessionService, $location) {
+  .controller('LoginCtrl', function ($scope, $rootScope, $location, authService) {
     $scope.errors =  {};
     $scope.submitted = false;
 
     $scope.login = function(form) {
+        
         $scope.submitted = true;
         if(form.email.$error.required) return;
-
-        sessionService.create('password',$scope.user)
+        
+        authService.login($scope.user)
             .success(function (response, status, headers, config) {
-                $rootScope.currentUser = response;
+                var params = authService.parseToken(response.token);
+                $rootScope.currentUser = params.user;
                 $location.path('/');
             })
             .error(function(response, status, headers, config) {
@@ -20,6 +22,6 @@ angular.module('mean')
                     $scope.errors[field] = error.type;
                 });
                 $scope.errors.other = response.message;
-            });
+            }); 
     };
   });

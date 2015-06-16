@@ -1,13 +1,14 @@
 'use strict';
 
-angular.module('mean').controller('SignupCtrl', function ($scope,$rootScope, $location, userService) {
+angular.module('mean').controller('SignupCtrl', function ($scope, $rootScope, $location, userService, authService) {
 
 		$scope.register = function(form) {
             $scope.errors = {};
 
             userService.create($scope.user)
                 .success(function (response, status, headers, config) {
-                    $rootScope.currentUser = response;
+                    var params = authService.parseToken(response.token);
+                    $rootScope.currentUser = params.user;
                     $location.path('/');
                 })
                 .error(function(response, status, headers, config) {

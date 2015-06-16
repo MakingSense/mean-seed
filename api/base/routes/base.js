@@ -1,7 +1,6 @@
 'use strict';
 
-var path = require('path'),
-    auth = require('config/auth');
+var path = require('path');
 
 module.exports = function(app) {
   // User Routes
@@ -13,12 +12,10 @@ module.exports = function(app) {
   // todo: pro  bably should be a query on users
   app.get('/auth/check_username/:username', users.exists);
 
-  // Session Routes
-  var session = require('base/controllers/session');
-  app.get('/auth/session', auth.ensureAuthenticated, session.session);
-  app.post('/auth/session', session.login);
-  app.del('/auth/session', session.logout);
+  // Auth Routes
+  var auth = require('base/controllers/auth');
+  app.post('/auth/', auth.authenticate);
 
   var common = require('base/controllers/common.js');
-  app.get('/api/common/menu/', auth.ensureAuthenticated, common.menu);
+  app.get('/api/common/menu/', auth.verifySignature, common.menu);
 }

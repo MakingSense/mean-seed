@@ -2,8 +2,9 @@
 
 var mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  passport = require('passport'),
-  ObjectId = mongoose.Types.ObjectId;
+  jwt = require('jsonwebtoken'),
+  ObjectId = mongoose.Types.ObjectId,
+  config = require('../../config/config');
 
 /**
  * Create user
@@ -18,10 +19,19 @@ exports.create = function (req, res, next) {
     if (err) {
       return res.json(400, err);
     }
-
-    req.logIn(newUser, function(err) {
-      if (err) return next(err);
-      return res.json(newUser.user_info);
+    
+    var response = {
+        user: newUser,
+        exp: Math.round(new Date().setDate(new Date().getDate() + 1) / 1000)
+    };
+    
+    var token = jwt.sign(response, config.secretKey, {
+        expiresInMinutes: 1440
+    });
+                
+    res.json({
+        success: true,
+        token: token
     });
   });
 };

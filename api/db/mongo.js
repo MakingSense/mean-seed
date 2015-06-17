@@ -1,16 +1,15 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    config = require('config/config')
-exports.mongoose = mongoose;
+module.exports = function(app) {
+  var mongoose = app.meanSeed.dependencies.mongoose,
+      dbConfig = app.meanSeed.appConfig.db;
 
-var mongoOptions = { db: { safe: true } };
-
-// Connect to Database
-exports.db = mongoose.connect(config.db, mongoOptions, function (err, res) {
-  if (err) {
-    console.log ('ERROR connecting to: ' + config.db + '. ' + err);
-  } else {
-    console.log ('Successfully connected to: ' + config.db);
-  }
-});
+  // Connect to Database and return the connection
+  return mongoose.connect(dbConfig.uri, dbConfig.options, function (error) {
+    if (error) {
+      console.log ('ERROR connecting to: ' + dbConfig.uri + '. ' + error);
+    } else {
+      console.log ('Successfully connected to: ' + dbConfig.uri);
+    }
+  });
+};

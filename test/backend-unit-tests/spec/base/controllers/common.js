@@ -1,9 +1,9 @@
 'use strict';
 
 var should = require('should'),
-    mongoose = require( 'mongoose' ),
     app = require('../../server-test'),
-    common = require('base/controllers/common');
+    mongoose = app.meanSeed.dependencies.mongoose,
+    common = require('base/controllers/common')(app);
 
 describe('Base#CommonController', function() {
 

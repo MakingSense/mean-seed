@@ -1,11 +1,10 @@
 'use strict';
 
 var should = require('should'),
-    mongoose = require('mongoose'),
-    passport = require('passport'),
     app = require('../../server-test'),
+    mongoose = app.meanSeed.dependencies.mongoose,
     UserModel = mongoose.model('User'),
-    session = require('base/controllers/session');
+    session = require('base/controllers/session')(app);
 
 describe('Base#SessionController', function() {
 

@@ -8,7 +8,7 @@ angular.module('mean').controller('SignupCtrl', function ($scope, $rootScope, $l
             userService.create($scope.user)
                 .success(function (response, status, headers, config) {
                     var params = authService.parseToken(response.token);
-                    $rootScope.currentUser = params.user;
+                    $rootScope.setCurrentUser(params.user);
                     $location.path('/');
                 })
                 .error(function(response, status, headers, config) {

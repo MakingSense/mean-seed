@@ -4,7 +4,7 @@ angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, $lo
 
     $scope.logout = function() {
            authService.logout();
-           $rootScope.currentUser = undefined;
+           $rootScope.unsetCurrentUser();
            $sessionStorage.$reset();
            $location.path('/login');
     };

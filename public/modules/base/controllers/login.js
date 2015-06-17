@@ -13,7 +13,7 @@ angular.module('mean')
         authService.login($scope.user)
             .success(function (response, status, headers, config) {
                 var params = authService.parseToken(response.token);
-                $rootScope.currentUser = params.user;
+                $rootScope.setCurrentUser(params.user);
                 $location.path('/');
             })
             .error(function(response, status, headers, config) {

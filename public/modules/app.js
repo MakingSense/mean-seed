@@ -36,7 +36,7 @@ angular.module('mean', [
     $locationProvider.html5Mode(false);
   })
 
-  .run(function ($route, $rootScope, $location, authService) {
+  .run(function ($route, $rootScope, $location, $window, authService) {
    
      $rootScope.$on('$locationChangeStart', function(ev, next, current) {
           var nextPath = $location.path();
@@ -53,4 +53,18 @@ angular.module('mean', [
             return authService.isAuthed() !== null && authService.isAuthed() !== false;     
      };
     
+     // Store current user info
+     $rootScope.setCurrentUser = function(me) {
+            $window.localStorage.setItem("currentUser", JSON.stringify(me));
+      };
+      
+     // Retrieve current user info
+     $rootScope.getCurrentUser = function() {
+            return JSON.parse($window.localStorage.getItem("currentUser"));
+     };
+     
+     // Remove the current use info 
+     $rootScope.unsetCurrentUser = function() {
+            $window.localStorage.removeItem('currentUser');
+     };
 });

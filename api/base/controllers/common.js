@@ -1,6 +1,14 @@
 'use strict';
 
-exports.menu = function (req, res) {
-	var menus = require('templates/menus');
-  	res.json(menus);
+module.exports = function (app) {
+
+    var menus = app.meanSeed.menus;
+
+    return {
+
+        menu: function (req, res) {
+            res.json(menus);
+        }
+
+    };
 };

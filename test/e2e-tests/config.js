@@ -1,5 +1,12 @@
 'use strict';
 
 module.exports = {
-    db: 'mongodb://localhost/meanp'
+  db: {
+    uri: 'mongodb://localhost/meanp',
+    options: {
+      db: {
+        safe: true
+      }
+    }
+  }
 };

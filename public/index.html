@@ -30,7 +30,7 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div ng-include  ng-show="currentUser" src="'modules/base/views/partials/navbar.html'"></div>
+        <div ng-include  ng-show="isAuthed()" src="'modules/base/views/partials/navbar.html'"></div>
         <div class="container" ng-view=""></div>
 
         <script src="lib/jquery/jquery.min.js"></script>

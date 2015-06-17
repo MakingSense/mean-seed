@@ -6,17 +6,17 @@ angular.module('mean').controller('SignupCtrl', function ($scope, $rootScope, $l
             $scope.errors = {};
 
             userService.create($scope.user)
-                .success(function (response, status, headers, config) {
-                    var params = authService.parseToken(response.token);
-                    $rootScope.setCurrentUser(params.user);
-                    $location.path('/');
-                })
-                .error(function(response, status, headers, config) {
-                    angular.forEach(response.errors, function(error, field) {
-                        form[field].$setValidity('mongoose', false);
-                        $scope.errors[field] = error.type;
-                    });
+                .then(function (response, status, headers, config) {
+                    if (response.data.success) {
+                        var params = authService.parseToken(response.data.token);
+                        $rootScope.setCurrentUser(params.user);
+                        $location.path('/');
+                    } else { 
+                        $scope.errorMessage = response.data.message;  
+                    }
+                },function (response, status, headers, config) {
+                    $scope.errorMessage = response.data.message;
                 });
-
+            
 	    };
 });

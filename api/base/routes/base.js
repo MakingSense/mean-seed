@@ -1,16 +1,13 @@
 'use strict';
 
 module.exports = function(app) {
- 
+  var controllers = require('base/controllers')(app);
+
   // User Routes
-  var users = require('base/controllers/users')(app);
-  app.post('/auth/users', users.create);
-  app.get('/auth/users/:userId', users.show);
+  app.post('/auth/users', controllers.users.create);
+  app.get('/auth/users/:userId', controllers.users.show);
 
-  // Auth Routes
-  var auth = require('base/controllers/auth')(app);
-  app.post('/auth/', auth.authenticate);
+  app.post('/auth/', controllers.auth.authenticate);
 
-  var common = require('base/controllers/common.js')(app);
-  app.get('/api/common/menu/', auth.verifySignature, common.menu);
+  app.get('/api/common/menu/', controllers.auth.verifySignature, controllers.common.menu);
 };

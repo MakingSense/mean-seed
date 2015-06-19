@@ -9,6 +9,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-protractor-runner');
+    grunt.loadNpmTasks('grunt-mocha-istanbul');
 
     grunt.initConfig({
         yeoman: {
@@ -112,6 +113,16 @@ module.exports = function (grunt) {
                 }
             },
             all: { } // Grunt requires at least one target
+        },
+        mocha_istanbul: {
+            coverage: {
+                options: {
+                    reporter: 'spec',
+                    // Including it here makes the app-module-path magic work as expected
+                    require: 'test/backend-unit-tests/spec/server-test.js'
+                },
+                src: ['test/backend-unit-tests/spec/**/*.js']
+            }
         }
     });
 
@@ -151,4 +162,7 @@ module.exports = function (grunt) {
         'protractor'
     ]);
 
+    grunt.registerTask('coverage',[
+        'mocha_istanbul:coverage'
+    ]);
 };

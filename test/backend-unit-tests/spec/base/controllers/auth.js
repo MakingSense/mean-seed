@@ -1,12 +1,12 @@
 'use strict';
 
 var should = require('should'),
-    mongoose = require('mongoose'),
-    app = require('../../server-test'),
-    jwt = require('jsonwebtoken'),
     sinon = require('sinon'),
+    app = require('../../server-test'),
+    mongoose = app.meanSeed.dependencies.mongoose,
+    jwt = app.meanSeed.dependencies.jwt,
     UserModel = mongoose.model('User'),
-    auth = require('base/controllers/auth');
+    auth = require('base/controllers/auth')(app);
 
 describe('Base#AuthController', function() {
 

@@ -2,17 +2,27 @@
 
 // Module dependencies.
 var express = require('express'),
-    http = require('http'),
-    path = require('path'),
-    fs = require('fs'),
     mongoStore = require('connect-mongo')(express),
-    config = require('./api/config/config'),
-    modulepath =require('app-module-path');
+    modulepath = require('app-module-path'),
+    jwt = require('jsonwebtoken');
 
 var app = express();
 modulepath.addPath(__dirname + '/api/'); //Add's path of api to require
-// Connect to database
-var db = require('db/mongo').db;
+
+// Space for our naive DI. Perhaps it would be better to just use a
+// module for that purpose, there's an increasingly high number of them
+// available at the moment
+app.meanSeed = {
+    dependencies: {},
+    middleware: {}
+};
+app.meanSeed.dependencies.mongoose = require('mongoose');
+app.meanSeed.dependencies.crypto = require('crypto');
+app.meanSeed.dependencies.jwt = require('jsonwebtoken');
+app.meanSeed.appConfig = require('config/appConfig');
+app.meanSeed.db = require('db/mongo')(app);
+app.meanSeed.menus = require('templates/menus');
+
 // Environments configuration
 app.configure( function(){
     app.use(express.errorHandler());
@@ -27,24 +37,15 @@ app.use(express.methodOverride());
 // Bootstrap routes
 app.use(app.router);
 
-// boostrap Models and Routes
-fs.readdirSync(__dirname + '/api/').forEach(function(dir){
-    if(dir != '.DS_Store' && dir != 'config' && dir != 'templates' && dir != 'db'){
-        fs.readdirSync(__dirname + '/api/' + dir + '/models').forEach(function(file){
-            if(dir + '.js' == file || file == 'user.js' && dir == 'base'){
-                require(__dirname + '/api/' + dir + '/models/' + file);
-            }
-        })
-        fs.readdirSync(__dirname + '/api/' + dir + '/routes').forEach(function(file){
-            if(dir + '.js' == file){
-                require(__dirname + '/api/' + dir + '/routes/' + file)(app); // We pass the app object to the routes function
-            }
-        })
-    }
-});
+// Models are available through the mongoose singleton for single connection
+// and through the corresponding db connection for multiple db's
+require('base/models')(app);
+
+// Routes are available immediately
+require('base/routes')(app);
 
 // Start server
-var port = process.env.PORT || 3000;
+var port = app.meanSeed.appConfig.port;
 app.listen(port, function () {
     console.log('listening on port %d in %s mode', port, app.get('env'));
 });

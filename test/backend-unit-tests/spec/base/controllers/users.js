@@ -1,12 +1,12 @@
 'use strict';
 
 var should = require('should'),
-    mongoose = require('mongoose'),
-    jwt = require('jsonwebtoken'),
     sinon = require('sinon'),
     app = require('../../server-test'),
+    mongoose = app.meanSeed.dependencies.mongoose,
+    jwt = app.meanSeed.dependencies.jwt,
     UserModel = mongoose.model('User'),
-    users = require('base/controllers/users');
+    users = require('base/controllers/users')(app);
 
 describe('Base#UserController', function() {
 

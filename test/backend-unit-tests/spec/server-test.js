@@ -1,24 +1,34 @@
 'use strict';
 
 var modulepath = require('app-module-path'),
-    mongoose = require('mongoose'),
-    config = require('./config'),
-    app = {},
-    mongoOptions = { db: { safe: true } };
+    config = require('./config');
 
-var apiPath = __dirname + '/../../../api/'
+var apiPath = __dirname + '/../../../api/';
 
 modulepath.addPath(apiPath); //Add's path of api to require
 
+var app = {};
+
+app.meanSeed = {
+    dependencies: {},
+    middleware: {}
+};
+
+app.meanSeed.dependencies.mongoose = require('mongoose');
+app.meanSeed.dependencies.crypto = require('crypto');
+app.meanSeed.dependencies.jwt = require('jsonwebtoken');
+app.meanSeed.menus = require(apiPath + 'templates/menus');
+app.meanSeed.appConfig = require('./config');
+
 // Included needed models
-require(apiPath + 'base/models/user');
+require(apiPath + 'base/models')(app);
 
 // Connect to Database
-app.db = mongoose.connect(config.db, mongoOptions, function (err, res) {
+app.meanSeed.dependencies.mongoose.connect(config.db.uri, config.db.options, function (err, res) {
   if (err) {
-    console.log ('ERROR connecting to: ' + config.db + '. ' + err);
+    console.log ('ERROR connecting to: ' + config.db.uri + '. ' + err);
   } else {
-    console.log ('Successfully connected to: ' + config.db);
+    console.log ('Successfully connected to: ' + config.db.uri);
   }
 });
 

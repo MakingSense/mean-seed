@@ -33,10 +33,7 @@ module.exports = function (app) {
                 expiresInMinutes: 1440
             });
                         
-            res.json({
-                success: true,
-                token: token
-            });
+            res.json(200, { token: token, message: 'User created.' });
           });
         },
     
@@ -54,7 +51,7 @@ module.exports = function (app) {
             if (user) {
               res.send({username: user.username, profile: user.profile });
             } else {
-              res.send(404, 'USER_NOT_FOUND')
+              res.send(404, { message: 'User not found' });
             }
           });
       },

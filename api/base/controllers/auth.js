@@ -21,47 +21,45 @@ module.exports = function (app) {
       User.findOne({ email: email }, function (err, user) {
 
         if (err) {
-          throw err;
+          return res.json(400, err);
         }
         
         // If the user does not exist
         if (!user) {
 
-          res.json({ success: false, message: 'Authentication failed. User not found' });
+          return res.json(404, { message: 'Authentication failed. User not found' });
 
-        } else {
+        } 
 
-          var password = req.body.password;
+        var password = req.body.password;
                 
-          // Check if the password matches      
-          if (!user.authenticate(password)) {
+        // Check if the password matches      
+        if (!user.validatePassword(password)) {
 
-            res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+           return res.json(401, { message: 'Authentication failed. Wrong password.' });
 
-          } else {
+        } 
+          
+        // Add one day
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+
+        var response = {
+            user: user,
+            exp: Math.round(date.getTime() / 1000)
+        };
                   
-            // Add one day
-            var date = new Date();
-            date.setDate(date.getDate() + 1);
+        // If the user is found and the password correct then create a token 
+        var token = jwt.sign(response, secretKey, {
+            expiresInMinutes: 1440 // the new token expires in 24hs
+        });
 
-            var response = {
-              user: user,
-              exp: Math.round(date.getTime() / 1000)
-            };
-                  
-            // If the user is found and the password correct then create a token 
-            var token = jwt.sign(response, secretKey, {
-              expiresInMinutes: 1440 // the new token expires in 24hs
-            });
-
-            res.json({
-              success: true,
+        return res.json(200, {
               message: 'Enjoy your token!',
               token: token
             });
-          }
-        }
-      });
+        } 
+      );
     },
     
     /**
@@ -77,10 +75,7 @@ module.exports = function (app) {
       // If there is no token then return an error
       if (!token) {
 
-        return res.status(403).send({
-          success: false,
-          message: 'No token provided.'
-        });
+        return res.json(403, { message: 'No token provided.' });
 
       } else { 
         
@@ -89,7 +84,7 @@ module.exports = function (app) {
 
           if (err) {
 
-            return res.json({ success: false, message: 'Failed to authenticate token.' });
+            return res.json(401, { message: 'Failed to authenticate token.' });
 
           } else {
             // If everything goes right, save the request for use in other routes

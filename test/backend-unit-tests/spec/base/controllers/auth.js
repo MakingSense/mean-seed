@@ -50,12 +50,10 @@ describe('Base#AuthController', function() {
                         email: 'test01@local.com',
                         password: 'dummy'
                     },
-                    res: { success: true, message: 'Enjoy your token!', token: 'dummyToken'}
+                    res: { message: 'Enjoy your token!', token: 'dummyToken'}
                 }, {
-                    json: function (response) {
-                        response.token.should.eql('dummyToken');
-                        response.message.should.eql('Enjoy your token!');
-                        response.success.should.eql(true);
+                    json: function (code, error) {
+                        code.should.eql(200);
                         done();
                     }
                 });
@@ -72,8 +70,9 @@ describe('Base#AuthController', function() {
                         password: 'dummy'
                     }
                 }, {
-                    json: function (response) {
-                        response.should.eql({ success: false, message: 'Authentication failed. User not found'});
+                    json: function (code, error) {
+                        error.should.eql({ message: 'Authentication failed. User not found' } );
+                        code.should.eql(404);
                         done();
                     }
                 });
@@ -91,8 +90,9 @@ describe('Base#AuthController', function() {
                         password: 'invalid'
                     }
                 }, {
-                    json: function (response) {
-                        response.should.eql({ success: false, message: 'Authentication failed. Wrong password.'});
+                    json: function (code, error) {
+                        error.should.eql( { message: 'Authentication failed. Wrong password.' });
+                        code.should.eql(401);
                         done();
                     }
                 });

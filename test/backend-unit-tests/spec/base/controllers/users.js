@@ -41,9 +41,8 @@ describe('Base#UserController', function() {
             users.create({
                 body: userParams
             }, {
-                json: function (response) {
-                    response.token.should.eql('dummyToken');
-                    response.success.should.eql(true);
+                json: function (code, error) {
+                    code.should.eql(200);
                     done();
                 }
             });
@@ -98,7 +97,7 @@ describe('Base#UserController', function() {
             }, {
                 send: function (code, error) {
                     code.should.eql(404);
-                    error.should.eql('USER_NOT_FOUND');
+                    error.should.eql({ message: 'User not found'});
                     done();
                 }
             });

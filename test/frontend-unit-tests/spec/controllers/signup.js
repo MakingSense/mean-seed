@@ -25,11 +25,11 @@ describe('Controller: SignupCtrl', function () {
     scope.user = { email: '', password: '', username: '' };
   }));
 
-  it('should set scope.errors[field] on mongoose errors', function () {
-    $httpBackend.expectPOST('/auth/users').respond(400, {errors:{'model': {type:'Test Error'}}});
+  it('should set scope.errorMessage on mongoose errors', function () {
+    $httpBackend.expectPOST('/auth/users').respond({ success: false, message: 'Test Error'});
 
     scope.register(scope.optionsForm);
     $httpBackend.flush();
-    expect(scope.errors.model).toBe('Test Error')
+    expect(scope.errorMessage).toBe('Test Error');
   });
 });

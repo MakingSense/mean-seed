@@ -4,8 +4,7 @@ var should = require('should'),
     mongoose = require('mongoose'),
     sinon = require('sinon'),
     app = require('../../server-test'),
-    UserModel = mongoose.model('User'),
-    session = require('base/controllers/session');
+    UserModel = mongoose.model('User');
 
 describe('Base#UserModel', function() {
 

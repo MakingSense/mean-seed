@@ -2,7 +2,6 @@
 
 var modulepath = require('app-module-path'),
     mongoose = require('mongoose'),
-    passport = require('passport'),
     config = require('./config'),
     app = {},
     mongoOptions = { db: { safe: true } };
@@ -13,9 +12,6 @@ modulepath.addPath(apiPath); //Add's path of api to require
 
 // Included needed models
 require(apiPath + 'base/models/user');
-
-// Passport initialization
-require(apiPath + 'config/passport');
 
 // Connect to Database
 app.db = mongoose.connect(config.db, mongoOptions, function (err, res) {

@@ -2,6 +2,8 @@
 
 var should = require('should'),
     mongoose = require('mongoose'),
+    jwt = require('jsonwebtoken'),
+    sinon = require('sinon'),
     app = require('../../server-test'),
     UserModel = mongoose.model('User'),
     users = require('base/controllers/users');
@@ -9,6 +11,7 @@ var should = require('should'),
 describe('Base#UserController', function() {
 
     before(function (done) {
+        
         // Already connected, we are good to go
         if (mongoose.connection.readyState === 1) {
             return done();
@@ -36,14 +39,11 @@ describe('Base#UserController', function() {
 
         it('should create a user and return the expected response', function (done) {
             users.create({
-                body: userParams,
-                logIn: function (newUser, callback) {
-                    callback(null);
-                }
+                body: userParams
             }, {
                 json: function (response) {
-                    response.email.should.eql('test01@local.com');
-                    response.username.should.eql('test01');
+                    response.token.should.eql('dummyToken');
+                    response.success.should.eql(true);
                     done();
                 }
             });
@@ -64,18 +64,6 @@ describe('Base#UserController', function() {
                     }
                 });
 
-            });
-        });
-
-        it('should invoke next callback if the user could not be properly logged in', function (done) {
-            users.create({
-                body: userParams,
-                logIn: function (newUser, callback) {
-                    callback('Error during login');
-                }
-            }, { }, function (error) {
-                error.should.eql('Error during login');
-                done();
             });
         });
 

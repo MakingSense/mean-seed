@@ -7,16 +7,6 @@ var should = require('should'),
 
 describe('Base#CommonController', function() {
 
-    before(function (done) {
-        // Already connected, we are good to go
-        if (mongoose.connection.readyState === 1) {
-            return done();
-        }
-        // Wait until a connection with mongo is established
-        mongoose.connection.on('connected', function () {
-            done();
-        });
-    });
 
     describe('#menu', function() {
 

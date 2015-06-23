@@ -4,8 +4,7 @@ var should = require('should'),
     mongoose = require('mongoose'),
     sinon = require('sinon'),
     app = require('../../server-test'),
-    UserModel = mongoose.model('User'),
-    session = require('base/controllers/session');
+    UserModel = mongoose.model('User');
 
 describe('Base#UserModel', function() {
 
@@ -50,7 +49,7 @@ describe('Base#UserModel', function() {
 
     });
 
-    describe('#authenticate', function() {
+    describe('#validatePassword', function() {
 
         it('should validate a password or not depending on if it\'s valid or not', function () {
 
@@ -58,8 +57,8 @@ describe('Base#UserModel', function() {
 
             newUser.password = 'dummy';
 
-            newUser.authenticate('dummy').should.be.true;
-            newUser.authenticate('invalid').should.be.false;
+            newUser.validatePassword('dummy').should.be.true;
+            newUser.validatePassword('invalid').should.be.false;
         });
 
     });

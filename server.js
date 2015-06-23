@@ -2,9 +2,9 @@
 
 // Module dependencies.
 var express = require('express'),
-    passport = require('passport'),
     mongoStore = require('connect-mongo')(express),
-    modulepath = require('app-module-path');
+    modulepath = require('app-module-path'),
+    jwt = require('jsonwebtoken');
 
 var app = express();
 modulepath.addPath(__dirname + '/api/'); //Add's path of api to require
@@ -18,11 +18,9 @@ app.meanSeed = {
 };
 app.meanSeed.dependencies.mongoose = require('mongoose');
 app.meanSeed.dependencies.crypto = require('crypto');
-app.meanSeed.dependencies.passport = require('passport');
-app.meanSeed.dependencies.localStrategy = require('passport-local').Strategy;
+app.meanSeed.dependencies.jwt = require('jsonwebtoken');
 app.meanSeed.appConfig = require('config/appConfig');
 app.meanSeed.db = require('db/mongo')(app);
-app.meanSeed.middleware.auth = require('config/auth');
 app.meanSeed.menus = require('templates/menus');
 
 // Environments configuration
@@ -36,15 +34,6 @@ app.use(express.cookieParser());
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 
-// express/mongo session storage
-app.use(express.session({
-  secret: 'MEAN', store: new mongoStore({ url: app.meanSeed.appConfig.db.uri, collection: 'sessions' })
-}));
-
-// Use passport session
-app.use(passport.initialize());
-app.use(passport.session());
-
 // Bootstrap routes
 app.use(app.router);
 
@@ -54,9 +43,6 @@ require('base/models')(app);
 
 // Routes are available immediately
 require('base/routes')(app);
-
-// Configure passport local strategy
-require('config/passport')(app);
 
 // Start server
 var port = app.meanSeed.appConfig.port;

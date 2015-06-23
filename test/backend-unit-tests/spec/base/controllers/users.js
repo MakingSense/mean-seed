@@ -1,14 +1,17 @@
 'use strict';
 
 var should = require('should'),
+    sinon = require('sinon'),
     app = require('../../server-test'),
     mongoose = app.meanSeed.dependencies.mongoose,
+    jwt = app.meanSeed.dependencies.jwt,
     UserModel = mongoose.model('User'),
     users = require('base/controllers/users')(app);
 
 describe('Base#UserController', function() {
 
     before(function (done) {
+        
         // Already connected, we are good to go
         if (mongoose.connection.readyState === 1) {
             return done();
@@ -36,14 +39,10 @@ describe('Base#UserController', function() {
 
         it('should create a user and return the expected response', function (done) {
             users.create({
-                body: userParams,
-                logIn: function (newUser, callback) {
-                    callback(null);
-                }
+                body: userParams
             }, {
-                json: function (response) {
-                    response.email.should.eql('test01@local.com');
-                    response.username.should.eql('test01');
+                json: function (code, error) {
+                    code.should.eql(200);
                     done();
                 }
             });
@@ -64,18 +63,6 @@ describe('Base#UserController', function() {
                     }
                 });
 
-            });
-        });
-
-        it('should invoke next callback if the user could not be properly logged in', function (done) {
-            users.create({
-                body: userParams,
-                logIn: function (newUser, callback) {
-                    callback('Error during login');
-                }
-            }, { }, function (error) {
-                error.should.eql('Error during login');
-                done();
             });
         });
 
@@ -110,7 +97,7 @@ describe('Base#UserController', function() {
             }, {
                 send: function (code, error) {
                     code.should.eql(404);
-                    error.should.eql('USER_NOT_FOUND');
+                    error.should.eql({ message: 'User not found'});
                     done();
                 }
             });

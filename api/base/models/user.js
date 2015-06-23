@@ -98,10 +98,10 @@ module.exports = function (app) {
   UserSchema.methods = {
 
     /**
-     * Authenticate - check if the passwords are the same
+     * validatePassword - check if the passwords are the same
      */
 
-    authenticate: function(plainText) {
+    validatePassword: function(plainText) {
       return this.encryptPassword(plainText) === this.hashedPassword;
     },
 

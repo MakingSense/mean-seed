@@ -9,5 +9,6 @@ module.exports = {
         safe: true
       }
     }
-  }
+  },
+  secretKey: 'ourSecretKey'
 };

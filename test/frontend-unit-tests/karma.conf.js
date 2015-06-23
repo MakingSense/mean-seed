@@ -19,7 +19,6 @@ module.exports = function(config) {
       'public/lib/angular-sanitize/angular-sanitize.js',
       'public/lib/angular-route/angular-route.js',
       'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'public/lib/angular-http-auth/src/http-auth-interceptor.js',
       'test/frontend-unit-tests/app-test.js',
       'public/modules/base/**/*.js',
       'test/frontend-unit-tests/spec/**/*.js'

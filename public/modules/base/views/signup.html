@@ -50,10 +50,6 @@
                        ng-show="form.username.$error.unique && form.username">
                         That username is already taken.
                     </p>
-                    <p class="help-block"
-                       ng-show="form.password.$error.mongoose">
-                        {{ errors.username }}
-                    </p>
                 </div>
 
                 <div class="form-group"
@@ -75,11 +71,12 @@
                                 && !form.password.$error.required">
                         Password must be at least 5 characters.
                     </p>
-                    <p class="help-block"
-                       ng-show="form.password.$error.mongoose">
-                        {{ errors.password }}
-                    </p>
                 </div>
+                
+               <div class="form-group has-error">
+                    <p class="help-block">{{ errorMessage }}</p>
+               </div>
+                
                 <br />
                 <button class="btn btn-lg btn-primary btn-block"
                         type="submit"

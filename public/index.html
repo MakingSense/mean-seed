@@ -30,7 +30,7 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-        <div ng-include  ng-show="currentUser" src="'modules/base/views/partials/navbar.html'"></div>
+        <div ng-include  ng-show="isAuthed()" src="'modules/base/views/partials/navbar.html'"></div>
         <div class="container" ng-view=""></div>
 
         <script src="lib/jquery/jquery.min.js"></script>
@@ -56,8 +56,9 @@
         <script src="modules/base/services/User.js"></script>
         <script src="modules/base/directives/onFocus.js"></script>
         <script src="modules/base/directives/mongooseError.js"></script>
-        <script src="modules/base/services/Session.js"></script>
+        <script src="modules/base/services/authService.js"></script>
         <script src="modules/base/services/menus.js"></script>
+        <script src="modules/base/interceptors/authInterceptor.js"></script>
         <!-- //===== mean-cli hook =====// -->
 
         <script src="//localhost:35729/livereload.js"></script>

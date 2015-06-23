@@ -20,7 +20,7 @@ describe('Login', function() {
 
     browser.get("/#/login");
 
-    expect(errors.count()).toEqual(4);
+    expect(errors.count()).toEqual(2);
 
     var visibleErrors = errors.filter(function (elem) {
       return elem.isDisplayed();
@@ -37,13 +37,13 @@ describe('Login', function() {
     expect(visibleErrors.count()).toEqual(2);
 
     visibleErrors.each(function (elem) {
-      expect (elem.getText()).toEqual('field required');
+      expect (elem.getText()).toEqual('Field required');
     });
   });
 
   it('should notify that the email is not registered', function() {
     var submit = element(by.css('.loginForm button'));
-    var errors = element.all(by.css('.error'));
+    var errors = element.all(by.css('.has-error'));
 
     browser.get("/#/login");
 
@@ -59,7 +59,7 @@ describe('Login', function() {
     expect(visibleErrors.count()).toEqual(1);
 
     visibleErrors.each(function (elem) {
-      expect (elem.getText()).toEqual('Email is not registered.');
+      expect (elem.getText()).toEqual('Authentication failed. User not found');
     });
   });
 

@@ -1,25 +1,24 @@
 'use strict';
 
 angular.module('mean')
-  .controller('LoginCtrl', function ($scope, $rootScope,sessionService, $location) {
-    $scope.errors =  {};
+  .controller('LoginCtrl', function ($scope, $rootScope, $location, authService) {
+
     $scope.submitted = false;
+    
+    $scope.errorMessage = '';
 
     $scope.login = function(form) {
+        
         $scope.submitted = true;
         if(form.email.$error.required) return;
-
-        sessionService.create('password',$scope.user)
-            .success(function (response, status, headers, config) {
-                $rootScope.currentUser = response;
-                $location.path('/');
-            })
-            .error(function(response, status, headers, config) {
-                angular.forEach(response.errors, function(error, field) {
-                    form[field].$setValidity('mongoose', false);
-                    $scope.errors[field] = error.type;
-                });
-                $scope.errors.other = response.message;
-            });
+        
+        authService.login($scope.user)
+            .then(function (response, status, headers, config) {
+                 var params = authService.parseToken(response.data.token);
+                 $rootScope.setCurrentUser(params.user);
+                 $location.path('/');
+            }, function (response, status, headers, config) {
+                $scope.errorMessage = response.data.message; 
+            }); 
     };
   });

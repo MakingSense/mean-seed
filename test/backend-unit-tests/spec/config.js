@@ -8,5 +8,6 @@ module.exports = {
         safe: true
       }
     }
-  }
+  },
+  secretKey: 'ourTestingSecretKey'
 };

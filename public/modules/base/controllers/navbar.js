@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, $location, $sessionStorage, authService) {
+angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, $location, $sessionStorage, authService, menuService) {
+
+    $scope.menu = {
+        base: []
+    };
 
     $scope.logout = function() {
            authService.logout();
@@ -9,4 +13,16 @@ angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, $lo
            $location.path('/login');
     };
 
+    $scope.init = function() {
+        menuService.get()
+            .success(function (response, status, headers, config) {
+                $scope.menu = response;
+                console.log(response);
+            })
+            .error(function (error, status, headers, config) {
+                console.log(error)
+            });
+    }
+
+    $scope.init();
 });

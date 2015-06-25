@@ -1,7 +1,9 @@
 {
-    "base": {
-    	"name": "Home",
-    	"path": "/",
-    	"subMenu": null
-    }
+    "base": [
+        {
+            "name": "Home",
+            "path": "/",
+            "subMenu": null
+        }
+    ]
 }

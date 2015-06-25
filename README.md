@@ -1,15 +1,13 @@
 MEAN-seed  
 ================
 
-A bootstrapp application based on MongoDB, Express, Angular, Node, Passport, 
-inspired by [angular-passport](https://github.com/DaftMonk/angular-passport) 
+A bootstrapp application based on MongoDB, Express, Angular, Node, Passport
  
 ### Setup:
 ```
 npm install
 npm install -g bower
 npm install -g grunt-cli
-npm install -g generator-msmean
 bower install --allow-root
 ```
 read more about installing [Bower](http://bower.io/) and [Grunt client](http://gruntjs.com/getting-started)

@@ -6,7 +6,7 @@ var should = require('should'),
     UserModel = mongoose.model('User'),
     users = require('base/controllers/users')(app);
 
-describe('Base#UserController Functional Tests', function() {
+describe('Base#UserController Integration Tests', function() {
 
     before(function (done) {
         // Already connected, we are good to go

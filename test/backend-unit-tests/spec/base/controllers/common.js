@@ -14,11 +14,11 @@ describe('Base#CommonController', function() {
             common.menu({}, {
                 json: function (response) {
                     response.should.eql({
-                        "base": {
+                        "base": [{
                             "name": "Home",
                             "path": "/",
                             "subMenu": null
-                        }
+                        }]
                     });
                     done();
                 }

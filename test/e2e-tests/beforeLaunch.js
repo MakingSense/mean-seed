@@ -32,13 +32,14 @@ app.meanSeed.dependencies.mongoose.connect(config.db.uri, config.db.options, fun
 
   User.findOneAndRemove({ email: 'e2e_test@domain.com' }, function (err, user) {
       if (err) {
-          throw new Error('Failed to remove User');
+          throw new Error('Failed to remove test user');
       }
 
-      if (user) {
-          console.log('User found and removed');
-      } else {
-          console.log('User not found');
-      }
+      User.findOneAndRemove({ email: 'e2e_signup@domain.com' }, function (err, user) {
+          if (err) {
+              throw new Error('Failed to remove signup user');
+          }
+      });
+
   });
 });

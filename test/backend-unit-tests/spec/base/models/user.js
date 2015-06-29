@@ -4,7 +4,9 @@ var should = require('should'),
     mongoose = require('mongoose'),
     sinon = require('sinon'),
     app = require('../../server-test'),
-    UserModel = mongoose.model('User');
+    simpleDI = require('config/simpleDI');
+
+var UserModel = simpleDI.resolve('base/userModel');
 
 var sinonSandbox;
 

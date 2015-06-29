@@ -1,8 +1,10 @@
 'use strict';
 
-module.exports = function(app) {
-  var mongoose = app.meanSeed.dependencies.mongoose,
-      dbConfig = app.meanSeed.appConfig.db;
+var simpleDI = require('config/simpleDI');
+
+module.exports = simpleDI.inject(['mongoose', 'app/config'], function(mongoose, appConfig) {
+
+  var dbConfig = appConfig.db;
 
   // Connect to Database and return the connection
   return mongoose.connect(dbConfig.uri, dbConfig.options, function (error) {
@@ -12,4 +14,5 @@ module.exports = function(app) {
       console.log ('Successfully connected to: ' + dbConfig.uri);
     }
   });
-};
+
+});

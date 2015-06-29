@@ -2,26 +2,21 @@
 
 // Module dependencies.
 var express = require('express'),
-    mongoStore = require('connect-mongo')(express),
-    modulepath = require('app-module-path'),
-    jwt = require('jsonwebtoken');
+    modulepath = require('app-module-path');
 
-var app = express();
 modulepath.addPath(__dirname + '/api/'); //Add's path of api to require
 
-// Space for our naive DI. Perhaps it would be better to just use a
-// module for that purpose, there's an increasingly high number of them
-// available at the moment
-app.meanSeed = {
-    dependencies: {},
-    middleware: {}
-};
-app.meanSeed.dependencies.mongoose = require('mongoose');
-app.meanSeed.dependencies.crypto = require('crypto');
-app.meanSeed.dependencies.jwt = require('jsonwebtoken');
-app.meanSeed.appConfig = require('config/appConfig');
-app.meanSeed.db = require('db/mongo')(app);
-app.meanSeed.menus = require('templates/menus');
+var simpleDI = require('config/simpleDI');
+
+var app = express();
+
+// Define and resolve modules related to config
+simpleDI.define('app/config', 'config/appConfig');
+simpleDI.define('app/mongoDbConn', 'db/mongo');
+simpleDI.define('app/menus', 'templates/menus');
+
+var appConfig = simpleDI.resolve('app/config');
+var mongoDbConn = simpleDI.resolve('app/mongoDbConn');
 
 // Environments configuration
 app.configure( function(){
@@ -37,15 +32,20 @@ app.use(express.methodOverride());
 // Bootstrap routes
 app.use(app.router);
 
-// Models are available through the mongoose singleton for single connection
-// and through the corresponding db connection for multiple db's
-require('base/models')(app);
+// Define and resolve models index, which in turn will define each model
+simpleDI.define('baseModels', 'base/models');
+simpleDI.resolve('baseModels');
 
-// Routes are available immediately
-require('base/routes')(app);
+// Define and resolve controllers index, which in turn will define each controller
+simpleDI.define('baseControllers', 'base/controllers');
+simpleDI.resolve('baseControllers');
+
+// Define routes index and resolve using the express app's object
+simpleDI.define('baseRoutes', 'base/routes');
+simpleDI.resolve('baseRoutes')(app);
 
 // Start server
-var port = app.meanSeed.appConfig.port;
+var port = appConfig.port;
 app.listen(port, function () {
     console.log('listening on port %d in %s mode', port, app.get('env'));
 });

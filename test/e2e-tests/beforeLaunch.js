@@ -1,34 +1,33 @@
 'use strict';
 
-var modulepath = require('app-module-path'),
-    config = require('./config');
+var modulepath = require('app-module-path');
 
 var apiPath = __dirname + '/../../api/'
 
 modulepath.addPath(apiPath); //Add's path of api to require
 
-var app = {};
+var simpleDI = require(apiPath + 'config/simpleDI');
 
-app.meanSeed = {
-    dependencies: {},
-    middleware: {}
-};
+// Define and resolve modules related to config
+simpleDI.define('app/config', __dirname + '/config');
 
-app.meanSeed.dependencies.mongoose = require('mongoose');
-app.meanSeed.dependencies.crypto = require('crypto');
+var appConfig = simpleDI.resolve('app/config');
 
-// Included needed models
-require(apiPath + 'base/models')(app);
+// Define and resolve models index, which in turn will define each model
+simpleDI.define('baseModels', apiPath + 'base/models');
+simpleDI.resolve('baseModels');
 
-// Once the models are included we can extract them from mongoose singleton
-var User = app.meanSeed.dependencies.mongoose.model('User');
+// Once the models are included we can get the definition
+var User = simpleDI.resolve('base/userModel');
+
+var mongoose = simpleDI.resolve('mongoose');
 
 // Connect to Database
-app.meanSeed.dependencies.mongoose.connect(config.db.uri, config.db.options, function (err, res) {
+mongoose.connect(appConfig.db.uri, appConfig.db.options, function (err, res) {
   if (err) {
-      throw new Error('ERROR connecting to: ' + config.db.uri + '. ' + err);
+      throw new Error('ERROR connecting to: ' + appConfig.db.uri + '. ' + err);
   }
-  console.log('Successfully connected to: ' + config.db.uri);
+  console.log('Successfully connected to: ' + appConfig.db.uri);
 
   User.findOneAndRemove({ email: 'e2e_test@domain.com' }, function (err, user) {
       if (err) {

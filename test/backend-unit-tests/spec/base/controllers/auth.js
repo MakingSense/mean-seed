@@ -3,10 +3,12 @@
 var should = require('should'),
     sinon = require('sinon'),
     app = require('../../server-test'),
-    mongoose = app.meanSeed.dependencies.mongoose,
-    jwt = app.meanSeed.dependencies.jwt,
-    UserModel = mongoose.model('User'),
-    auth = require('base/controllers/auth')(app);
+    simpleDI = require('config/simpleDI');
+
+var authController = simpleDI.resolve('base/authController'),
+    UserModel = simpleDI.resolve('base/userModel'),
+    mongoose = simpleDI.resolve('mongoose'),
+    jwt = simpleDI.resolve('jsonwebtoken');
 
 describe('Base#AuthController', function() {
 
@@ -45,7 +47,7 @@ describe('Base#AuthController', function() {
             var newUser = new UserModel(userParams);
 
             newUser.save(function (err, createdUser) {
-                auth.authenticate({
+                authController.authenticate({
                     body: {
                         email: 'test01@local.com',
                         password: 'dummy'
@@ -64,7 +66,7 @@ describe('Base#AuthController', function() {
             var newUser = new UserModel(userParams);
 
             newUser.save(function (err, createdUser) {
-                auth.authenticate({
+                authController.authenticate({
                     body: {
                         email: 'test01@local.com.ar',
                         password: 'dummy'
@@ -84,7 +86,7 @@ describe('Base#AuthController', function() {
             var newUser = new UserModel(userParams);
 
             newUser.save(function (err, createdUser) {
-                auth.authenticate({
+                authController.authenticate({
                     body: {
                         email: 'test01@local.com',
                         password: 'invalid'

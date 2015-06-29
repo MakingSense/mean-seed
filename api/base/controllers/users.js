@@ -1,12 +1,11 @@
 'use strict';
 
-module.exports = function (app) {
+var simpleDI = require('config/simpleDI');
 
-  var mongoose = app.meanSeed.dependencies.mongoose,
-  User = mongoose.model('User'),
-  ObjectId = mongoose.Types.ObjectId,
-  jwt = app.meanSeed.dependencies.jwt,
-  secretKey = app.meanSeed.appConfig.secretKey;
+module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 'app/config'], function (mongoose, User, jwt, appConfig) {
+
+  var ObjectId = mongoose.Types.ObjectId,
+      secretKey = appConfig.secretKey;
 
   return {
 
@@ -75,6 +74,6 @@ module.exports = function (app) {
         });
       }
     
-      };
+  };
 
-};
+});

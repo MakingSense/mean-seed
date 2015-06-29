@@ -2,16 +2,16 @@
 
 var should = require('should'),
     app = require('../../server-test'),
-    mongoose = app.meanSeed.dependencies.mongoose,
-    common = require('base/controllers/common')(app);
+    simpleDI = require('config/simpleDI');
+
+var commonController = simpleDI.resolve('base/commonController');
 
 describe('Base#CommonController', function() {
-
 
     describe('#menu', function() {
 
         it('should return the expected menu structure', function (done) {
-            common.menu({}, {
+            commonController.menu({}, {
                 json: function (response) {
                     response.should.eql({
                         "base": [{

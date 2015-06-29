@@ -2,10 +2,11 @@
 
 var should = require('should'),
     app = require('../../server-test'),
-    mongoose = app.meanSeed.dependencies.mongoose,
-    sinon = require('sinon'),
-    UserModel = mongoose.model('User'),
-    users = require('base/controllers/users')(app);
+    simpleDI = require('config/simpleDI'),
+    sinon = require('sinon');
+
+var usersController = simpleDI.resolve('base/usersController'),
+    UserModel = simpleDI.resolve('base/userModel');
 
 var sinonSandbox;
 
@@ -43,7 +44,7 @@ describe('Base#UserController', function() {
             userSaveStub.callsArgWith(0, null);
 
             // Call to the controller method
-            users.create({
+            usersController.create({
                 body: userParams
             }, {
                 json: function (code, error) {
@@ -63,7 +64,7 @@ describe('Base#UserController', function() {
                 name: 'ValidationError'
             });
 
-            users.create({
+            usersController.create({
                 body: userParams
             }, {
                 json: function (code, error) {
@@ -92,7 +93,7 @@ describe('Base#UserController', function() {
                 profile: undefined
             });
 
-            users.show({
+            usersController.show({
                 params: {
                     userId: '#dummyId1234'
                 }
@@ -110,7 +111,7 @@ describe('Base#UserController', function() {
 
             findByIdStub.callsArgWith(1, null, undefined);
 
-            users.show({
+            usersController.show({
                 params: {
                     userId: '#dummyId1234'
                 }
@@ -127,7 +128,7 @@ describe('Base#UserController', function() {
 
             findByIdStub.callsArgWith(1, 'Some weird error in query');
 
-            users.show({
+            usersController.show({
                 params: {
                     userId: '#dummyId1234'
                 }
@@ -153,7 +154,7 @@ describe('Base#UserController', function() {
                 username: 'test01'
             });
 
-            users.exists({
+            usersController.exists({
                 params: {
                     username: 'test01'
                 }
@@ -168,7 +169,7 @@ describe('Base#UserController', function() {
         it('should return an non ok response if user does not exists', function (done) {
             findOneStub.callsArgWith(1, null, undefined);
 
-            users.exists({
+            usersController.exists({
                 params: {
                     username: 'test01'
                 }
@@ -183,7 +184,7 @@ describe('Base#UserController', function() {
         it('should return an error if the search for the user caused an error', function (done) {
             findOneStub.callsArgWith(1, 'Some weird error in query');
 
-            users.exists({
+            usersController.exists({
                 params: {
                     username: 'test01'
                 }

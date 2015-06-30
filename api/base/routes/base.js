@@ -1,13 +1,17 @@
 'use strict';
 
-module.exports = function(app) {
-  var controllers = require('base/controllers')(app);
+var simpleDI = require('config/simpleDI');
 
-  // User Routes
-  app.post('/auth/users', controllers.users.create);
-  app.get('/auth/users/:userId', controllers.users.show);
+module.exports = simpleDI.inject(['base/authController', 'base/commonController', 'base/usersController'], function(authController, commonController, usersController) {
 
-  app.post('/auth/', controllers.auth.authenticate);
+  return function baseRoutes(app) {
+    // User Routes
+    app.post('/auth/users', usersController.create);
+    app.get('/auth/users/:userId', usersController.show);
 
-  app.get('/api/common/menu/', controllers.auth.verifySignature, controllers.common.menu);
-};
+    app.post('/auth/', authController.authenticate);
+
+    app.get('/api/common/menu/', authController.verifySignature, commonController.menu);
+  };
+
+});

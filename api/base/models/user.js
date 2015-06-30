@@ -1,10 +1,10 @@
 'use strict';
 
-module.exports = function (app) {
+var simpleDI = require('config/simpleDI');
 
-  var mongoose = app.meanSeed.dependencies.mongoose,
-      Schema   = mongoose.Schema,
-      crypto   = app.meanSeed.dependencies.crypto;
+module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, crypto) {
+
+  var Schema   = mongoose.Schema;
 
   var UserSchema = new Schema({
     email: {
@@ -124,5 +124,6 @@ module.exports = function (app) {
     }
   };
 
-  mongoose.model('User', UserSchema);
-};
+  return mongoose.model('User', UserSchema);
+
+});

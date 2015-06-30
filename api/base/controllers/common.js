@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = function (app) {
+var simpleDI = require('config/simpleDI');
 
-    var menus = app.meanSeed.menus;
+module.exports = simpleDI.inject(['app/menus'], function(menus) {
 
     return {
 
@@ -11,4 +11,5 @@ module.exports = function (app) {
         }
 
     };
-};
+
+});

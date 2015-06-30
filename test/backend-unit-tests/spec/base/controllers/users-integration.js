@@ -2,9 +2,11 @@
 
 var should = require('should'),
     app = require('../../server-test'),
-    mongoose = app.meanSeed.dependencies.mongoose,
-    UserModel = mongoose.model('User'),
-    users = require('base/controllers/users')(app);
+    simpleDI = require('config/simpleDI');
+
+var usersController = simpleDI.resolve('base/usersController'),
+    UserModel = simpleDI.resolve('base/userModel'),
+    mongoose = simpleDI.resolve('mongoose');
 
 describe('Base#UserController Integration Tests', function() {
 
@@ -35,7 +37,7 @@ describe('Base#UserController Integration Tests', function() {
     describe('#create', function() {
 
         it('should create a user and return the expected response', function (done) {
-            users.create({
+            usersController.create({
                 body: userParams
             }, {
                 json: function (code, response) {
@@ -51,7 +53,7 @@ describe('Base#UserController Integration Tests', function() {
             var newUser = new UserModel(userParams);
 
             newUser.save(function (err) {
-                users.create({
+                usersController.create({
                     body: userParams
                 }, {
                     json: function (code, error) {
@@ -73,7 +75,7 @@ describe('Base#UserController Integration Tests', function() {
             var newUser = new UserModel(userParams);
 
             newUser.save(function (err, createdUser) {
-                users.show({
+                usersController.show({
                     params: {
                         userId: createdUser.id
                     }
@@ -89,7 +91,7 @@ describe('Base#UserController Integration Tests', function() {
         });
 
         it('should fail to find a user if it does not exists', function (done) {
-            users.show({
+            usersController.show({
                 params: {
                     userId: '123456789012'
                 }
@@ -110,7 +112,7 @@ describe('Base#UserController Integration Tests', function() {
             var newUser = new UserModel(userParams);
 
             newUser.save(function (err, createdUser) {
-                users.exists({
+                usersController.exists({
                     params: {
                         username: 'test01'
                     }
@@ -124,7 +126,7 @@ describe('Base#UserController Integration Tests', function() {
         });
 
         it('should return an non ok response if user does not exists', function (done) {
-            users.exists({
+            usersController.exists({
                 params: {
                     username: 'test01'
                 }

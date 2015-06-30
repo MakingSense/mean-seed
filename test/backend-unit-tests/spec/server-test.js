@@ -1,35 +1,34 @@
 'use strict';
 
-var modulepath = require('app-module-path'),
-    config = require('./config');
+var modulepath = require('app-module-path');
 
 var apiPath = __dirname + '/../../../api/';
 
 modulepath.addPath(apiPath); //Add's path of api to require
 
-var app = {};
+var simpleDI = require(apiPath + 'config/simpleDI');
 
-app.meanSeed = {
-    dependencies: {},
-    middleware: {}
-};
+// Define and resolve modules related to config
+simpleDI.define('app/config', __dirname + '/config');
+simpleDI.define('app/menus', apiPath + 'templates/menus');
 
-app.meanSeed.dependencies.mongoose = require('mongoose');
-app.meanSeed.dependencies.crypto = require('crypto');
-app.meanSeed.dependencies.jwt = require('jsonwebtoken');
-app.meanSeed.menus = require(apiPath + 'templates/menus');
-app.meanSeed.appConfig = require('./config');
+var appConfig = simpleDI.resolve('app/config');
 
-// Included needed models
-require(apiPath + 'base/models')(app);
+// Define models
+simpleDI.define('base/userModel', 'base/models/user');
+
+// Define controllers
+simpleDI.define('base/authController', 'base/controllers/auth');
+simpleDI.define('base/commonController', 'base/controllers/common');
+simpleDI.define('base/usersController', 'base/controllers/users');
+
+var mongoose = simpleDI.resolve('mongoose');
 
 // Connect to Database
-app.meanSeed.dependencies.mongoose.connect(config.db.uri, config.db.options, function (err, res) {
+mongoose.connect(appConfig.db.uri, appConfig.db.options, function (err, res) {
   if (err) {
-    console.log ('ERROR connecting to: ' + config.db.uri + '. ' + err);
+    console.log ('ERROR connecting to: ' + appConfig.db.uri + '. ' + err);
   } else {
-    console.log ('Successfully connected to: ' + config.db.uri);
+    console.log ('Successfully connected to: ' + appConfig.db.uri);
   }
 });
-
-module.exports = app;

@@ -14,13 +14,13 @@ simpleDI.define('app/menus', apiPath + 'templates/menus');
 
 var appConfig = simpleDI.resolve('app/config');
 
-// Define and resolve models index, which in turn will define each model
-simpleDI.define('baseModels', apiPath + 'base/models');
-simpleDI.resolve('baseModels');
+// Define models
+simpleDI.define('base/userModel', 'base/models/user');
 
-// Define and resolve controllers index, which in turn will define each controller
-simpleDI.define('baseControllers', 'base/controllers');
-simpleDI.resolve('baseControllers');
+// Define controllers
+simpleDI.define('base/authController', 'base/controllers/auth');
+simpleDI.define('base/commonController', 'base/controllers/common');
+simpleDI.define('base/usersController', 'base/controllers/users');
 
 var mongoose = simpleDI.resolve('mongoose');
 

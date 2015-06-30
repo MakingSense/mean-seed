@@ -10,14 +10,10 @@ var simpleDI = require(apiPath + 'config/simpleDI');
 
 // Define and resolve modules related to config
 simpleDI.define('app/config', __dirname + '/config');
-
 var appConfig = simpleDI.resolve('app/config');
 
-// Define and resolve models index, which in turn will define each model
-simpleDI.define('baseModels', apiPath + 'base/models');
-simpleDI.resolve('baseModels');
-
 // Once the models are included we can get the definition
+simpleDI.define('base/userModel', 'base/models/user');
 var User = simpleDI.resolve('base/userModel');
 
 var mongoose = simpleDI.resolve('mongoose');

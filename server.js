@@ -8,15 +8,17 @@ modulepath.addPath(__dirname + '/api/'); //Add's path of api to require
 
 var simpleDI = require('config/simpleDI');
 
-var app = express();
+// Bootstrap dependencies and API modules
+simpleDI.define('app/bootstrap', 'config/bootstrap');
+simpleDI.resolve('app/bootstrap');
 
-// Define and resolve modules related to config
-simpleDI.define('app/config', 'config/appConfig');
-simpleDI.define('app/mongoDbConn', 'db/mongo');
-simpleDI.define('app/menus', 'templates/menus');
+// Connect to db
+simpleDI.resolve('app/mongoDbConn');
 
+// Get app config
 var appConfig = simpleDI.resolve('app/config');
-var mongoDbConn = simpleDI.resolve('app/mongoDbConn');
+
+var app = express();
 
 // Environments configuration
 app.configure( function(){
@@ -32,17 +34,8 @@ app.use(express.methodOverride());
 // Bootstrap routes
 app.use(app.router);
 
-// Define and resolve models index, which in turn will define each model
-simpleDI.define('baseModels', 'base/models');
-simpleDI.resolve('baseModels');
-
-// Define and resolve controllers index, which in turn will define each controller
-simpleDI.define('baseControllers', 'base/controllers');
-simpleDI.resolve('baseControllers');
-
-// Define routes index and resolve using the express app's object
-simpleDI.define('baseRoutes', 'base/routes');
-simpleDI.resolve('baseRoutes')(app);
+// Add base routes to app
+simpleDI.resolve('base/baseRoutes')(app);
 
 // Start server
 var port = appConfig.port;

@@ -50,7 +50,7 @@ module.exports = function (grunt) {
             express: {
                 files: [
                     'server.js',
-                    'api/{,*//*}*.{js,json}'
+                    'api/**/*.{js,json}'
                 ],
                 tasks: ['express:dev'],
                 options: {

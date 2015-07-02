@@ -7,7 +7,8 @@ angular.module('mean', [
   'ngStorage',
   'ngRoute',
   'ui.bootstrap',
-  'autofill-directive'
+  'autofill-directive',
+  'ngTable'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     

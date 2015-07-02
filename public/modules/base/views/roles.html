@@ -1,0 +1,25 @@
+<h1>Roles</h1>
+<table ng-table="roleTable" class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Role Name</th>
+            <th class="table--header-actions">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="r in roles">
+            <td data-title="'Id'" sortable="'_id'">{{ r._id }}</td>
+            <td data-title="'Role Name'" sortable="'roleName'">{{ r.roleName }}</td>
+            <td data-title="'Actions'">
+                <button class="btn btn-primary btn-xs" type="button" ng-click="edit(r)">Edit</button>
+                <button class="btn btn-danger btn-xs" type="button"
+                confirm-message="Are you sure you want to delete the role?" confirmed-action="delete(r)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<a class="btn btn-lg btn-primary" ng-click="create()" role="button">Create Role</a>
+<div class="form-group has-error">
+    <p class="help-block">{{ errorMessage }}</p>
+</div>

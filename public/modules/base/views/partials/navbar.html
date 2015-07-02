@@ -17,6 +17,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle">Welcome, {{ getCurrentUser().username }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li><a ng-click="manageRoles()"><span class="glyphicon-log-out"></span> Manage Roles</a></li>
                         <li><a ng-click="logout()"><span class="glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </li>

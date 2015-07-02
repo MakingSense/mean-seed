@@ -13,6 +13,10 @@ angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, $lo
            $location.path('/login');
     };
 
+    $scope.manageRoles = function () {
+        $location.path('/roles');
+    };
+    
     $scope.init = function() {
         menuService.get()
             .success(function (response, status, headers, config) {

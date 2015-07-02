@@ -1,0 +1,44 @@
+<div class="homeContainer">
+    <div class="col-md-4 col-custom">
+
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+                <form name="form" ng-submit="saveRole(form)" novalidate>
+
+                <div class="form-group"
+                     ng-class="{
+                     'has-warning': form.roleName.$dirty,
+                     'has-success': form.roleName.$valid && form.roleName.$dirty && !form.roleName.$error.mongoose,
+                     'has-error': form.roleName.$invalid && form.roleName.$dirty || form.roleName.$error.mongoose
+                     }">
+                    <input class="form-control"
+                           placeholder="Role Name"
+                           type="text"
+                           name="roleName"
+                           ng-model="role.roleName"
+                           required
+                           unique-username
+                           mongoose-error/>
+                    <p class="help-block"
+                       ng-show="form.roleName.$error.unique && form.roleName">
+                        That role name is already taken.
+                    </p>
+                </div>
+                
+               <div class="form-group has-error">
+                    <p class="help-block">{{ errorMessage }}</p>
+               </div>
+                
+                <br />
+                <a class="btn btn-lg btn-primary"
+                        type="submit"
+                        ng-disabled="form.$invalid" ng-click="saveRole()">Save</a>
+                <a class="btn btn-lg btn-primary" ng-click="Cancel()">Cancel</a>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

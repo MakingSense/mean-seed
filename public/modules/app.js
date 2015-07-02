@@ -34,6 +34,14 @@ angular.module('mean', [
         controller: 'RolesCtrl',
         requireAuth: true
       })
+      .when('/roles/add', {
+        templateUrl: 'modules/base/views/roleEdit.html',
+        controller: 'RoleAddCtrl'
+      })
+      .when('/roles/:id/edit', {
+        templateUrl: 'modules/base/views/roleEdit.html',
+        controller: 'RoleEditCtrl'
+      })
       //===== mean-cli hook =====//
       .otherwise({
         redirectTo: '/'

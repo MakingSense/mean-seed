@@ -11,11 +11,13 @@ module.exports = simpleDI.inject([], function() {
 
   // Define models
   simpleDI.define('base/userModel', 'base/models/user');
+  simpleDI.define('base/roleModel', 'base/models/role');
 
   // Define controllers
   simpleDI.define('base/authController', 'base/controllers/auth');
   simpleDI.define('base/commonController', 'base/controllers/common');
   simpleDI.define('base/usersController', 'base/controllers/users');
+  simpleDI.define('base/rolesController', 'base/controllers/roles');
 
   // Define routes index and resolve using the express app's object
   simpleDI.define('base/baseRoutes', 'base/routes/base');

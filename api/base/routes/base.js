@@ -2,7 +2,8 @@
 
 var simpleDI = require('config/simpleDI');
 
-module.exports = simpleDI.inject(['base/authController', 'base/commonController', 'base/usersController'], function(authController, commonController, usersController) {
+module.exports = simpleDI.inject(['base/authController', 'base/commonController', 'base/usersController', 'base/rolesController'], 
+function(authController, commonController, usersController, rolesController) {
 
   return function baseRoutes(app) {
     // User Routes
@@ -12,6 +13,12 @@ module.exports = simpleDI.inject(['base/authController', 'base/commonController'
     app.post('/auth/', authController.authenticate);
 
     app.get('/api/common/menu/', authController.verifySignature, commonController.menu);
-  };
 
+    app.get('/auth/roles/getall', rolesController.getAll);
+    app.get('/auth/roles/:roleId', rolesController.getById);
+    app.post('/auth/roles', rolesController.create);
+    app.put('/auth/roles/:roleId', rolesController.update);
+    app.delete('/auth/roles/:roleId', rolesController.delete);
+  
+  };
 });

@@ -17,7 +17,8 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
       create: function (req, res, next) {
           var newUser = new User(req.body);
           newUser.provider = 'local';
-        
+          newUser.role = req.body.role._id;
+          
           newUser.save(function(err) {
             if (err) {
               return res.json(400, err);
@@ -43,12 +44,12 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
       show: function (req, res, next) {
           var userId = req.params.userId;
         
-          User.findById(ObjectId(userId), function (err, user) {
+          User.findById(ObjectId(userId)).populate('role').exec(function (err, user) {
             if (err) {
               return next(new Error('Failed to load User'));
             }
             if (user) {
-              res.send({username: user.username, profile: user.profile });
+              res.send({username: user.username, profile: user.profile, role: user.role });
             } else {
               res.send(404, { message: 'User not found' });
             }

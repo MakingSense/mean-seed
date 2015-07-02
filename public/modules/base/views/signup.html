@@ -73,6 +73,21 @@
                     </p>
                 </div>
                 
+                <div class="form-group"
+                     ng-class="{
+                     'has-warning': form.username.$dirty,
+                     'has-success': form.username.$valid && form.username.$dirty && !form.username.$error.mongoose,
+                     'has-error': form.username.$invalid && form.username.$dirty || form.username.$error.mongoose
+                     }">
+                    <select class="form-control"
+                           placeholder="Role"
+                           name="role"
+                           ng-model="user.role"
+                           required
+                           mongoose-error
+                           ng-options="item.roleName for item in roles track by item._id"/>
+                </div>
+                
                <div class="form-group has-error">
                     <p class="help-block">{{ errorMessage }}</p>
                </div>

@@ -16,18 +16,13 @@ module.exports = simpleDI.inject(['mongoose', 'base/roleModel', 'jsonwebtoken', 
       create: function (req, res, next) {
           var newRole = new Role();
           newRole.roleName = req.body.roleName;
-          try {
-            newRole.save(function(err) {
-              if (err) {
-                return res.json(400, { message: err });
-              }
-                          
-              res.json(200, { message: 'Role created.' });
-            });
-          }
-          catch (err){
-              return res.json(400, { message: err });            
-          }
+          newRole.save(function(err) {
+            if (err) {
+              return res.json(400, { message: err });
+            }
+                        
+            res.json(200, { message: 'Role created.' });
+          });
         },
     
       /**
@@ -37,9 +32,8 @@ module.exports = simpleDI.inject(['mongoose', 'base/roleModel', 'jsonwebtoken', 
       getAll: function (req, res, next) {          
         
           Role.find({}, function (err, roles) {
-            if (err) {
-              return next(new Error('Failed to load roles'));
-            }
+            if (err) { return next(err); }
+            
             if (roles) {
               res.json(roles);
             } else {
@@ -52,9 +46,8 @@ module.exports = simpleDI.inject(['mongoose', 'base/roleModel', 'jsonwebtoken', 
          var roleId = req.params.roleId;
         
           Role.findById(ObjectId(roleId)).exec(function (err, role) {
-            if (err) {
-              return next(new Error('Failed to load Role'));
-            }
+            if (err) { return next(err); }
+            
             if (role) {
               res.json({_id: roleId, roleName: role.roleName });
             } else {

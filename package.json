@@ -1,7 +1,7 @@
 {
     "name": "mean-seed",
     "version": "0.0.1",
-    "repository": { 
+    "repository": {
         "type": "git",
         "url": "https://github.com/MakingSense/mean-seed"
     },
@@ -47,11 +47,9 @@
         "sinon": "~1.15.3"
     },
     "scripts": {
-		"postinstall": "bower install",
-        
+        "postinstall": "bower install",
         "pretest": "npm install",
         "test": "grunt test",
-        
         "e2e-test": "grunt e2e-tests"
-	}
+    }
 }

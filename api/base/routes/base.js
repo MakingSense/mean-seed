@@ -2,8 +2,8 @@
 
 var simpleDI = require('config/simpleDI');
 
-module.exports = simpleDI.inject(['base/authController', 'base/commonController', 'base/usersController', 'base/rolesController'], 
-function(authController, commonController, usersController, rolesController) {
+module.exports = simpleDI.inject(['base/authController', 'base/commonController', 'base/usersController', 'base/rolesController', 'base/resourcesController'], 
+function(authController, commonController, usersController, rolesController, resourcesController) {
 
   return function baseRoutes(app) {
     // User Routes
@@ -20,5 +20,10 @@ function(authController, commonController, usersController, rolesController) {
     app.put('/auth/roles/:roleId', rolesController.update);
     app.delete('/auth/roles/:roleId', rolesController.delete);
   
+    app.get('/auth/resources/getall', resourcesController.getAll);
+    app.get('/auth/resources/:resourceId', resourcesController.getById);
+    app.post('/auth/resources', resourcesController.create);
+    app.put('/auth/resources/:resourceId', resourcesController.update);
+    app.delete('/auth/resources/:resourceId', resourcesController.delete);
   };
 });

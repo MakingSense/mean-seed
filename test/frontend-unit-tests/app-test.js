@@ -4,8 +4,7 @@ angular.module('mean', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute',
-  'ui.bootstrap'
+  'ngRoute'
 ])
   .config(function ( $locationProvider) {
     $locationProvider.html5Mode(true);

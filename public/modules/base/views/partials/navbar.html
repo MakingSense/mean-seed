@@ -1,29 +1,24 @@
-
-<div ng-if="isAuthed()" class="navbar navbar-default " role="navigation" ng-controller="NavbarCtrl">
-    <div class="container">
-        <div class="navbar-header"><a class="navbar-brand" href="#" name="top">MEANP App</a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-            </button>
-            <ul class="nav nav-tabs" role="tablist">
-              <li ng-repeat="module in menu.base"><a ng-href="#{{module.path}}">{{module.name}}</a></li>
-            </ul>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav  navbar-right" ng-hide="isAuthed()">
-                <li><a href="#/login">Log In</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right" ng-show="isAuthed()">
-                <li class="dropdown">
-                    <a class="dropdown-toggle">Welcome, {{ getCurrentUser().username }} <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+<div ng-if="isAuthed()" role="navigation" ng-controller="NavbarCtrl">
+    <div>
+        <a href="#/" name="top">MEANP App</a>
+        <ul role="tablist">
+            <li ng-repeat="module in menu.base">
+                <a ng-href="#{{module.path}}">{{module.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <li>
+                <a>Welcome, {{ getCurrentUser().username }}</a>
+                <ul>
+                    <li>
+                        <a href="" ng-click="logout()">Logout</a>
+                    </li>
                         <li><a ng-click="manageRoles()"><span class="glyphicon-log-out"></span> Manage Roles</a></li>
                         <li><a ng-click="manageResources()"><span class="glyphicon-log-out"></span> Manage Resources</a></li>
-                        <li><a ng-click="logout()"><span class="glyphicon-log-out"></span> Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>
-

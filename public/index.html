@@ -13,8 +13,6 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="lib/ng-table/dist/ng-table.min.css">
         <!-- build:css(.tmp) css/main.css -->
         <link rel="stylesheet" href="assets/css/main.css">
@@ -32,18 +30,16 @@
 
         <!-- Add your site or application content here -->
         <div ng-include  ng-show="isAuthed()" src="'modules/base/views/partials/navbar.html'"></div>
-        <div class="container" ng-view=""></div>
+        <div ng-view=""></div>
 
         <script src="lib/jquery/jquery.min.js"></script>
         <script src="lib/angular/angular.min.js"></script>
-        <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 
         <script src="lib/angular-resource/angular-resource.js"></script>
         <script src="lib/angular-cookies/angular-cookies.js"></script>
         <script src="lib/ngstorage/ngStorage.min.js"></script>
         <script src="lib/angular-sanitize/angular-sanitize.js"></script>
         <script src="lib/angular-route/angular-route.js"></script>
-        <script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
         <script src="lib/angular-http-auth/src/http-auth-interceptor.js"></script>
         <script src="lib/autofill-directive/autofill-directive.js"></script>
         <script src='lib/underscore/underscore-min.js'></script>

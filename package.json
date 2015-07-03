@@ -43,7 +43,8 @@
         "load-grunt-tasks": "~0.2.0",
         "mocha": "~2.2.5",
         "should": "~6.0.3",
-        "sinon": "~1.15.3"
+        "sinon": "~1.15.3",
+        "bower": "~1.4.1"
     },
     "scripts": {
 		"postinstall": "bower install",

@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - 0.12
+env:
+  - MONGOLAB_URI = mongodb://meanseedtest:meanseedtest@ds045242.mongolab.com:45242/meanseedtest
 before_install:
   - npm install -g grunt-cli
   - npm install -g bower

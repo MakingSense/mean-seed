@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/MakingSense/mean-seed.png?label=ready&title=Ready)](https://waffle.io/MakingSense/mean-seed)
 MEAN-seed  
 ================
 

@@ -1,7 +1,6 @@
 'use strict';
 
 var should = require('should'),
-    mongoose = require('mongoose'),
     sinon = require('sinon'),
     app = require('../../server-test'),
     simpleDI = require('config/simpleDI');

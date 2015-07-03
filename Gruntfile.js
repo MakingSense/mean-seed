@@ -75,7 +75,7 @@ module.exports = function (grunt) {
             }
         },
         concurrent: {
-            test: ['sass', 'jshint', 'karma']
+            test: ['sass', 'jshint', 'karma', 'mochaTest']
         },
         sass: {
             dist: {

@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - 0.12
+env:
+  - MONGOLAB_URI = mongodb://meanseedtest:meanseedtest@ds045242.mongolab.com:45242/meanseedtest
+before_install:
+  - npm install -g grunt-cli
+  - npm install -g bower
+  - npm install -g protractor
+before_script:
+  - export DISPLAY=:99.0
+  - node ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
+  - sh -e /etc/init.d/xvfb start
+  - npm start > /dev/null &
+  - sleep 2 #give server time to start
+script: 
+  - npm test
+  - npm run e2e-test

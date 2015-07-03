@@ -2,7 +2,7 @@
 
 module.exports = {
   db: {
-    uri: 'mongodb://localhost/meanp',
+    uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/meanp',
     options: {
       db: {
         safe: true

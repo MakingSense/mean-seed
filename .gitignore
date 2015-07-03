@@ -5,3 +5,4 @@ heroku
 staging
 public/lib/
 coverage
+.settings

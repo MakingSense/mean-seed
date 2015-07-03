@@ -14,7 +14,9 @@ var appConfig = simpleDI.resolve('app/config');
 
 // Once the models are included we can get the definition
 simpleDI.define('base/userModel', 'base/models/user');
+simpleDI.define('base/roleModel', 'base/models/role');
 var User = simpleDI.resolve('base/userModel');
+var Role = simpleDI.resolve('base/roleModel');
 
 var mongoose = simpleDI.resolve('mongoose');
 
@@ -34,6 +36,13 @@ mongoose.connect(appConfig.db.uri, appConfig.db.options, function (err, res) {
           if (err) {
               throw new Error('Failed to remove signup user');
           }
+
+          Role.update({ roleName: 'Role' }, { roleName: 'Role' }, { upsert:true }, function (err, role) {
+            if (err) {
+                throw new Error('Failed to create default role');
+            }
+
+          });
       });
 
   });

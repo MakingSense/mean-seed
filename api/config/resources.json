@@ -1,0 +1,37 @@
+{
+    "signup": {
+        "name": "Signup",
+        "actions": [
+            "create"
+        ]
+    },
+    "login": {
+        "name": "Login",
+        "actions": [
+            "create"
+        ]
+    },
+    "users": {
+        "name": "Users",
+        "actions": [
+            "view",
+            "update",
+            "create",
+            "delete",
+            "enable",
+            "disable"
+        ]
+    },
+    "home": {
+        "name": "Home",
+        "actions": [
+            "view"
+        ]
+    },
+    "menu": {
+        "name": "Menu",
+        "actions": [
+            "view"
+        ]
+    }
+}

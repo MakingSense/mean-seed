@@ -1,0 +1,49 @@
+{
+    "anonymous": [
+        {
+            "resource": "signup",
+            "action": "create"
+        },
+        {
+            "resource": "login",
+            "action": "create"
+        }
+    ],
+    "guest": [],
+    "user": [
+        {
+            "resource": "users",
+            "action": "update"
+        },
+        {
+            "resource": "users",
+            "action": "view"
+        },
+        {
+            "resource": "home",
+            "action": "view"
+        },
+        {
+            "resource": "menu",
+            "action": "view"
+        }
+    ],
+    "admin": [
+        {
+            "resource": "users",
+            "action": "create"
+        },
+        {
+            "resource": "users",
+            "action": "delete"
+        },
+        {
+            "resource": "users",
+            "action": "enable"
+        },
+        {
+            "resource": "users",
+            "action": "disable"
+        }
+    ]
+}

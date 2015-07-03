@@ -23,7 +23,10 @@ describe('Base#UserController', function() {
     var userParams = {
         email: 'test01@local.com',
         username: 'test01',
-        password: 'dummy'
+        password: 'dummy',
+        role: {
+            _id: 'roleId'
+        }
     };
 
     describe('#create', function() {
@@ -88,9 +91,16 @@ describe('Base#UserController', function() {
 
         it('should find a user if it already exists', function (done) {
 
-            findByIdStub.callsArgWith(1, null, {
-                username: 'test01',
-                profile: undefined
+            findByIdStub.returns({
+                populate: function(role) {
+                    return this;
+                },
+                exec: function(callback) {
+                    callback(null, {
+                        username: 'test01',
+                        profile: undefined
+                    });
+                }
             });
 
             usersController.show({
@@ -109,7 +119,14 @@ describe('Base#UserController', function() {
 
         it('should fail to find a user if it does not exists', function (done) {
 
-            findByIdStub.callsArgWith(1, null, undefined);
+            findByIdStub.returns({
+                populate: function(role) {
+                    return this;
+                },
+                exec: function(callback) {
+                    callback(null, undefined);
+                }
+            });
 
             usersController.show({
                 params: {
@@ -126,7 +143,14 @@ describe('Base#UserController', function() {
 
         it('should return an error if the search for the user caused an error', function (done) {
 
-            findByIdStub.callsArgWith(1, 'Some weird error in query');
+            findByIdStub.returns({
+                populate: function(role) {
+                    return this;
+                },
+                exec: function(callback) {
+                    callback('Some weird error in query');
+                }
+            });
 
             usersController.show({
                 params: {

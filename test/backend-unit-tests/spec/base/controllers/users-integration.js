@@ -6,7 +6,16 @@ var should = require('should'),
 
 var usersController = simpleDI.resolve('base/usersController'),
     UserModel = simpleDI.resolve('base/userModel'),
+    RoleModel = simpleDI.resolve('base/roleModel'),
     mongoose = simpleDI.resolve('mongoose');
+
+var createRole = function(roleParams, callback) {
+    var newRole = new RoleModel(roleParams);
+
+    newRole.save(function (err, createdRole) {
+        callback(createdRole);
+    });
+};
 
 describe('Base#UserController Integration Tests', function() {
 
@@ -22,9 +31,11 @@ describe('Base#UserController Integration Tests', function() {
     });
 
     beforeEach(function (done) {
-        // Drop the users collection before each test
+        // Drop the users and roles collections before each test
         mongoose.connection.db.dropCollection('users', function(err, result) {
-            done();
+            mongoose.connection.db.dropCollection('roles', function(err, result) {
+                done();
+            });
         });
     });
 
@@ -34,18 +45,28 @@ describe('Base#UserController Integration Tests', function() {
         password: 'dummy'
     };
 
+    var roleParams = {
+        roleName: 'Role'
+    };
+
     describe('#create', function() {
 
         it('should create a user and return the expected response', function (done) {
-            usersController.create({
-                body: userParams
-            }, {
-                json: function (code, response) {
-                    code.should.eql(200);
-                    response.token.should.exist;
-                    response.message.should.eql('User created.');
-                    done();
-                }
+            createRole(roleParams, function (createdRole) {
+
+                userParams.role = { _id: createdRole._id };
+
+                usersController.create({
+                    body: userParams
+                }, {
+                    json: function (code, response) {
+                        code.should.eql(200);
+                        response.token.should.exist;
+                        response.message.should.eql('User created.');
+                        done();
+                    }
+                });
+
             });
         });
 

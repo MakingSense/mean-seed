@@ -9,6 +9,12 @@ module.exports = simpleDI.inject([], function() {
   simpleDI.define('app/mongoDbConn', 'db/mongo');
   simpleDI.define('app/menus', 'templates/menus');
 
+  // TODO: This .json files should be replaced with the corresponding
+  // models when they get implemented
+  simpleDI.define('app/roles', 'config/roles');
+  simpleDI.define('app/resources', 'config/resources');
+  simpleDI.define('app/permissions', 'config/permissions');
+
   // Define models
   simpleDI.define('base/userModel', 'base/models/user');
   simpleDI.define('base/roleModel', 'base/models/role');
@@ -20,6 +26,13 @@ module.exports = simpleDI.inject([], function() {
   simpleDI.define('base/usersController', 'base/controllers/users');
   simpleDI.define('base/rolesController', 'base/controllers/roles');
   simpleDI.define('base/resourcesController', 'base/controllers/resources');
+
+  // Define services
+  simpleDI.define('base/authorizationService', 'base/services/authorization');
+
+  // Define middlewares
+  simpleDI.define('base/authenticationMiddleware', 'base/middlewares/authentication');
+  simpleDI.define('base/authorizationMiddleware', 'base/middlewares/authorization');
 
   // Define routes index and resolve using the express app's object
   simpleDI.define('base/baseRoutes', 'base/routes/base');

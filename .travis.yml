@@ -4,8 +4,10 @@ node_js:
 before_install:
   - npm install -g grunt-cli
   - npm install -g bower
+  - npm install -g protractor
 before_script:
   - export DISPLAY=:99.0
+  - node ./node_modules/protractor/bin/webdriver-manager update
   - sh -e /etc/init.d/xvfb start
   - npm start > /dev/null &
   - sleep 2 #give server time to start

@@ -46,7 +46,10 @@
         "sinon": "^1.15.3"
     },
     "scripts": {
-		"postinstall": "bower install"
+		"postinstall": "bower install",
+        
+        "pretest": "npm install",
+        "test": "grunt test"
 	},
     "engines": {
         "node": ">=0.8.0"

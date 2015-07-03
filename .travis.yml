@@ -7,7 +7,7 @@ before_install:
   - npm install -g protractor
 before_script:
   - export DISPLAY=:99.0
-  - node webdriver-manager update
+  - node ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
   - sh -e /etc/init.d/xvfb start
   - npm start > /dev/null &
   - sleep 2 #give server time to start

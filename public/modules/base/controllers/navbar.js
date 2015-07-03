@@ -17,6 +17,9 @@ angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, $lo
         $location.path('/roles');
     };
     
+    $scope.manageResources = function () {
+        $location.path('/resources');
+    };
     $scope.init = function() {
         menuService.get()
             .success(function (response, status, headers, config) {

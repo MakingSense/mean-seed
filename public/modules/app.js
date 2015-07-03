@@ -43,6 +43,19 @@ angular.module('mean', [
         templateUrl: 'modules/base/views/RoleManagement/roleEdit.html',
         controller: 'RoleEditCtrl'
       })
+      .when('/resources', {
+        templateUrl: 'modules/base/views/RoleManagement/resources.html',
+        controller: 'ResourcesCtrl',
+        requireAuth: true
+      })
+      .when('/resources/add', {
+        templateUrl: 'modules/base/views/RoleManagement/resourceEdit.html',
+        controller: 'ResourceAddCtrl'
+      })
+      .when('/resources/:id/edit', {
+        templateUrl: 'modules/base/views/RoleManagement/resourceEdit.html',
+        controller: 'ResourceEditCtrl'
+      })
       //===== mean-cli hook =====//
       .otherwise({
         redirectTo: '/'

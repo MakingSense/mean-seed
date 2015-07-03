@@ -1,0 +1,59 @@
+<div class="homeContainer">
+    <div class="col-md-4 col-custom">
+
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+                <form name="form" ng-submit="save()" novalidate>
+
+                <div class="form-group"
+                     ng-class="{
+                     'has-warning': form.name.$dirty,
+                     'has-success': form.name.$valid && form.name.$dirty && !form.name.$error.mongoose,
+                     'has-error': form.name.$invalid && form.name.$dirty || form.name.$error.mongoose
+                     }">
+                    <input class="form-control"
+                           placeholder="Name"
+                           type="text"
+                           name="name"
+                           ng-model="resource.name"
+                           required
+                           unique-username
+                           mongoose-error/>
+                    <p class="help-block"
+                       ng-show="form.name.$error.unique && form.name">
+                        That name is already taken.
+                    </p>
+                </div>
+				
+				<div class="form-group"
+                     ng-class="{
+                     'has-warning': form.description.$dirty,
+                     'has-success': form.description.$valid && form.description.$dirty && !form.description.$error.mongoose,
+                     'has-error': form.description.$invalid && form.description.$dirty || form.description.$error.mongoose
+                     }">
+                    <input class="form-control"
+                           placeholder="Description"
+                           type="text"
+                           name="description"
+                           ng-model="resource.description"
+                           required
+                           mongoose-error/>
+                </div>
+                
+               <div class="form-group has-error">
+                    <p class="help-block">{{ errorMessage }}</p>
+               </div>
+                
+                <br />
+                <a class="btn btn-lg btn-primary"
+                        type="submit"
+                        ng-disabled="form.$invalid" ng-click="save()">Save</a>
+                <a class="btn btn-lg btn-primary" ng-click="Cancel()">Cancel</a>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

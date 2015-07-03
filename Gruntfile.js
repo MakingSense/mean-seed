@@ -16,11 +16,6 @@ module.exports = function (grunt) {
             // configurable paths
             app: require('./bower.json').publicPath || 'public'
         },
-        bower: {
-            install: {
-                //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
-            }
-        },
         jshint: {
             options: {
                 jshintrc: '.jshintrc',
@@ -127,14 +122,12 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('dev', [
-        'bower',
         'express:dev',
         'open',
         'watch'
     ]);
 
     grunt.registerTask('ui-dev', [
-        'bower',
         'sass',
         'express:dev',
         'open',
@@ -142,21 +135,14 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test', [
-        'bower',
         'concurrent:test'
     ]);
 
-    grunt.registerTask('heroku:production', [
-        'bower'
-    ]);
-
+    // TODO: define this task
     grunt.registerTask('default', [
-        //  'jshint',
-        'bower'
     ]);
 
     grunt.registerTask('e2e-tests', [
-        'bower',
         'express:dev',
         'open',
         'protractor'

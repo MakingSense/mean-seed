@@ -12,8 +12,6 @@ var simpleDI = require(apiPath + 'config/simpleDI');
 simpleDI.define('app/config', __dirname + '/config/config');
 simpleDI.define('app/menus', apiPath + 'templates/menus');
 
-var appConfig = simpleDI.resolve('app/config');
-
 // Define roles, resources and permissions
 simpleDI.define('app/roles', __dirname + '/config/roles');
 simpleDI.define('app/resources', __dirname + '/config/resources');
@@ -33,14 +31,3 @@ simpleDI.define('base/authorizationService', 'base/services/authorization');
 
 // Define middlewares
 simpleDI.define('base/authorizationMiddleware', 'base/middlewares/authorization');
-
-var mongoose = simpleDI.resolve('mongoose');
-
-// Connect to Database
-mongoose.connect(appConfig.db.uri, appConfig.db.options, function (err, res) {
-  if (err) {
-    console.log ('ERROR connecting to: ' + appConfig.db.uri + '. ' + err);
-  } else {
-    console.log ('Successfully connected to: ' + appConfig.db.uri);
-  }
-});

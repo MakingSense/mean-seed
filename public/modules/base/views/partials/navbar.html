@@ -1,4 +1,4 @@
-<div ng-if="isAuthed()" role="navigation" ng-controller="NavbarCtrl">
+<div ng-if="isAuthed()" role="navigation" ng-controller="NavbarCtrl" class="navbar">
     <div>
         <a href="#/" name="top">MEANP App</a>
         <ul role="tablist">
@@ -12,11 +12,9 @@
             <li>
                 <a>Welcome, {{ getCurrentUser().username }}</a>
                 <ul>
-                    <li>
-                        <a href="" ng-click="logout()">Logout</a>
-                    </li>
-                        <li><a ng-click="manageRoles()"><span class="glyphicon-log-out"></span> Manage Roles</a></li>
-                        <li><a ng-click="manageResources()"><span class="glyphicon-log-out"></span> Manage Resources</a></li>
+                    <li><a href="" ng-click="logout()">Logout</a></li>
+                    <li><a href="" ng-click="manageRoles()">Manage Roles</a></li>
+                    <li><a href="" ng-click="manageResources()">Manage Resources</a></li>
                 </ul>
             </li>
         </ul>

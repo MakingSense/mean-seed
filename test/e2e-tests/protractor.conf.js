@@ -19,7 +19,9 @@ exports.config = {
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
   },
-
+    
+  chromeDriver: 'C:/Users/mbeckerle/AppData/Roaming/npm/node_modules/protractor/selenium/chromedriver.exe',
+    
   baseUrl: 'http://localhost:9000/',
 
   // This is currently used to set the database prior to tests running, but

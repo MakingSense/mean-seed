@@ -1,66 +1,59 @@
 'use strict';
 
-describe('Login', function() {
+describe('Login', function () {
+    
+    it('should show the login page', function () {
+        browser.get("/");
 
-  it('should show the login page', function() {
-    browser.get("/");
+        var currentUrl = browser.getCurrentUrl();
+        expect(currentUrl).toEqual('http://localhost:9000/#/login');
 
-    var currentUrl = browser.getCurrentUrl();
-
-    expect(currentUrl).toEqual('http://localhost:9000/#/login');
-
-    var loginForm = element(by.css('.loginForm'));
-
-    expect(loginForm.isPresent()).toBeTruthy();
-  });
-
-  it('should require both login fields to be filled in', function() {
-    var submit = element(by.css('.loginForm button'));
-    var errors = element.all(by.css('.error'));
-
-    browser.get("/#/login");
-
-    expect(errors.count()).toEqual(2);
-
-    var visibleErrors = errors.filter(function (elem) {
-      return elem.isDisplayed();
+        var loginForm = element(by.css('.login form'));
+        expect(loginForm.isPresent()).toBeTruthy();
     });
 
-    expect(visibleErrors.count()).toEqual(0);
+    it('should require both login fields to be filled in', function () {
+        var submit = element(by.css('.login button'));
+        var errors = element.all(by.css('.error'));
 
-    submit.click();
+        browser.get("/#/login");
 
-    visibleErrors = errors.filter(function (elem) {
-      return elem.isDisplayed();
+        var visibleErrors = errors.filter(function (elem) {
+            return elem.isDisplayed();
+        });
+        expect(visibleErrors.count()).toEqual(0);
+
+        submit.click();
+
+        visibleErrors = errors.filter(function (elem) {
+            return elem.isDisplayed();
+        });
+        expect(visibleErrors.count()).toEqual(2);
+
+        visibleErrors.each(function (elem) {
+            expect(elem.getText()).toEqual('Field required');
+        });
     });
 
-    expect(visibleErrors.count()).toEqual(2);
+    it('should notify that the email is not registered', function () {
+        var submit = element(by.css('.login button'));
+        var errors = element.all(by.css('.error'));
 
-    visibleErrors.each(function (elem) {
-      expect (elem.getText()).toEqual('Field required');
+        browser.get("/#/login");
+
+        element(by.model('user.email')).sendKeys('e2e_test@domain.com');
+        element(by.model('user.password')).sendKeys('123');
+        
+        submit.click();
+
+        var visibleErrors = errors.filter(function (elem) {
+            return elem.isDisplayed();
+        });
+        expect(visibleErrors.count()).toEqual(1);
+
+        visibleErrors.each(function (elem) {
+            expect(elem.getText()).toEqual('Authentication failed. User not found.');
+        });
     });
-  });
-
-  it('should notify that the email is not registered', function() {
-    var submit = element(by.css('.loginForm button'));
-    var errors = element.all(by.css('.has-error'));
-
-    browser.get("/#/login");
-
-    element(by.model('user.email')).sendKeys('e2e_test@domain.com');
-    element(by.model('user.password')).sendKeys('123');
-
-    submit.click();
-
-    var visibleErrors = errors.filter(function (elem) {
-      return elem.isDisplayed();
-    });
-
-    expect(visibleErrors.count()).toEqual(1);
-
-    visibleErrors.each(function (elem) {
-      expect (elem.getText()).toEqual('Authentication failed. User not found');
-    });
-  });
-
+    
 });

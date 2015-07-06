@@ -24,10 +24,9 @@ angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, $lo
         menuService.get()
             .success(function (response, status, headers, config) {
                 $scope.menu = response;
-                console.log(response);
             })
             .error(function (error, status, headers, config) {
-                console.log(error)
+                // TODO: handle this scenario (or not)
             });
     }
 

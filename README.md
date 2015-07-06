@@ -28,4 +28,16 @@ Run ```grunt dev``` to start the app in development mode with client-server live
 
 ### Testing
 
-Run ```grunt test``` to start the karma test runner.
+TODO: we need to improve testing configuration and related tasks.
+
+If you have the following error:
+
+```
+Could not find chromedriver at C:\randomfolder\mean-seed\node_modules\grunt-protractor-runner\node_modules\protractor\selenium\chromedriver.exe
+```
+
+Add this setting at `protractor.conf.js`:
+
+```
+chromeDriver: 'C:/Users/youruser/AppData/Roaming/npm/node_modules/protractor/selenium/chromedriver.exe'
+```

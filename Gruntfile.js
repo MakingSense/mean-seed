@@ -10,18 +10,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-protractor-runner');
     grunt.loadNpmTasks('grunt-mocha-istanbul');
-    
-    var paths = {
-        local: 'public',
-        assets: 'public/assets',
-        styles: 'public/styles'
-    };
 
     grunt.initConfig({
-        paths: paths,
-        yeoman: {
-            // configurable paths
-            app: require('./bower.json').publicPath || 'public'
+        paths: {
+            app: 'public',
+            modules: 'public/modules',
+            assets: 'public/assets',
+            styles: 'public/styles'
         },
         jshint: {
             options: {
@@ -29,7 +24,7 @@ module.exports = function (grunt) {
                 reporter: require('jshint-stylish')
             },
             all: [
-                '<%= yeoman.app %>/scripts/{,*/}*.js'
+                '<%= paths.modules %>/**/*.js'
             ]
         },
         karma: {
@@ -82,10 +77,10 @@ module.exports = function (grunt) {
                     livereload: { livereload: true }
                 },
                 files: [
-                    '<%= yeoman.app %>{,*/}*.html',
-                    '<%= yeoman.app %>/modules/**/**/{,*/}*.html',
-                    '<%= yeoman.app %>/modules/**/**/{,*/}*.js',
-                    '<%= yeoman.app %>/styles/**/*.scss'
+                    '<%= paths.app %>/index.html',
+                    '<%= paths.modules %>/**/*.html',
+                    '<%= paths.modules %>/**/*.js',
+                    '<%= paths.styles %>/**/*.scss'
                 ]
             }
         },
@@ -133,7 +128,7 @@ module.exports = function (grunt) {
                     // Arguments passed to the command
                 }
             },
-            all: { } // Grunt requires at least one target
+            all: {} // Grunt requires at least one target
         },
         mocha_istanbul: {
             coverage: {
@@ -174,7 +169,7 @@ module.exports = function (grunt) {
         'protractor'
     ]);
 
-    grunt.registerTask('coverage',[
+    grunt.registerTask('coverage', [
         'mocha_istanbul:coverage'
     ]);
 };

@@ -74,7 +74,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    livereload: { livereload: true }
+                    livereload: true
                 },
                 files: [
                     '<%= paths.app %>/index.html',

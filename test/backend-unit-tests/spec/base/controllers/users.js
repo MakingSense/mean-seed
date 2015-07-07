@@ -91,16 +91,8 @@ describe('Base#UserController', function() {
 
         it('should find a user if it already exists', function (done) {
 
-            findByIdStub.returns({
-                populate: function(role) {
-                    return this;
-                },
-                exec: function(callback) {
-                    callback(null, {
-                        username: 'test01',
-                        profile: undefined
-                    });
-                }
+            findByIdStub.callsArgWith(1, null, {
+                username: 'test01'
             });
 
             usersController.show({
@@ -119,14 +111,7 @@ describe('Base#UserController', function() {
 
         it('should fail to find a user if it does not exists', function (done) {
 
-            findByIdStub.returns({
-                populate: function(role) {
-                    return this;
-                },
-                exec: function(callback) {
-                    callback(null, undefined);
-                }
-            });
+            findByIdStub.callsArgWith(1, null, undefined);
 
             usersController.show({
                 params: {
@@ -143,14 +128,9 @@ describe('Base#UserController', function() {
 
         it('should return an error if the search for the user caused an error', function (done) {
 
-            findByIdStub.returns({
-                populate: function(role) {
-                    return this;
-                },
-                exec: function(callback) {
-                    callback('Some weird error in query');
-                }
-            });
+            findByIdStub.callsArgWith(1, function(){
+                return 'Some weird error in query';
+            }, null);
 
             usersController.show({
                 params: {

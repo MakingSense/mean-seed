@@ -26,7 +26,6 @@ describe('Controller: SignupCtrl', function () {
   }));
 
   it('should set scope.errorMessage on mongoose errors', function () {
-    $httpBackend.expectGET('/auth/roles/getall').respond(200, [ { roleName: 'Role', _id: 'id' } ]);
     $httpBackend.expectPOST('/auth/users').respond(404, { message: 'Test Error'});
 
     scope.register(scope.optionsForm);

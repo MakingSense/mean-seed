@@ -1,9 +1,0 @@
-<form name="form" ng-submit="saveRole(form)" novalidate>
-    <div ng-class="{ 'has-warning': form.roleName.$dirty, 'has-success': form.roleName.$valid && form.roleName.$dirty && !form.roleName.$error.mongoose, 'has-error': form.roleName.$invalid && form.roleName.$dirty || form.roleName.$error.mongoose }">
-        <input placeholder="Role Name" type="text" name="roleName" ng-model="role.roleName" required unique-username mongoose-error>
-        <p class="error" ng-show="form.roleName.$error.unique && form.roleName">That role name is already taken.</p>
-    </div>
-    <p class="error">{{ errorMessage }}</p>
-    <a ng-disabled="form.$invalid" ng-click="saveRole()">Save</a>
-    <a ng-click="Cancel()">Cancel</a>
-</form>

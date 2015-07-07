@@ -22,8 +22,7 @@ module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, cryp
     name: String,
     admin: Boolean,
     guest: Boolean,
-    provider: String,
-    role: { type: Schema.ObjectId, ref: 'role' }
+    provider: String
   });
 
   /**

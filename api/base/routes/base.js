@@ -7,10 +7,8 @@ module.exports = simpleDI.inject([
   'base/authenticationMiddleware',
   'base/authorizationMiddleware',
   'base/commonController',
-  'base/usersController',
-  'base/rolesController',
-  'base/resourcesController'
-], function(authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController, rolesController, resourcesController) {
+  'base/usersController'
+], function(authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController) {
 
   return function baseRoutes(app) {
     // User Routes
@@ -34,17 +32,5 @@ module.exports = simpleDI.inject([
       authorizationMiddleware.getAuthorizationFn('menu', 'view'),
       commonController.menu
     );
-
-    app.get('/auth/roles/getall', rolesController.getAll);
-    app.get('/auth/roles/:roleId', rolesController.getById);
-    app.post('/auth/roles', rolesController.create);
-    app.put('/auth/roles/:roleId', rolesController.update);
-    app.delete('/auth/roles/:roleId', rolesController.delete);
-  
-    app.get('/auth/resources/getall', resourcesController.getAll);
-    app.get('/auth/resources/:resourceId', resourcesController.getById);
-    app.post('/auth/resources', resourcesController.create);
-    app.put('/auth/resources/:resourceId', resourcesController.update);
-    app.delete('/auth/resources/:resourceId', resourcesController.delete);
   };
 });

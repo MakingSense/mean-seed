@@ -12,14 +12,7 @@ angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, $lo
            $sessionStorage.$reset();
            $location.path('/login');
     };
-
-    $scope.manageRoles = function () {
-        $location.path('/roles');
-    };
     
-    $scope.manageResources = function () {
-        $location.path('/resources');
-    };
     $scope.init = function() {
         menuService.get()
             .success(function (response, status, headers, config) {

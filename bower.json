@@ -16,7 +16,6 @@
         "ngstorage": "0.3.0",
         "jeet.gs": "latest",
         "compass-mixins": "latest",
-        "ng-table": "0.5.3",
         "bootstrap-sass": "~3.3.5"
     },
     "devDependencies": {

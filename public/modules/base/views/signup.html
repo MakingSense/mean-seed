@@ -13,9 +13,6 @@
             <input placeholder="Password" type="password" name="password" ng-model="user.password" ng-minlength="5" required mongoose-error>
             <p ng-show="(form.password.$error.minlength || form.password.$invalid) && form.password.$dirty && !form.password.$error.required">Password must be at least 5 characters.</p>
         </div>
-        <div ng-class="{'has-warning': form.username.$dirty, 'has-success': form.username.$valid && form.username.$dirty && !form.username.$error.mongoose, 'has-error': form.username.$invalid && form.username.$dirty || form.username.$error.mongoose}">
-            <select placeholder="Role" name="role" ng-model="user.role" ng-options="item.roleName for item in roles track by item._id" required mongoose-error></select>
-        </div>
         <p>{{ errorMessage }}</p>
         <button type="submit" ng-disabled="form.$invalid">Sign up</button>
         <a href="#/login" role="button">Sign in</a>

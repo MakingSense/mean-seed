@@ -6,8 +6,7 @@ angular.module('mean', [
   'ngSanitize',
   'ngStorage',
   'ngRoute',
-  'autofill-directive',
-  'ngTable'
+  'autofill-directive'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     
@@ -28,32 +27,6 @@ angular.module('mean', [
         templateUrl: 'modules/base/views/signup.html',
         controller: 'SignupCtrl',
         requireAuth: false
-      })
-      .when('/roles', {
-        templateUrl: 'modules/base/views/RoleManagement/roles.html',
-        controller: 'RolesCtrl',
-        requireAuth: true
-      })
-      .when('/roles/add', {
-        templateUrl: 'modules/base/views/RoleManagement/roleEdit.html',
-        controller: 'RoleAddCtrl'
-      })
-      .when('/roles/:id/edit', {
-        templateUrl: 'modules/base/views/RoleManagement/roleEdit.html',
-        controller: 'RoleEditCtrl'
-      })
-      .when('/resources', {
-        templateUrl: 'modules/base/views/RoleManagement/resources.html',
-        controller: 'ResourcesCtrl',
-        requireAuth: true
-      })
-      .when('/resources/add', {
-        templateUrl: 'modules/base/views/RoleManagement/resourceEdit.html',
-        controller: 'ResourceAddCtrl'
-      })
-      .when('/resources/:id/edit', {
-        templateUrl: 'modules/base/views/RoleManagement/resourceEdit.html',
-        controller: 'ResourceEditCtrl'
       })
       //===== mean-cli hook =====//
       .otherwise({

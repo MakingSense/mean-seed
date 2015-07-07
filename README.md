@@ -30,14 +30,4 @@ Run ```grunt dev``` to start the app in development mode with client-server live
 
 TODO: we need to improve testing configuration and related tasks.
 
-If you have the following error:
-
-```
-Could not find chromedriver at C:\randomfolder\mean-seed\node_modules\grunt-protractor-runner\node_modules\protractor\selenium\chromedriver.exe
-```
-
-Add this setting at `protractor.conf.js`:
-
-```
-chromeDriver: 'C:/Users/youruser/AppData/Roaming/npm/node_modules/protractor/selenium/chromedriver.exe'
-```
+For more information please take a look at [known errors](https://github.com/MakingSense/mean-seed/wiki/Known-errors).

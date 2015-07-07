@@ -1,17 +1,14 @@
 <h1>Resources</h1>
-<table ng-table="tableParams" class="table" >
+<table ng-table="tableParams">
     <tr ng-repeat="r in $data">
         <td data-title="'Id'">{{ r._id }}</td>
         <td data-title="'Name'" sortable="'name'">{{ r.name }}</td>
         <td data-title="'Description'" sortable="'description'">{{ r.description }}</td>
         <td data-title="'Actions'">
-            <button class="btn btn-primary btn-xs" type="button" ng-click="edit(r)">Edit</button>
-            <button class="btn btn-danger btn-xs" type="button" confirm-message="Are you sure you want to delete the resource?"
-            confirmed-action="delete(r)">Delete</button>
+            <button type="button" ng-click="edit(r)">Edit</button>
+            <button type="button" confirm-message="Are you sure you want to delete the resource?" confirmed-action="delete(r)">Delete</button>
         </td>
     </tr>
 </table>
-<a class="btn btn-lg btn-primary" ng-click="create()" role="button">Create Resource</a>
-<div class="form-group has-error">
-    <p class="help-block">{{ errorMessage }}</p>
-</div>
+<a ng-click="create()" role="button">Create Resource</a>
+<p class="error">{{ errorMessage }}</p>

@@ -13,10 +13,12 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         paths: {
-            app: 'public',
-            modules: 'public/modules',
-            assets: 'public/assets',
-            styles: 'public/styles'
+            root: './',
+            api: './api',
+            app: './public',
+            modules: './public/modules',
+            assets: './public/assets',
+            styles: './public/styles'
         },
         jshint: {
             options: {
@@ -24,6 +26,8 @@ module.exports = function (grunt) {
                 reporter: require('jshint-stylish')
             },
             all: [
+                '<%= paths.root %>/*.js',
+                '<%= paths.api %>/**/*.js',
                 '<%= paths.modules %>/**/*.js'
             ]
         },

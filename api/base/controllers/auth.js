@@ -26,7 +26,7 @@ module.exports = simpleDI.inject(['base/userModel', 'jsonwebtoken', 'app/config'
         // If the user does not exist
         if (!user) {
 
-          return res.json(404, { message: 'Authentication failed. User not found' });
+          return res.json(404, { message: 'Authentication failed. User not found.' });
 
         } 
 

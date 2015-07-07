@@ -6,7 +6,6 @@ angular.module('mean', [
   'ngSanitize',
   'ngStorage',
   'ngRoute',
-  'ui.bootstrap',
   'autofill-directive',
   'ngTable'
 ])

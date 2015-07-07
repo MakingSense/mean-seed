@@ -69,7 +69,7 @@ describe('Base#AuthController', function() {
                 }
             }, {
                 json: function (code, error) {
-                    error.should.eql({ message: 'Authentication failed. User not found' } );
+                    error.should.eql({ message: 'Authentication failed. User not found.' } );
                     code.should.eql(404);
                     done();
                 }

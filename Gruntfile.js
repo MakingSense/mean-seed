@@ -10,8 +10,15 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-protractor-runner');
     grunt.loadNpmTasks('grunt-mocha-istanbul');
+    
+    var paths = {
+        local: 'public',
+        assets: 'public/assets',
+        styles: 'public/styles'
+    };
 
     grunt.initConfig({
+        paths: paths,
         yeoman: {
             // configurable paths
             app: require('./bower.json').publicPath || 'public'
@@ -58,9 +65,17 @@ module.exports = function (grunt) {
                     nospawn: true //Without this option specified express won't be reloaded
                 }
             },
-            css: {
-                files: 'public/assets/scss/*.scss',
-                tasks: ['sass']
+            scss: {
+                files: [
+                    '<%= paths.styles %>/**/*.scss'
+                ],
+                tasks: [
+                    'sass',
+                    'autoprefixer'
+                ],
+                options: {
+                    spawn: false
+                }
             },
             livereload: {
                 options: {
@@ -70,7 +85,7 @@ module.exports = function (grunt) {
                     '<%= yeoman.app %>{,*/}*.html',
                     '<%= yeoman.app %>/modules/**/**/{,*/}*.html',
                     '<%= yeoman.app %>/modules/**/**/{,*/}*.js',
-                    '<%= yeoman.app %>/assets/scss/{,*/}*.scss'
+                    '<%= yeoman.app %>/styles/**/*.scss'
                 ]
             }
         },
@@ -78,14 +93,25 @@ module.exports = function (grunt) {
             test: ['sass', 'jshint', 'karma', 'mochaTest']
         },
         sass: {
+            options: {
+                sourceMap: true,
+                outputStyle: 'compressed'
+            },
             dist: {
-                options: {
-                    includePaths: ['public/assets/scss/'],
-                    outputStyle: 'nested'
-                },
                 files: {
-                    'public/assets/css/main.css': 'public/assets/scss/main.scss'
+                    'public/assets/css/main.css': '<%= paths.styles %>/main.scss'
                 }
+            }
+        },
+        autoprefixer: {
+            options: {
+                map: true
+            },
+            css: {
+                expand: true,
+                flatten: true,
+                src: '<%= paths.assets %>/css/*.css',
+                dest: '<%= paths.assets %>/css/'
             }
         },
         mochaTest: {

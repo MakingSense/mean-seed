@@ -28,4 +28,6 @@ Run ```grunt dev``` to start the app in development mode with client-server live
 
 ### Testing
 
-Run ```grunt test``` to start the karma test runner.
+TODO: we need to improve testing configuration and related tasks.
+
+For more information please take a look at [known errors](https://github.com/MakingSense/mean-seed/wiki/Known-errors).

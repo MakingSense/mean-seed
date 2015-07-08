@@ -4,5 +4,6 @@ node_modules
 heroku
 staging
 public/lib/
+public/dist/
 coverage
 .settings

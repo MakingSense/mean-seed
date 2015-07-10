@@ -262,8 +262,15 @@ module.exports = function (grunt) {
     grunt.registerTask('validate', [
         //'jshint', // TODO: uncomment jshint task once all errors were fixed because is stopping the execution of the tasks down below
         'karma:unit',
-        'mochaTest'/*,
-        'protractor'*/ // TODO: uncomment protractor after a nice setup because is causing some issues right know with different environments
+        'mochaTest'
+    ]);
+    
+    /**
+     * End to end tests running. Protractor requires express to be up & running
+     */
+    grunt.registerTask('e2e', [
+        'express:dev',
+        'protractor'
     ]);
 
     /**

@@ -50,7 +50,7 @@
     "scripts": {
         "postinstall": "bower install",
         "pretest": "npm install",
-        "test": "grunt test",
-        "e2e-test": "grunt e2e-tests"
+        "test": "grunt validate",
+        "e2e-test": "grunt e2e"
     }
 }

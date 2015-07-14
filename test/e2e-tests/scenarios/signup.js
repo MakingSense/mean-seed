@@ -17,7 +17,7 @@ describe('Signup', function () {
 
         var navBar = element(by.css('.navbar'));
         expect(navBar.isPresent()).toBeFalsy();
-        
+
         element(by.model('user.email')).sendKeys('e2e_signup@domain.com');
         element(by.model('user.username')).sendKeys('e2e_signup');
         element(by.model('user.password')).sendKeys('12345');
@@ -30,7 +30,7 @@ describe('Signup', function () {
 
         expect(navBar.isPresent()).toBeTruthy();
         expect(navBar.isDisplayed()).toBeTruthy();
-        
+
         var menuItems = element.all(by.repeater('module in menu.base'));
         expect(menuItems.count()).toEqual(1);
 

@@ -17,32 +17,32 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
       create: function (req, res, next) {
           var newUser = new User(req.body);
           newUser.provider = 'local';
-          
+
           newUser.save(function(err) {
             if (err) {
               return res.json(400, err);
             }
-        
+
             var response = {
                 user: newUser,
                 exp: Math.round(new Date().setDate(new Date().getDate() + 1) / 1000)
             };
-            
+
             var token = jwt.sign(response, secretKey, {
                 expiresInMinutes: 1440
             });
-                        
+
             res.json(200, { token: token, message: 'User created.' });
           });
         },
-    
+
       /**
        *  Show profile
        *  returns {username, profile}
        */
       show: function (req, res, next) {
           var userId = req.params.userId;
-        
+
           User.findById(new ObjectId(userId), function (err, user) {
             if (err) {
               return next(new Error('Failed to load User'));
@@ -54,7 +54,7 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
             }
           });
       },
-    
+
       /**
        *  Username exists
        *  returns {exists}
@@ -65,7 +65,7 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
           if (err) {
             return next(new Error('Failed to load User ' + username));
           }
-      
+
           if(user) {
             res.json({exists: true});
           } else {
@@ -73,7 +73,7 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
           }
         });
       }
-    
+
   };
 
 });

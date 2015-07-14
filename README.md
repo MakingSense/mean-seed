@@ -1,5 +1,5 @@
-[![Stories in Ready](https://badge.waffle.io/MakingSense/mean-seed.png?label=ready&title=Ready)](https://waffle.io/MakingSense/mean-seed) [![Build Status](https://travis-ci.org/MakingSense/mean-seed.svg?branch=master)](https://travis-ci.org/MakingSense/mean-seed) 
-MEAN-seed  
+[![Stories in Ready](https://badge.waffle.io/MakingSense/mean-seed.png?label=ready&title=Ready)](https://waffle.io/MakingSense/mean-seed) [![Build Status](https://travis-ci.org/MakingSense/mean-seed.svg?branch=master)](https://travis-ci.org/MakingSense/mean-seed)
+MEAN-seed
 =========
 
 A bootstrapp application based on MongoDB, Express, Angular, Node, Passport.

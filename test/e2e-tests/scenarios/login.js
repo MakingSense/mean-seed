@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Login', function () {
-    
+
     it('should show the login page', function () {
         browser.get("/");
 
@@ -43,7 +43,7 @@ describe('Login', function () {
 
         element(by.model('user.email')).sendKeys('e2e_test@domain.com');
         element(by.model('user.password')).sendKeys('123');
-        
+
         submit.click();
 
         var visibleErrors = errors.filter(function (elem) {
@@ -55,5 +55,5 @@ describe('Login', function () {
             expect(elem.getText()).toEqual('Authentication failed. User not found.');
         });
     });
-    
+
 });

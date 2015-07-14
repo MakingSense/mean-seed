@@ -27,7 +27,7 @@ describe('Controller: LoginCtrl', function () {
 
   it('should set scope.errorMessage on mongoose errors', function () {
     $httpBackend.expectPOST('/auth/').respond(404, { message: 'Test Error'});
-      
+
     scope.login(scope.optionsForm);
     $httpBackend.flush();
     expect(scope.errorMessage).toBe('Test Error');

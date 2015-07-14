@@ -22,7 +22,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-mocha-istanbul');
 
     grunt.initConfig({
-        
+
         /**
          * Some helpful paths.
          */
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        
+
         /**
          * Ensures the code is beautiful.
          * Relies on: grunt-contrib-jshint.
@@ -80,7 +80,7 @@ module.exports = function (grunt) {
                 '<%= paths.modules %>/**/*.js'
             ]
         },
-        
+
         /**
          * Joins each script in a single and ugly one!
          * Relies on: grunt-contrib-uglify.
@@ -161,7 +161,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        
+
         /**
          * Starts up the server on a predefined port.
          * Relies on: grunt-express-server.
@@ -182,7 +182,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-       
+
         /**
          * Opens the project in a new tab of your browser.
          * Relies on: grunt-open.
@@ -192,7 +192,7 @@ module.exports = function (grunt) {
                 url: 'http://localhost:<%= express.options.port %>'
             }
         },
-        
+
         /**
          * Runs several util tasks while developing.
          * Relies on: grunt-contrib-watch.
@@ -239,7 +239,7 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        
+
         /**
          * Compiles the SCSS files in a single and plain CSS.
          * Relies on: grunt-sass.
@@ -255,7 +255,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        
+
         /**
          * Adds the vendor prefix for styles.
          * Relies on: grunt-autoprefixer.
@@ -271,7 +271,7 @@ module.exports = function (grunt) {
                 dest: '<%= paths.styles %>/'
             }
         },
-        
+
         /**
          * Test runner on the front-end side.
          * Relies on: grunt-karma.
@@ -285,7 +285,7 @@ module.exports = function (grunt) {
                 // TODO: complete for build processes
             }
         },
-        
+
         /**
          * Test runner on the back-end side.
          * Relies on: grunt-mocha-test.
@@ -299,7 +299,7 @@ module.exports = function (grunt) {
                 src: ['<%= paths.test %>/backend-unit-tests/spec/**/*.js']
             }
         },
-        
+
         /**
          * Test runner for the e2e tests.
          * Relies on: grunt-protractor-runner.
@@ -315,7 +315,7 @@ module.exports = function (grunt) {
             },
             all: {} // Grunt requires at least one target
         },
-        
+
         /**
          * Provides the current tests coverage.
          * Relies on: grunt-mocha-istanbul.
@@ -376,7 +376,7 @@ module.exports = function (grunt) {
         'karma:unit',
         'mochaTest'
     ]);
-    
+
     /**
      * End to end tests running. Protractor requires express to be up & running
      */

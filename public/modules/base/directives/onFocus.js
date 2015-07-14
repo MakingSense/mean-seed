@@ -21,5 +21,5 @@ angular.module('mean')
             scope.$apply(function() {ngModel.$focused = false;});
           });
       }
-    }
+    };
   });

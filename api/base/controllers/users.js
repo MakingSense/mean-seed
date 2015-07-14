@@ -43,7 +43,7 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
       show: function (req, res, next) {
           var userId = req.params.userId;
         
-          User.findById(ObjectId(userId), function (err, user) {
+          User.findById(new ObjectId(userId), function (err, user) {
             if (err) {
               return next(new Error('Failed to load User'));
             }

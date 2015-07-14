@@ -17,7 +17,7 @@ simpleDI.resolve('app/mongoDbConn');
 
 // Get app config
 var appConfig = simpleDI.resolve('app/config');
-var appFolder = appConfig.env == 'production' ? '/public/dist' : '/public';
+var appFolder = appConfig.env === 'production' ? '/public/dist' : '/public';
 
 var app = express();
 

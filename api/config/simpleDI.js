@@ -7,7 +7,7 @@ function SimpleDI() {
   this.resolvedModules = {};
   // Not used yet
   this.options = {};
-};
+}
 
 
 /**
@@ -40,7 +40,8 @@ SimpleDI.prototype.resolve = function (name) {
     // TODO: Perhaps some simple routine might be used to handle certain convention
     // on the name of the module (i.e., consider '/' chars in the name to be parts
     // of a path on which the actual module can be found)
-    return this.resolvedModules[name] = require(name);
+    this.resolvedModules[name] = require(name);
+    return this.resolvedModules[name];
   }
 
   var definition = this.definitions[name];

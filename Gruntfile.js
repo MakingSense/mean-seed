@@ -91,7 +91,7 @@ module.exports = function (grunt) {
                     mangle: false,
                     sourceMap: false,
                     compress: {
-                        drop_console: true
+                        drop_console: true // jshint ignore:line
                     }
                 },
                 files: {
@@ -178,11 +178,11 @@ module.exports = function (grunt) {
             prod: {
                 options: {
                     script: '<%= paths.root %>/server.js',
-                    node_env: 'production'
+                    node_env: 'production' // jshint ignore:line
                 }
             }
         },
-        
+       
         /**
          * Opens the project in a new tab of your browser.
          * Relies on: grunt-open.
@@ -320,7 +320,7 @@ module.exports = function (grunt) {
          * Provides the current tests coverage.
          * Relies on: grunt-mocha-istanbul.
          */
-        mocha_istanbul: {
+        mocha_istanbul: { // jshint ignore:line
             coverage: {
                 options: {
                     reporter: 'spec',
@@ -372,7 +372,7 @@ module.exports = function (grunt) {
      * TODO: if one task fails stops the execution of the remaining tasks. Find a way to execute all tasks besides the result of a single one.
      */
     grunt.registerTask('validate', [
-        //'jshint', // TODO: uncomment jshint task once all errors were fixed because is stopping the execution of the tasks down below
+        'jshint',
         'karma:unit',
         'mochaTest'
     ]);

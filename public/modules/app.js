@@ -54,12 +54,12 @@ angular.module('mean', [
     
      // Store current user info
      $rootScope.setCurrentUser = function(me) {
-            $window.localStorage.setItem("currentUser", JSON.stringify(me));
+            $window.localStorage.setItem('currentUser', JSON.stringify(me));
       };
       
      // Retrieve current user info
      $rootScope.getCurrentUser = function() {
-            return JSON.parse($window.localStorage.getItem("currentUser"));
+            return JSON.parse($window.localStorage.getItem('currentUser'));
      };
      
      // Remove the current use info 

@@ -21,7 +21,7 @@ angular.module('mean').controller('NavbarCtrl', function ($scope,$rootScope, $lo
             .error(function (error, status, headers, config) {
                 // TODO: handle this scenario (or not)
             });
-    }
+    };
 
     $scope.init();
 });

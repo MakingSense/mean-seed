@@ -21,20 +21,24 @@ var mongoose = simpleDI.resolve('mongoose');
 // Connect to Database
 mongoose.connect(appConfig.db.uri, appConfig.db.options, function (err, res) {
   if (err) {
-      throw new Error('ERROR connecting to: ' + appConfig.db.uri + '. ' + err);
+    throw new Error('ERROR connecting to: ' + appConfig.db.uri + '. ' + err);
   }
   console.log('Successfully connected to: ' + appConfig.db.uri);
 
-  User.findOneAndRemove({ email: 'e2e_test@domain.com' }, function (err, user) {
-      if (err) {
-          throw new Error('Failed to remove test user');
-      }
+  User.findOneAndRemove({
+    email: 'e2e_test@domain.com'
+  }, function (err, user) {
+    if (err) {
+      throw new Error('Failed to remove test user');
+    }
 
-      User.findOneAndRemove({ email: 'e2e_signup@domain.com' }, function (err, user) {
-          if (err) {
-              throw new Error('Failed to remove signup user');
-          }
-      });
+    User.findOneAndRemove({
+      email: 'e2e_signup@domain.com'
+    }, function (err, user) {
+      if (err) {
+        throw new Error('Failed to remove signup user');
+      }
+    });
 
   });
 });

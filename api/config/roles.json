@@ -1,14 +1,14 @@
 {
-    "anonymous": {
-        "name": "Anonymous"
-    },
-    "guest": {
-        "name": "Guest"
-    },
-    "user": {
-        "name": "User"
-    },
-    "admin": {
-        "name": "Aministrator"
-    }
+  "anonymous": {
+    "name": "Anonymous"
+  },
+  "guest": {
+    "name": "Guest"
+  },
+  "user": {
+    "name": "User"
+  },
+  "admin": {
+    "name": "Aministrator"
+  }
 }

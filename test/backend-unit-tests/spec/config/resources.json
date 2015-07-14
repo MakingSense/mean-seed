@@ -1,22 +1,22 @@
 {
-    "resource1": {
-        "name": "Resource 1",
-        "actions": [
+  "resource1": {
+    "name": "Resource 1",
+    "actions": [
             "action1"
         ]
-    },
-    "resource2": {
-        "name": "Resource 2",
-        "actions": [
+  },
+  "resource2": {
+    "name": "Resource 2",
+    "actions": [
             "action2"
         ]
-    },
-    "resource3": {
-        "name": "Resource 3",
-        "actions": [
+  },
+  "resource3": {
+    "name": "Resource 3",
+    "actions": [
             "action1",
             "action3",
             "action4"
         ]
-    }
+  }
 }

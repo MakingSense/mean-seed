@@ -2,7 +2,7 @@
 
 var simpleDI = require('config/simpleDI');
 
-module.exports = simpleDI.inject(['base/authorizationService'], function(authorizationService) {
+module.exports = simpleDI.inject(['base/authorizationService'], function (authorizationService) {
 
   return {
 
@@ -24,8 +24,10 @@ module.exports = simpleDI.inject(['base/authorizationService'], function(authori
             return next(error);
           }
 
-          if (! isAuthorized) {
-            return res.json(403, { message: 'Not authorized.' });
+          if (!isAuthorized) {
+            return res.json(403, {
+              message: 'Not authorized.'
+            });
           }
 
           next();

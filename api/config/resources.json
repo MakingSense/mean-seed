@@ -1,19 +1,19 @@
 {
-    "signup": {
-        "name": "Signup",
-        "actions": [
+  "signup": {
+    "name": "Signup",
+    "actions": [
             "create"
         ]
-    },
-    "login": {
-        "name": "Login",
-        "actions": [
+  },
+  "login": {
+    "name": "Login",
+    "actions": [
             "create"
         ]
-    },
-    "users": {
-        "name": "Users",
-        "actions": [
+  },
+  "users": {
+    "name": "Users",
+    "actions": [
             "view",
             "update",
             "create",
@@ -21,17 +21,17 @@
             "enable",
             "disable"
         ]
-    },
-    "home": {
-        "name": "Home",
-        "actions": [
+  },
+  "home": {
+    "name": "Home",
+    "actions": [
             "view"
         ]
-    },
-    "menu": {
-        "name": "Menu",
-        "actions": [
+  },
+  "menu": {
+    "name": "Menu",
+    "actions": [
             "view"
         ]
-    }
+  }
 }

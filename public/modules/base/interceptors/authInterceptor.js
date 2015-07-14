@@ -3,36 +3,36 @@
 // Inject the $interceptor to avoid circular dependencies
 angular.module('mean').factory('authInterceptor', ['$q', '$injector', function ($q, $injector) {
 
-      return {
+  return {
 
-            // Automatically attach Authorization header
-            request: function (config) {
+    // Automatically attach Authorization header
+    request: function (config) {
 
-                  var AuthService = $injector.get('authService');
-                  var token = AuthService.getToken();
+      var AuthService = $injector.get('authService');
+      var token = AuthService.getToken();
 
-                  if (token) {
-                        config.headers['x-access-token'] = token;
-                  }
+      if (token) {
+        config.headers['x-access-token'] = token;
+      }
 
-                  config.headers['Content-Type'] = 'application/json; charset=UTF-8';
+      config.headers['Content-Type'] = 'application/json; charset=UTF-8';
 
-                  return config;
+      return config;
 
-            },
+    },
 
-            // If a token was sent back, then save it
-            response: function (res) {
+    // If a token was sent back, then save it
+    response: function (res) {
 
-                  var token = res.data.token;
-                  var AuthService = $injector.get('authService');
+      var token = res.data.token;
+      var AuthService = $injector.get('authService');
 
-                  if (token) {
-                        AuthService.saveToken(token);
-                  }
+      if (token) {
+        AuthService.saveToken(token);
+      }
 
-                  return res;
-            }
+      return res;
+    }
   };
 
 }]);

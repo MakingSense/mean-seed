@@ -2,7 +2,7 @@
 
 var simpleDI = require('config/simpleDI');
 
-module.exports = simpleDI.inject([], function() {
+module.exports = simpleDI.inject([], function () {
 
   // Define and resolve modules related to config
   simpleDI.define('app/config', 'config/appConfig');

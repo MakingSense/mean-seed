@@ -2,7 +2,7 @@
 
 // Module dependencies.
 var express = require('express'),
-    modulepath = require('app-module-path');
+  modulepath = require('app-module-path');
 
 modulepath.addPath(__dirname + '/api/'); //Add's path of api to require
 
@@ -22,9 +22,9 @@ var appFolder = appConfig.env === 'production' ? '/public/dist' : '/public';
 var app = express();
 
 // Environments configuration
-app.configure( function(){
-    app.use(express.errorHandler());
-    app.use(express.static(__dirname + appFolder));
+app.configure(function () {
+  app.use(express.errorHandler());
+  app.use(express.static(__dirname + appFolder));
 });
 
 app.use(express.logger('dev'));
@@ -41,5 +41,5 @@ simpleDI.resolve('base/baseRoutes')(app);
 // Start server
 var port = appConfig.port;
 app.listen(port, function () {
-    console.log('listening on port %d in %s mode', port, app.get('env'));
+  console.log('listening on port %d in %s mode', port, app.get('env'));
 });

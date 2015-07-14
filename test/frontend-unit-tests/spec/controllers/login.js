@@ -18,15 +18,26 @@ describe('Controller: LoginCtrl', function () {
     });
 
     // mock angular form
-    scope.optionsForm = {model:{}, email:{$error:{}}};
-    scope.optionsForm.model.$setValidity = function() {};
+    scope.optionsForm = {
+      model: {},
+      email: {
+        $error: {}
+      }
+    };
+    scope.optionsForm.model.$setValidity = function () {};
 
     // mock user
-    scope.user = { email: '', password: '', username: '' };
+    scope.user = {
+      email: '',
+      password: '',
+      username: ''
+    };
   }));
 
   it('should set scope.errorMessage on mongoose errors', function () {
-    $httpBackend.expectPOST('/auth/').respond(404, { message: 'Test Error'});
+    $httpBackend.expectPOST('/auth/').respond(404, {
+      message: 'Test Error'
+    });
 
     scope.login(scope.optionsForm);
     $httpBackend.flush();

@@ -33,7 +33,7 @@ SimpleDI.prototype.resolve = function (name) {
     return this.resolvedModules[name];
   }
 
-  if (! this.definitions[name]) {
+  if (!this.definitions[name]) {
     // Module is not defined, try to use a regular require as a last resort
     // This throws an exception if it fails, since this is likely a critical
     // error we let the caller decide if he would handle or not

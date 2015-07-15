@@ -17,13 +17,14 @@ simpleDI.resolve('app/mongoDbConn');
 
 // Get app config
 var appConfig = simpleDI.resolve('app/config');
+var appFolder = appConfig.env == 'production' ? '/public/dist' : '/public';
 
 var app = express();
 
 // Environments configuration
 app.configure( function(){
     app.use(express.errorHandler());
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(__dirname + appFolder));
 });
 
 app.use(express.logger('dev'));

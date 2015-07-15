@@ -16,18 +16,34 @@ A bootstrapp application based on MongoDB, Express, Angular, Node, Passport.
 npm install
 ```
 
+After all node packages are downloaded you need to run the following command:
+
+```
+./node_modules/protractor/bin/webdriver-manager update
+```
+
+That is because *Protractor* requires *Selenium* drivers to be updated.
+
 Read more about installing [Node](https://nodejs.org/download/), [Bower](http://bower.io/) and [Grunt client](http://gruntjs.com/getting-started).
 
 ### Installing MongoDB
 
 Go to [MongoDB official downloads](http://www.mongodb.org/downloads) and follow the [instructions](http://docs.mongodb.org/manual/installation/)
 
-### Running the app for development
+### Development
 
-Run ```grunt dev``` to start the app in development mode with client-server livereload. (Remember to have the mongoDB running)
+We are currently using Grunt as our task runner. For general development only run:
+
+`grunt`
 
 ### Testing
 
-TODO: we need to improve testing configuration and related tasks.
+In order to execute all tests and validate the code you could run:
 
-For more information please take a look at [known errors](https://github.com/MakingSense/mean-seed/wiki/Known-errors).
+`grunt validate`
+
+For coverage run:
+
+`grunt coverage`
+
+If you have any issue with testing environment please read [known errors](https://github.com/MakingSense/mean-seed/wiki/Known-errors) page.

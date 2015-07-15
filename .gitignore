@@ -4,5 +4,8 @@ node_modules
 heroku
 staging
 public/lib/
+public/dist/
+public/styles/*.css
+public/styles/*.css.map
 coverage
 .settings

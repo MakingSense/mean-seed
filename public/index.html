@@ -10,19 +10,22 @@
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/assets/css/main.css">
+        
+        <!-- build:css styles/main.css?v=0.1.0 -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
         
         <!-- TODO: include apple icons
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
         -->
         
-        <link rel="icon" type="image/x-icon" href="/favicon.ico">
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     </head>
     <body ng-app="mean">
         <!--[if lt IE 7]>
@@ -38,33 +41,40 @@
         <div ng-include  ng-show="isAuthed()" src="'modules/base/views/partials/navbar.html'"></div>
         <div ng-view=""></div>
 
-        <script src="/lib/jquery/jquery.min.js"></script>
-        <script src="/lib/angular/angular.min.js"></script>
-
-        <script src="/lib/angular-resource/angular-resource.js"></script>
-        <script src="/lib/angular-cookies/angular-cookies.js"></script>
-        <script src="/lib/ngstorage/ngStorage.min.js"></script>
-        <script src="/lib/angular-sanitize/angular-sanitize.js"></script>
-        <script src="/lib/angular-route/angular-route.js"></script>
-        <script src="/lib/angular-http-auth/src/http-auth-interceptor.js"></script>
-        <script src="/lib/autofill-directive/autofill-directive.js"></script>
-        <script src="/lib/underscore/underscore-min.js"></script>
+        <!-- build:js scripts/lib.js?v=0.1.0 -->
+        <script src="lib/jquery/jquery.min.js"></script>
+        <script src="lib/angular/angular.min.js"></script>
+        <script src="lib/angular-resource/angular-resource.js"></script>
+        <script src="lib/angular-cookies/angular-cookies.js"></script>
+        <script src="lib/ngstorage/ngStorage.min.js"></script>
+        <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+        <script src="lib/angular-route/angular-route.js"></script>
+        <script src="lib/angular-http-auth/src/http-auth-interceptor.js"></script>
+        <script src="lib/autofill-directive/autofill-directive.js"></script>
+        <script src="lib/underscore/underscore-min.js"></script>
+        <!-- endbuild -->
         
-        <script src="/modules/app.js"></script>
-        <script src="/modules/base/controllers/main.js"></script>
-        <script src="/modules/base/controllers/login.js"></script>
-        <script src="/modules/base/controllers/navbar.js"></script>
-        <script src="/modules/base/controllers/signup.js"></script>
-
-        <script src="/modules/base/services/User.js"></script>
-        <script src="/modules/base/services/authService.js"></script>
-        <script src="/modules/base/services/menus.js"></script>
-        <script src="modules/base/directives/confirmMessage.js"></script>
+        <!-- build:js scripts/app.js?v=0.1.0 -->
+        <script src="modules/app.js"></script>
+        <script src="modules/base/interceptors/authInterceptor.js"></script>
+        <!-- Services -->
+        <script src="modules/base/services/User.js"></script>
         <script src="modules/base/services/authService.js"></script>
         <script src="modules/base/services/menus.js"></script>
-        <script src="modules/base/interceptors/authInterceptor.js"></script>
-        <!-- //===== mean-cli hook =====// -->
-
+        <!-- Directives -->
+        <script src="modules/base/directives/confirmMessage.js"></script>
+        <script src="modules/base/directives/mongooseError.js"></script>
+        <script src="modules/base/directives/onFocus.js"></script>
+        <!-- Controllers -->
+        <script src="modules/base/controllers/login.js"></script>
+        <script src="modules/base/controllers/main.js"></script>
+        <script src="modules/base/controllers/navbar.js"></script>
+        <script src="modules/base/controllers/signup.js"></script>
+        <!-- endbuild -->
+        
+        <!-- build:remove -->
+        <!-- Required for livereload -->
         <script src="//localhost:35729/livereload.js"></script>
+        <!-- endbuild -->
     </body>
 </html>

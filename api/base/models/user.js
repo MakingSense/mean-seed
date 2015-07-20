@@ -59,17 +59,25 @@ module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, cryp
   }, 'The specified email is invalid.');
 
   UserSchema.path('email').validate(function(value, respond) {
-    mongoose.models["User"].findOne({email: value}, function(err, user) {
-      if(err) throw err;
-      if(user) return respond(false);
+    mongoose.models.User.findOne({email: value}, function(err, user) {
+      if(err) {
+          throw err;
+      }
+      if(user) {
+          return respond(false);
+      }
       respond(true);
     });
   }, 'The specified email address is already in use.');
 
   UserSchema.path('username').validate(function(value, respond) {
-    mongoose.models["User"].findOne({username: value}, function(err, user) {
-      if(err) throw err;
-      if(user) return respond(false);
+    mongoose.models.User.findOne({username: value}, function(err, user) {
+      if(err) {
+          throw err;
+      }
+      if(user) {
+          return respond(false);
+      }
       respond(true);
     });
   }, 'The specified username is already in use.');
@@ -118,7 +126,9 @@ module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, cryp
      */
 
     encryptPassword: function(password) {
-      if (!password || !this.salt) return '';
+      if (!password || !this.salt) {
+          return '';
+      }
       var salt = new Buffer(this.salt, 'base64');
       return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
     }

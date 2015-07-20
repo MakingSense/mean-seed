@@ -1,3 +1,5 @@
+'use strict';
+
 // Inject the $interceptor to avoid circular dependencies
 angular.module('mean').factory('authInterceptor', ['$q', '$injector', function ($q, $injector) {
 

@@ -19,7 +19,7 @@ npm install
 After all node packages are downloaded you need to run the following command:
 
 ```
-./node_modules/protractor/bin/webdriver-manager update
+./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
 ```
 
 That is because *Protractor* requires *Selenium* drivers to be updated.

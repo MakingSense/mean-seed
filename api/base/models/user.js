@@ -2,9 +2,9 @@
 
 var simpleDI = require('config/simpleDI');
 
-module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, crypto) {
+module.exports = simpleDI.inject(['mongoose', 'crypto'], function (mongoose, crypto) {
 
-  var Schema   = mongoose.Schema;
+  var Schema = mongoose.Schema;
 
   var UserSchema = new Schema({
     email: {
@@ -30,19 +30,23 @@ module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, cryp
    */
   UserSchema
     .virtual('password')
-    .set(function(password) {
+    .set(function (password) {
       this._password = password;
       this.salt = this.makeSalt();
       this.hashedPassword = this.encryptPassword(password);
     })
-    .get(function() {
+    .get(function () {
       return this._password;
     });
 
   UserSchema
     .virtual('user_info')
     .get(function () {
-      return { '_id': this._id, 'username': this.username, 'email': this.email };
+      return {
+        '_id': this._id,
+        'username': this.username,
+        'email': this.email
+      };
     });
 
   /**
@@ -58,25 +62,29 @@ module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, cryp
     return emailRegex.test(email);
   }, 'The specified email is invalid.');
 
-  UserSchema.path('email').validate(function(value, respond) {
-    mongoose.models.User.findOne({email: value}, function(err, user) {
-      if(err) {
-          throw err;
+  UserSchema.path('email').validate(function (value, respond) {
+    mongoose.models.User.findOne({
+      email: value
+    }, function (err, user) {
+      if (err) {
+        throw err;
       }
-      if(user) {
-          return respond(false);
+      if (user) {
+        return respond(false);
       }
       respond(true);
     });
   }, 'The specified email address is already in use.');
 
-  UserSchema.path('username').validate(function(value, respond) {
-    mongoose.models.User.findOne({username: value}, function(err, user) {
-      if(err) {
-          throw err;
+  UserSchema.path('username').validate(function (value, respond) {
+    mongoose.models.User.findOne({
+      username: value
+    }, function (err, user) {
+      if (err) {
+        throw err;
       }
-      if(user) {
-          return respond(false);
+      if (user) {
+        return respond(false);
       }
       respond(true);
     });
@@ -86,15 +94,14 @@ module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, cryp
    * Pre-save hook
    */
 
-  UserSchema.pre('save', function(next) {
+  UserSchema.pre('save', function (next) {
     if (!this.isNew) {
       return next();
     }
 
     if (!validatePresenceOf(this.password)) {
       next(new Error('Invalid password'));
-    }
-    else {
+    } else {
       next();
     }
   });
@@ -109,7 +116,7 @@ module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, cryp
      * validatePassword - check if the passwords are the same
      */
 
-    validatePassword: function(plainText) {
+    validatePassword: function (plainText) {
       return this.encryptPassword(plainText) === this.hashedPassword;
     },
 
@@ -117,7 +124,7 @@ module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, cryp
      * Make salt
      */
 
-    makeSalt: function() {
+    makeSalt: function () {
       return crypto.randomBytes(16).toString('base64');
     },
 
@@ -125,9 +132,9 @@ module.exports = simpleDI.inject(['mongoose', 'crypto'], function(mongoose, cryp
      * Encrypt password
      */
 
-    encryptPassword: function(password) {
+    encryptPassword: function (password) {
       if (!password || !this.salt) {
-          return '';
+        return '';
       }
       var salt = new Buffer(this.salt, 'base64');
       return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');

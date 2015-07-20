@@ -3,7 +3,7 @@
 var simpleDI = require('config/simpleDI');
 
 // TODO: Add required models here
-module.exports = simpleDI.inject(['app/roles', 'app/resources', 'app/permissions'], function(roles, resources, permissions) {
+module.exports = simpleDI.inject(['app/roles', 'app/resources', 'app/permissions'], function (roles, resources, permissions) {
 
   return {
     /**

@@ -1,11 +1,11 @@
 {
-    "anonymous": {
-        "name": "Anonymous"
-    },
-    "user": {
-        "name": "User"
-    },
-    "randomRole": {
-        "name": "Random Role"
-    }
+  "anonymous": {
+    "name": "Anonymous"
+  },
+  "user": {
+    "name": "User"
+  },
+  "randomRole": {
+    "name": "Random Role"
+  }
 }

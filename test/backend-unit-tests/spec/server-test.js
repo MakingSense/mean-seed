@@ -26,7 +26,7 @@ simpleDI.define('base/authController', 'base/controllers/auth');
 simpleDI.define('base/commonController', 'base/controllers/common');
 simpleDI.define('base/usersController', 'base/controllers/users');
 
-  // Define services
+// Define services
 simpleDI.define('base/authorizationService', 'base/services/authorization');
 
 // Define middlewares

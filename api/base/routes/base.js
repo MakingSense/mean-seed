@@ -8,7 +8,7 @@ module.exports = simpleDI.inject([
   'base/authorizationMiddleware',
   'base/commonController',
   'base/usersController'
-], function(authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController) {
+], function (authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController) {
 
   return function baseRoutes(app) {
     // User Routes

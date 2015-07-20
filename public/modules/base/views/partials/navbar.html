@@ -1,20 +1,20 @@
 <div ng-if="isAuthed()" role="navigation" ng-controller="NavbarCtrl" class="navbar">
-    <div>
-        <a href="#/" name="top">MEANP App</a>
-        <ul role="tablist">
-            <li ng-repeat="module in menu.base">
-                <a ng-href="#{{module.path}}">{{module.name}}</a>
-            </li>
-        </ul>
-    </div>
-    <div>
+  <div>
+    <a href="#/" name="top">MEANP App</a>
+    <ul role="tablist">
+      <li ng-repeat="module in menu.base">
+        <a ng-href="#{{module.path}}">{{module.name}}</a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li>
+        <span>Welcome, {{ getCurrentUser().username }}</span>
         <ul>
-            <li>
-                <span>Welcome, {{ getCurrentUser().username }}</span>
-                <ul>
-                    <li><a href="" ng-click="logout()">Logout</a></li>
-                </ul>
-            </li>
+          <li><a href="" ng-click="logout()">Logout</a></li>
         </ul>
-    </div>
+      </li>
+    </ul>
+  </div>
 </div>

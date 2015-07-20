@@ -1,22 +1,22 @@
 {
-    "anonymous": [
-        {
-            "resource": "resource1",
-            "action": "action1"
+  "anonymous": [
+    {
+      "resource": "resource1",
+      "action": "action1"
         },
-        {
-            "resource": "resource2",
-            "action": "action2"
+    {
+      "resource": "resource2",
+      "action": "action2"
         }
     ],
-    "user": [
-        {
-            "resource": "resource2",
-            "action": "action2"
+  "user": [
+    {
+      "resource": "resource2",
+      "action": "action2"
         },
-        {
-            "resource": "resource3",
-            "action": "action3"
+    {
+      "resource": "resource3",
+      "action": "action3"
         }
     ]
 }

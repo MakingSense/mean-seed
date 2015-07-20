@@ -5,6 +5,7 @@
 
 module.exports = function (grunt) {
 
+  grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -36,6 +37,19 @@ module.exports = function (grunt) {
       modules: './public/modules',
       styles: './public/styles',
       test: './test'
+    },
+
+    /**
+     * For executing shell commands.
+     * Relies on: grunt-exec.
+     */
+    exec: {
+      bower: {
+        cmd: 'bower install --force'
+      },
+      webdriver: {
+        cmd: 'node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update --force'
+      }
     },
 
     /**
@@ -410,5 +424,13 @@ module.exports = function (grunt) {
    */
   grunt.registerTask('coverage', [
     'mocha_istanbul:coverage'
+  ]);
+
+  /**
+   * Executes shell commands required in npm install.
+   */
+  grunt.registerTask('shell', [
+    'exec:bower',
+    'exec:webdriver'
   ]);
 };

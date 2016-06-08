@@ -2,10 +2,16 @@
 
 var simpleDI = require('config/simpleDI');
 
-module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 'app/config', 'auth0'], function (mongoose, User, jwt, appConfig) {
+module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 'app/config', 'auth0'], function (mongoose, User, jwt, appConfig, auth0) {
 
   var ObjectId = mongoose.Types.ObjectId,
-    secretKey = appConfig.secretKey;
+    secretKey = appConfig.secretKey,
+    Auth0 = auth0.ManagementClient;
+
+  var api = new Auth0({
+    domain:    process.env.AUTH0_DOMAIN,
+    token:     process.env.AUTH0_TOKEN
+  });
 
   return {
 
@@ -22,6 +28,24 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
         if (err) {
           return res.json(400, err);
         }
+
+        var data = {
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+          connection: 'Username-Password-Authentication',
+          email_verified: false
+        };
+
+        api.createUser(data, function (err) {
+          if (err) {
+            console.log('Error creating user: ' + err);
+            res.status(500).send(err);
+            return;
+          }
+
+          res.status(200).send({status: 'ok'});
+        });
 
         var response = {
           user: newUser,

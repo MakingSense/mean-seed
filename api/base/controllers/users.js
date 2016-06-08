@@ -2,7 +2,7 @@
 
 var simpleDI = require('config/simpleDI');
 
-module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 'app/config'], function (mongoose, User, jwt, appConfig) {
+module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 'app/config', 'auth0'], function (mongoose, User, jwt, appConfig) {
 
   var ObjectId = mongoose.Types.ObjectId,
     secretKey = appConfig.secretKey;

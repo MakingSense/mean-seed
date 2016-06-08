@@ -6,14 +6,15 @@
     "url": "https://github.com/MakingSense/mean-seed"
   },
   "dependencies": {
-    "express": "~3.4.3",
-    "mongoose": "~3.5.5",
-    "ejs": "~0.8.4",
-    "underscore": "~1.5.2",
-    "connect-mongo": "~0.4.0",
     "app-module-path": "~0.3.2-beta",
+    "auth0": "^2.1.0",
+    "bower": "~1.4.1",
+    "connect-mongo": "~0.4.0",
+    "ejs": "~0.8.4",
+    "express": "~3.4.3",
     "jsonwebtoken": "5.0.2",
-    "bower": "~1.4.1"
+    "mongoose": "~3.5.5",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

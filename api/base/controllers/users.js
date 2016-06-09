@@ -10,7 +10,7 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
 
   var api = new Auth0({
     domain:    process.env.AUTH0_DOMAIN,
-    token:     process.env.AUTH0_TOKEN
+    token:     process.env.USER_CREATE_TOKEN
   });
 
   return {
@@ -30,10 +30,10 @@ module.exports = simpleDI.inject(['mongoose', 'base/userModel', 'jsonwebtoken', 
         }
 
         var data = {
-          username: req.body.username,
+          name: req.body.username,
           email: req.body.email,
           password: req.body.password,
-          connection: 'Username-Password-Authentication',
+          connection: process.env.AUTH0_CONNECTION,
           email_verified: false
         };
 

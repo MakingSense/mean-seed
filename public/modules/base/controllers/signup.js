@@ -10,12 +10,13 @@ angular.module('mean').controller('SignupCtrl', function ($scope, $rootScope, $l
     $scope.errors = {};
 
     userService.create($scope.user)
-      .then(function (response, status, headers, config) {
-        var params = authService.parseToken(response.data.token);
-        $rootScope.setCurrentUser(params.user);
+      .then(function (user) {
+        console.log('sdfsdfd', user);
+        $rootScope.setCurrentUser(user);
         $location.path('/');
-      }, function (response, status, headers, config) {
-        $scope.errorMessage = response.data.message;
+      }, function (err) {
+        console.log(err)
+        $scope.errorMessage = err;
       });
   };
 });

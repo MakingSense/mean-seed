@@ -7,8 +7,7 @@ angular.module('mean', [
   'ngStorage',
   'ngRoute',
   'autofill-directive',
-  'auth0',
-  'dotenv'
+  'auth0'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
@@ -35,21 +34,11 @@ angular.module('mean', [
         redirectTo: '/'
       });
     $locationProvider.html5Mode(false);
-  })
-  .config(function(authProvider, dotenv) {
-    dotenv.config();
-    // routing configuration and other stuff
-    // ...
 
-    authProvider.init({
-      domain: 'mydomain.auth0.com',
-      clientID: 'myClientID',
-      loginUrl: '/login'
-    });
   })
 
-
-.run(function ($route, $rootScope, $location, $window, authService) {
+.run(function ($route, $rootScope, $location, $window, configService, authService) {
+  configService.get();
 
   $rootScope.$on('$locationChangeStart', function (ev, next, current) {
     var nextPath = $location.path();
@@ -80,7 +69,4 @@ angular.module('mean', [
   $rootScope.unsetCurrentUser = function () {
     $window.localStorage.removeItem('currentUser');
   };
-})
-.run(function(auth) {
-  auth.hookEvents();
 });

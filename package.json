@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "app-module-path": "~0.3.2-beta",
-    "auth0-angular": "^4.2.2",
     "bower": "~1.4.1",
     "connect-mongo": "~0.4.0",
     "dotenv": "^2.0.0",

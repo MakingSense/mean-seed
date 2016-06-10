@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean').controller('SignupCtrl', function ($scope, $rootScope, $location, userService, authService) {
+angular.module('mean').controller('SignupCtrl', function ($scope, $rootScope, $location, userService) {
 
   $scope.errorMessage = '';
   $scope.roles = [];
@@ -11,7 +11,6 @@ angular.module('mean').controller('SignupCtrl', function ($scope, $rootScope, $l
 
     userService.create($scope.user)
       .then(function (user) {
-        console.log('sdfsdfd', user);
         $rootScope.setCurrentUser(user);
         $location.path('/');
       }, function (err) {

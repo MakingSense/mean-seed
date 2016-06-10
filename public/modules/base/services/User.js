@@ -1,7 +1,7 @@
 'use strict';
 
 /* Services */
-angular.module('mean').service('userService', function ($http, $localStorage, $q, auth) {
+angular.module('mean').service('userService', function ($http, $localStorage, $q, auth, authService) {
 
   auth.init({
     domain: $localStorage.auth0_domain,
@@ -19,6 +19,24 @@ angular.module('mean').service('userService', function ($http, $localStorage, $q
       password: postData.password,
       email_verified: false
     }, function(profile) {
+      deferred.resolve(profile);
+    }, function(error) {
+      deferred.reject('Error: ' + error);
+    }, 'Auth0');
+
+    return deferred.promise;
+  };
+
+  // Login - Make a request to the api for authenticating
+  this.login = function(credentials) {
+    var deferred = $q.defer();
+
+    auth.signin({
+      username: credentials.username,
+      password: credentials.password,
+      connection: $localStorage.auth0_connection
+    }, function(profile, idToken, accessToken, state, refreshToken) {
+      authService.saveToken(accessToken);
       deferred.resolve(profile);
     }, function(error) {
       deferred.reject('Error: ' + error);

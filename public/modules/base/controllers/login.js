@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mean')
-  .controller('LoginCtrl', function ($scope, $rootScope, $location, authService) {
+  .controller('LoginCtrl', function ($scope, $rootScope, $location, userService) {
 
     $scope.submitted = false;
     $scope.errorMessage = '';
@@ -10,17 +10,16 @@ angular.module('mean')
       $scope.submitted = true;
       $scope.errorMessage = '';
 
-      if (form.email.$error.required) {
+      if (form.username.$error.required) {
         return;
       }
 
-      authService.login($scope.user)
-        .then(function (response, status, headers, config) {
-          var params = authService.parseToken(response.data.token);
-          $rootScope.setCurrentUser(params.user);
+      userService.login($scope.user)
+        .then(function (user) {
+          $rootScope.setCurrentUser(user);
           $location.path('/');
         }, function (response) {
-          $scope.errorMessage = response.data.message;
+          $scope.errorMessage = response;
         });
     };
   });

@@ -2,9 +2,11 @@
 
 var simpleDI = require('config/simpleDI');
 
-module.exports = simpleDI.inject(['jsonwebtoken', 'app/config'], function (jwt, appConfig) {
+module.exports = simpleDI.inject(['jsonwebtoken', 'express-jwt'], function (jwt, expressJwt) {
 
-  var secretKey = appConfig.secretKey;
+  var validateAndEnforceJwt = expressJwt({
+    secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, 'base64')
+  });
 
   return {
 
@@ -24,19 +26,13 @@ module.exports = simpleDI.inject(['jsonwebtoken', 'app/config'], function (jwt, 
           message: 'No token provided.'
         });
       } else {
-        // Decode and verify the token
-        jwt.verify(token, secretKey, function (err, decodedToken) {
-          if (err) {
-            return res.json(401, {
-              message: 'Failed to authenticate token.'
-            });
-          } else {
-            // If everything goes right, save the request for use in other routes
-            req.decoded = decodedToken;
-            next();
-          }
-        });
+        req.decoded = token;
+        next();
       }
+    },
+
+    verifySecret: function (req, res, next) {
+      validateAndEnforceJwt(req, res, next);
     }
 
   };

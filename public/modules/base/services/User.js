@@ -36,7 +36,7 @@ angular.module('mean').service('userService', function ($http, $localStorage, $q
       password: credentials.password,
       connection: $localStorage.auth0_connection
     }, function(profile, idToken, accessToken, state, refreshToken) {
-      authService.saveToken(accessToken);
+      authService.saveToken(idToken);
       deferred.resolve(profile);
     }, function(error) {
       deferred.reject('Error: ' + error);

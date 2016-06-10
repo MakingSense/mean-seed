@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean').factory('authService', ['$http', '$window', '$q', 'auth', function ($http, $window, $q, auth) {
+angular.module('mean').factory('authService', ['$http', '$window', 'auth', function ($http, $window, auth) {
 
   var authService = {};
 
@@ -17,6 +17,7 @@ angular.module('mean').factory('authService', ['$http', '$window', '$q', 'auth',
   // Logout
   authService.logout = function () {
     if (authService.getToken()) {
+      auth.signout();
       $window.localStorage.removeItem('auth0_token');
     }
   };

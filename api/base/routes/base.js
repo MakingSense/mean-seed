@@ -35,6 +35,7 @@ module.exports = simpleDI.inject([
 
     app.get('/api/common/menu/',
       authenticationMiddleware.verifySignature,
+      authenticationMiddleware.verifySecret,
       authorizationMiddleware.getAuthorizationFn('menu', 'view'),
       commonController.menu
     );

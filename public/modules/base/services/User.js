@@ -13,11 +13,11 @@ angular.module('mean').service('userService', function ($http, $localStorage, $q
     var deferred = $q.defer();
 
     auth.signup({
-      username: postData.email,
+      connection: $localStorage.auth0_connection,
+      email: postData.email,
+      username: postData.username,
       password: postData.password,
-      connection: 'Username-Password-Authentication',
-      popup:  false,
-      auto_login: true
+      email_verified: false
     }, function(profile) {
       deferred.resolve(profile);
     }, function(error) {

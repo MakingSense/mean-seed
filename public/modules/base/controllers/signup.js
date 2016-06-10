@@ -14,7 +14,6 @@ angular.module('mean').controller('SignupCtrl', function ($scope, $rootScope, $l
         $rootScope.setCurrentUser(user);
         $location.path('/');
       }, function (err) {
-        console.log(err)
         $scope.errorMessage = err;
       });
   };

@@ -37,8 +37,17 @@ angular.module('mean', [
 
   })
 
-.run(function ($route, $rootScope, $location, $window, configService, authService) {
-  configService.get();
+.run(function ($route, $rootScope, $location, $window, configService, authService, auth, $localStorage) {
+  configService.get()
+    .then(function() {
+      auth.init({
+        domain: $localStorage.auth0_domain,
+        clientID: $localStorage.auth0_client_id,
+        loginUrl: '/login'
+      });
+    }, function(err) {
+      // TODO: Handle or not error trying to retrieve config
+    });
 
   $rootScope.$on('$locationChangeStart', function (ev, next, current) {
     var nextPath = $location.path();

@@ -3,12 +3,6 @@
 /* Services */
 angular.module('mean').service('userService', function ($http, $localStorage, $q, auth, authService) {
 
-  auth.init({
-    domain: $localStorage.auth0_domain,
-    clientID: $localStorage.auth0_client_id,
-    loginUrl: '/login'
-  });
-
   this.create = function (postData) {
     var deferred = $q.defer();
 

@@ -4,7 +4,8 @@
 angular.module('mean').service('userService', function ($http) {
 
   this.create = function (postData) {
-    return $http.post('/auth/users', postData);
+    console.log(postData);
+    
   };
 
   this.remove = function (blogItemId) {

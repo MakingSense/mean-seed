@@ -16,11 +16,9 @@ angular.module('mean').controller('NavbarCtrl', function ($scope, $rootScope, $l
   $scope.init = function () {
     menuService.get()
       .success(function (response, status, headers, config) {
-        console.log(response)
         $scope.menu = response;
       })
       .error(function (error, status, headers, config) {
-        console.log(error);
         // TODO: handle this scenario (or not)
       });
   };

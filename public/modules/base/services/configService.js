@@ -4,7 +4,7 @@
 angular.module('mean').service('configService', function ($localStorage, $http, $q) {
 
   this.get = function () {
-    if($localStorage.auth0_domain) {
+    if($localStorage.auth0Domain) {
       return $q.when();
     }
 
@@ -12,9 +12,9 @@ angular.module('mean').service('configService', function ($localStorage, $http, 
 
     $http.get('/config')
       .then(function(res) {
-        $localStorage.auth0_domain = res.data.auth0_domain;
-        $localStorage.auth0_connection = res.data.auth0_connection;
-        $localStorage.auth0_client_id = res.data.auth0_client_id;
+        $localStorage.auth0Domain = res.data.auth0Domain;
+        $localStorage.auth0Connection = res.data.auth0Connection;
+        $localStorage.auth0ClientId = res.data.auth0ClientId;
         deferred.resolve();
       }, function(err) {
         deferred.reject(err);

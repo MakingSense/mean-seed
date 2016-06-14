@@ -7,7 +7,7 @@ angular.module('mean').service('userService', function ($http, $localStorage, $q
     var deferred = $q.defer();
 
     auth.signup({
-      connection: $localStorage.auth0_connection,
+      connection: $localStorage.auth0Connection,
       email: postData.email,
       username: postData.username,
       password: postData.password,
@@ -28,7 +28,7 @@ angular.module('mean').service('userService', function ($http, $localStorage, $q
     auth.signin({
       username: credentials.username,
       password: credentials.password,
-      connection: $localStorage.auth0_connection
+      connection: $localStorage.auth0Connection
     }, function(profile, idToken, accessToken, state, refreshToken) {
       authService.saveToken(idToken);
       deferred.resolve(profile);

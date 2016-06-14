@@ -41,8 +41,8 @@ angular.module('mean', [
   configService.get()
     .then(function() {
       auth.init({
-        domain: $localStorage.auth0_domain,
-        clientID: $localStorage.auth0_client_id,
+        domain: $localStorage.auth0Domain,
+        clientID: $localStorage.auth0ClientId,
         loginUrl: '/login'
       });
     }, function(err) {

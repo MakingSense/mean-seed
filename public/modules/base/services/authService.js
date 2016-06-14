@@ -6,12 +6,12 @@ angular.module('mean').factory('authService', ['$http', '$window', 'auth', funct
 
   // Save the token in the local storage
   authService.saveToken = function (token) {
-    $window.localStorage.auth0_token = token;
+    $window.localStorage.auth0Token = token;
   };
 
   // Retrieve the token in the local storage
   authService.getToken = function () {
-    return $window.localStorage.auth0_token;
+    return $window.localStorage.auth0Token;
   };
 
   // Logout

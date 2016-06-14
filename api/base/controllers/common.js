@@ -12,9 +12,9 @@ module.exports = simpleDI.inject(['app/menus'], function (menus) {
 
     config: function (req, res) {
       var config = {
-        auth0_domain: process.env.AUTH0_DOMAIN,
-        auth0_connection: process.env.AUTH0_CONNECTION,
-        auth0_client_id: process.env.AUTH0_CLIENT_ID
+        auth0Domain: process.env.AUTH0_DOMAIN,
+        auth0Connection: process.env.AUTH0_CONNECTION,
+        auth0ClientId: process.env.AUTH0_CLIENT_ID
       };
 
       res.json(config);

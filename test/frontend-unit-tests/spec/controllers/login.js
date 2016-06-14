@@ -40,7 +40,6 @@ describe('Controller: LoginCtrl', function () {
       userService: UserService
     });
 
-    scope.user = {};
   }));
 
   it('should initialize controller with variables defined', function () {

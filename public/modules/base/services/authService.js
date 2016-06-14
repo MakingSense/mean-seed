@@ -1,28 +1,24 @@
 'use strict';
 
-angular.module('mean').factory('authService', ['$http', '$window', function ($http, $window) {
+angular.module('mean').factory('authService', ['$http', '$window', 'auth', function ($http, $window, auth) {
 
   var authService = {};
 
   // Save the token in the local storage
   authService.saveToken = function (token) {
-    $window.localStorage.jwtToken = token;
+    $window.localStorage.auth0Token = token;
   };
 
   // Retrieve the token in the local storage
   authService.getToken = function () {
-    return $window.localStorage.jwtToken;
-  };
-
-  // Login - Make a request to the api for authenticating
-  authService.login = function (credentials) {
-    return $http.post('/auth/', credentials);
+    return $window.localStorage.auth0Token;
   };
 
   // Logout
   authService.logout = function () {
     if (authService.getToken()) {
-      $window.localStorage.removeItem('jwtToken');
+      auth.signout();
+      $window.localStorage.removeItem('auth0_token');
     }
   };
 
@@ -31,19 +27,7 @@ angular.module('mean').factory('authService', ['$http', '$window', function ($ht
 
     var token = authService.getToken();
 
-    if (token) {
-
-      var params = authService.parseToken(token);
-      var dateNow = Math.round(new Date().getTime() / 1000);
-
-      // If the token has not expired
-      return dateNow <= params.exp;
-
-    } else {
-
-      return false;
-
-    }
+    return token ? true : false;
   };
 
   // Parse the JSON Web Token

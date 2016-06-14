@@ -19,6 +19,10 @@ simpleDI.resolve('app/mongoDbConn');
 var appConfig = simpleDI.resolve('app/config');
 var appFolder = appConfig.env === 'production' ? '/public/dist' : '/public';
 
+// Load the .env data
+var dotenv = simpleDI.resolve('dotenv');
+dotenv.config();
+
 var app = express();
 
 // Environments configuration

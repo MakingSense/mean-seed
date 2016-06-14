@@ -7,37 +7,64 @@ describe('Controller: SignupCtrl', function () {
 
   var SignupCtrl,
     scope,
-    $httpBackend;
+    location,
+    rootScope,
+    UserService,
+    createDeferred;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    scope = $rootScope.$new();
+  beforeEach(inject(function ($controller, _$rootScope_, $q) {
+    rootScope = _$rootScope_;
+    scope = rootScope.$new();
+
+    createDeferred = $q.defer();
+    location = jasmine.createSpyObj('location', ['path']);
+    UserService = jasmine.createSpyObj('UserService', ['create']);
+    UserService.create.and.returnValue(createDeferred.promise);
+
+    rootScope.setCurrentUser = jasmine.createSpy('setCurrentUser');
+
     SignupCtrl = $controller('SignupCtrl', {
-      $scope: scope
+      $scope: scope,
+      $rootScope: rootScope,
+      $location: location,
+      userService: UserService
     });
 
-    // mock angular form
-    scope.optionsForm = {
-      model: {}
-    };
-    scope.optionsForm.model.$setValidity = function () {};
-
-    // mock user
-    scope.user = {
-      email: '',
-      password: '',
-      username: ''
-    };
   }));
 
-  it('should set scope.errorMessage on mongoose errors', function () {
-    $httpBackend.expectPOST('/auth/users').respond(404, {
-      message: 'Test Error'
+  it('should initialize controller with variables defined', function () {
+    expect(typeof SignupCtrl).toBe('object');
+    expect(scope.errorMessage).toBeDefined();
+    expect(scope.roles).toBeDefined();
+    expect(scope.user).toBeDefined();
+    expect(scope.errorMessage).toEqual('');
+    expect(scope.roles).toEqual([]);
+    expect(scope.user).toEqual({});
+  });
+
+  it('should initialize call and resolve after register', function() {
+    scope.register({});
+
+    scope.$apply(function() {
+      createDeferred.resolve({});
     });
 
-    scope.register(scope.optionsForm);
-    $httpBackend.flush();
-    expect(scope.errorMessage).toBe('Test Error');
+    expect(UserService.create).toHaveBeenCalled();
+    expect(rootScope.setCurrentUser).toHaveBeenCalled();
+    expect(location.path).toHaveBeenCalled();
+    expect(scope.errorMessage).toEqual('');
   });
+
+  it('should initialize call and resolve after register', function() {
+    scope.register({});
+
+    scope.$apply(function() {
+      createDeferred.reject('error');
+    });
+
+    expect(UserService.create).toHaveBeenCalled();
+    expect(scope.errorMessage).toEqual('error');
+  });
+
 });

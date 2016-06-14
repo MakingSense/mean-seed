@@ -6,7 +6,7 @@ angular.module('mean').controller('SignupCtrl', function ($scope, $rootScope, $l
   $scope.roles = [];
   $scope.user = {};
 
-  $scope.register = function (form) {
+  $scope.register = function () {
     $scope.errors = {};
 
     userService.create($scope.user)

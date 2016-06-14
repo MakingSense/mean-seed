@@ -7,40 +7,72 @@ describe('Controller: LoginCtrl', function () {
 
   var LoginCtrl,
     scope,
-    $httpBackend;
+    rootScope,
+    UserService,
+    loginDeferred,
+    location,
+    loginForm;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
-    $httpBackend = _$httpBackend_;
-    scope = $rootScope.$new();
-    LoginCtrl = $controller('LoginCtrl', {
-      $scope: scope
-    });
+  beforeEach(inject(function ($controller, _$rootScope_, $q) {
+    rootScope = _$rootScope_;
+    scope = rootScope.$new();
 
-    // mock angular form
-    scope.optionsForm = {
-      model: {},
-      email: {
-        $error: {}
+    loginDeferred = $q.defer();
+    location = jasmine.createSpyObj('location', ['path']);
+    UserService = jasmine.createSpyObj('UserService', ['login']);
+    UserService.login.and.returnValue(loginDeferred.promise);
+
+    rootScope.setCurrentUser = jasmine.createSpy('setCurrentUser');
+
+    loginForm = {
+      username: {
+        $error: {
+          required: false
+        }
       }
     };
-    scope.optionsForm.model.$setValidity = function () {};
 
-    // mock user
-    scope.user = {
-      email: '',
-      password: '',
-      username: ''
-    };
-  }));
-
-  it('should set scope.errorMessage on mongoose errors', function () {
-    $httpBackend.expectPOST('/auth/').respond(404, {
-      message: 'Test Error'
+    LoginCtrl = $controller('LoginCtrl', {
+      $scope: scope,
+      $rootScope: rootScope,
+      $location: location,
+      userService: UserService
     });
 
-    scope.login(scope.optionsForm);
-    $httpBackend.flush();
-    expect(scope.errorMessage).toBe('Test Error');
+    scope.user = {};
+  }));
+
+  it('should initialize controller with variables defined', function () {
+    expect(typeof LoginCtrl).toBe('object');
+    expect(scope.errorMessage).toBeDefined();
+    expect(scope.submitted).toBeDefined();
+    expect(scope.submitted).toBeFalsy();
+    expect(scope.errorMessage).toEqual('');
   });
+
+  it('should initialize call and resolve after login', function() {
+    scope.login(loginForm);
+
+    scope.$apply(function() {
+      loginDeferred.resolve({});
+    });
+
+    expect(UserService.login).toHaveBeenCalled();
+    expect(rootScope.setCurrentUser).toHaveBeenCalled();
+    expect(location.path).toHaveBeenCalled();
+    expect(scope.errorMessage).toEqual('');
+  });
+
+  it('should initialize call and resolve after login', function() {
+    scope.login(loginForm);
+
+    scope.$apply(function() {
+      loginDeferred.reject('error');
+    });
+
+    expect(UserService.login).toHaveBeenCalled();
+    expect(scope.errorMessage).toEqual('error');
+  });
+
 });

@@ -1,5 +1,5 @@
 <div class="signup">
-  <form name="form" ng-submit="register(form)" novalidate>
+  <form name="form" ng-submit="register()" novalidate>
     <div ng-class="{'has-warning': form.email.$dirty, 'has-success': form.email.$valid && form.email.$dirty && !form.email.$error.mongoose, 'has-error': form.email.$invalid && form.email.$dirty || form.email.$error.mongoose}">
       <input placeholder="Your Email" type="email" name="email" ng-model="user.email" required autofocus on-focus mongoose-error>
       <p ng-show="form.email.$error.email && !form.email.$focused">Not a valid email.</p>

@@ -13,7 +13,7 @@ angular.module('mean').factory('authInterceptor', ['$q', '$injector', function (
 
       if (token) {
         config.headers['x-access-token'] = token;
-        config.headers['Authorization'] = 'Bearer ' + token;
+        config.headers.Authorization = 'Bearer ' + token;
       }
 
       config.headers['Content-Type'] = 'application/json; charset=UTF-8';

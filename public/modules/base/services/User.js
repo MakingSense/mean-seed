@@ -5,13 +5,11 @@ angular.module('mean').service('userService', function ($http, $localStorage, $q
 
   this.create = function (postData) {
     var deferred = $q.defer();
-
     auth.signup({
       connection: $localStorage.auth0Connection,
       email: postData.email,
       username: postData.username,
-      password: postData.password,
-      email_verified: false
+      password: postData.password
     }, function(profile) {
       deferred.resolve(profile);
     }, function(error) {

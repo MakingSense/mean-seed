@@ -9,4 +9,3 @@ public/styles/*.css
 public/styles/*.css.map
 coverage
 .settings
-.env

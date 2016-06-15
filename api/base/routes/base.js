@@ -7,9 +7,8 @@ module.exports = simpleDI.inject([
   'base/authenticationMiddleware',
   'base/authorizationMiddleware',
   'base/commonController',
-  'base/usersController',
-  'base/stripeController'
-], function (authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController, stripeController) {
+  'base/usersController'
+], function (authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController) {
 
   return function baseRoutes(app) {
     // Config Route
@@ -40,11 +39,6 @@ module.exports = simpleDI.inject([
       authorizationMiddleware.getAuthorizationFn('menu', 'view'),
       commonController.menu
     );
-
-    app.get('/api/stripe/',
-      authenticationMiddleware.verifySignature,
-      authenticationMiddleware.verifySecret,
-      stripeController.payment
-    );
+    
   };
 });

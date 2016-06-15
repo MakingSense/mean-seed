@@ -9,10 +9,10 @@
     <input type="hidden" name="cmd" value="_xclick" />
     <input type="hidden" name="business" value="{{ settings.paypal.business }}" />
     <input type="hidden" name="lc" value="CA" />
-    <input type="hidden" name="item_name" value="{{ settings.paypal.item_name }}" />
-    <input type="hidden" name="item_number" value="{{ settings.paypal.item_number }}" />
+    <input type="hidden" name="item_name" value="{{ settings.paypal.itemName }}" />
+    <input type="hidden" name="item_number" value="{{ settings.paypal.itemNumber }}" />
     <input type="hidden" name="amount" value="{{ ngCart.getSubTotal()}}" />
-    <input type="hidden" name="currency_code" value="{{ settings.paypal.currency_code }}" />
+    <input type="hidden" name="currency_code" value="{{ settings.paypal.currencyCode }}" />
     <input type="hidden" name="button_subtype" value="services" />
     <input type="hidden" name="no_note" value="{{ settings.paypal.no_note }}" />
     <input type="hidden" name="tax_rate" value="{{ ngCart.getTaxRate()}}" />

@@ -58,6 +58,7 @@
   <script src="lib/auth0.js/build/auth0.js"></script>
   <script src="lib/auth0-angular/build/auth0-angular.js"></script>
   <script src="lib/ngCart/dist/ngCart.js"></script>
+  <script src="lib/angular-payments/lib/angular-payments.min.js"></script>
   <!-- endbuild -->
 
   <!-- build:js scripts/app.js?v=0.1.0 -->
@@ -67,6 +68,7 @@
   <script src="modules/base/services/User.js"></script>
   <script src="modules/base/services/authService.js"></script>
   <script src="modules/base/services/configService.js"></script>
+  <script src="modules/base/services/paymentService.js"></script>
   <script src="modules/base/services/menus.js"></script>
   <!-- Directives -->
   <script src="modules/base/directives/confirmMessage.js"></script>
@@ -80,6 +82,9 @@
   <script src="modules/base/controllers/cart.js"></script>
   <script src="modules/base/controllers/products.js"></script>
   <!-- endbuild -->
+
+  <!--Stripe-->
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
   <!-- build:remove -->
   <!-- Required for livereload -->

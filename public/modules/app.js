@@ -8,7 +8,8 @@ angular.module('mean', [
   'ngRoute',
   'autofill-directive',
   'auth0',
-  'ngCart'
+  'ngCart',
+  'angularPayments'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
@@ -27,6 +28,11 @@ angular.module('mean', [
       })
       .when('/cart', {
         templateUrl: 'modules/base/views/cart.html',
+        controller: 'CartCtrl',
+        requireAuth: true
+      })
+      .when('/stripe', {
+        templateUrl: 'modules/base/views/stripe.html',
         controller: 'CartCtrl',
         requireAuth: true
       })

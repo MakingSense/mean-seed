@@ -18,7 +18,8 @@
     "compass-mixins": "latest",
     "bootstrap-sass": "~3.3.5",
     "auth0-angular": "^4.2.2",
-    "ngCart": "ngcart#^1.0.0"
+    "ngCart": "ngcart#^1.0.0",
+    "angular-payments": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0"

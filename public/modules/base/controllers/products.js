@@ -2,7 +2,6 @@
 
 angular.module('mean')
   .controller('ProductsCtrl', function ($scope, ngCart) {
-    $scope.ngCart = ngCart;
     $scope.products = [
       {
         productName: 'Product #1',

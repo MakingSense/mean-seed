@@ -25,8 +25,8 @@ angular.module('mean', [
         controller: 'ProductsCtrl',
         requireAuth: true
       })
-      .when('/checkout', {
-        templateUrl: 'modules/base/views/checkout.html',
+      .when('/cart', {
+        templateUrl: 'modules/base/views/cart.html',
         controller: 'CartCtrl',
         requireAuth: true
       })

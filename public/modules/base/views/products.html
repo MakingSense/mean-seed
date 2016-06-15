@@ -1,27 +1,22 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail">
+<div class="row">
 
-      </a>
+  <div class="col-sm-6 col-md-3" ng-repeat="p in products">
+    <div class="thumbnail">
+      <img src="http://placehold.it/200x200" alt="Generic placeholder thumbnail">
     </div>
-
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail">
-
-      </a>
-    </div>
-
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail">
-
-      </a>
-    </div>
-
-    <div class="col-xs-6 col-md-3">
-      <a href="#" class="thumbnail">
-
-      </a>
+    <div class="caption">
+      <h3 ng-bind="p.productName"></h3>
+      <p ng-bind="'$' + p.productPrice + ' (' + product.productCurrency + ')'"></p>
+      <p>
+        <ngcart-addtocart  id="{{ p.productId }}"
+                           name="{{ p.productName}}"
+                           price="{{ p.productPrice}}"
+                           quantity="1"
+                           quantity-max="30"
+                           template-url="/modules/base/views/partials/addtocart.html"
+                           data="p"></ngcart-addtocart>
+      </p>
     </div>
   </div>
+
 </div>

@@ -7,7 +7,8 @@ angular.module('mean', [
   'ngStorage',
   'ngRoute',
   'autofill-directive',
-  'auth0'
+  'auth0',
+  'ngCart'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
@@ -17,6 +18,16 @@ angular.module('mean', [
       .when('/', {
         templateUrl: 'modules/base/views/main.html',
         controller: 'MainCtrl',
+        requireAuth: true
+      })
+      .when('/products', {
+        templateUrl: 'modules/base/views/products.html',
+        controller: 'ProductsCtrl',
+        requireAuth: true
+      })
+      .when('/checkout', {
+        templateUrl: 'modules/base/views/checkout.html',
+        controller: 'CartCtrl',
         requireAuth: true
       })
       .when('/login', {

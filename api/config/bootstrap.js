@@ -22,7 +22,7 @@ module.exports = simpleDI.inject([], function () {
   simpleDI.define('base/authController', 'base/controllers/auth');
   simpleDI.define('base/commonController', 'base/controllers/common');
   simpleDI.define('base/usersController', 'base/controllers/users');
-  simpleDI.define('base/stripeController', 'base/controllers/stripe');
+  simpleDI.define('base/paymentsController', 'base/controllers/payments');
 
   // Define services
   simpleDI.define('base/authorizationService', 'base/services/authorization');

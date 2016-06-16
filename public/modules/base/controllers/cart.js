@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mean')
-  .controller('CartCtrl', function ($scope) {
+  .controller('CartCtrl', function ($scope, paymentService) {
 
     $scope.settings = {
       paypal: {
@@ -19,18 +19,12 @@ angular.module('mean')
       } else {
         // got stripe token, now charge it or smt
         console.log(response.id);
-        // token = response.id
-        var charge = Stripe.charges.create({
-          amount: 1000, // amount in cents, again
-          currency: "usd",
-          source: response.id,
-          description: "Example charge"
-        }, function(err, charge) {
-          if (err && err.type === 'StripeCardError') {
-            // The card has been declined
+        paymentService.stripe()
+          .then(function(res){
+            console.log(res);
+          }, function(err) {
             console.log(err);
-          }
-        });
+          });
       }
     }
 

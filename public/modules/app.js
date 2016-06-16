@@ -63,6 +63,7 @@ angular.module('mean', [
         loginUrl: '/login'
       });
     }, function(err) {
+      console.log(err);
       // TODO: Handle or not error trying to retrieve config
     });
 

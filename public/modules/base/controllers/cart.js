@@ -14,17 +14,21 @@ angular.module('mean')
 
     $scope.handleStripe = function(status, response){
       if(response.error) {
-        // there was an error. Fix it.
         console.log(response.error);
       } else {
-        // got stripe token, now charge it or smt
-        console.log(response.id);
-        paymentService.stripe()
-          .then(function(res){
-            console.log(res);
-          }, function(err) {
-            console.log(err);
-          });
+        var data = {
+          id: response.id,
+          amount: 400,
+          currency: 'USD',
+          description: 'test description'
+        };
+
+        // paymentService.stripe(data)
+        //   .then(function(res){
+        //     console.log(res);
+        //   }, function(err) {
+        //     console.log(err);
+        //   });
       }
     }
 

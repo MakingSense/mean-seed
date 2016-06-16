@@ -41,11 +41,11 @@ module.exports = simpleDI.inject([
       commonController.menu
     );
 
-    app.get('/api/payments/stripe/',
+    app.post('/api/payments/stripe/',
       authenticationMiddleware.verifySignature,
       authenticationMiddleware.verifySecret,
       paymentsController.stripe
     );
-    
+
   };
 });

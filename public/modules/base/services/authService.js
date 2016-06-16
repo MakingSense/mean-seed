@@ -9,16 +9,25 @@ angular.module('mean').factory('authService', ['$http', '$window', 'auth', funct
     $window.localStorage.auth0Token = token;
   };
 
+  authService.saveRefreshToken = function (token) {
+    $window.localStorage.auth0RefreshToken = token;
+  };
+
   // Retrieve the token in the local storage
   authService.getToken = function () {
     return $window.localStorage.auth0Token;
+  };
+
+  authService.getRefreshToken = function () {
+    return $window.localStorage.auth0RefreshToken;
   };
 
   // Logout
   authService.logout = function () {
     if (authService.getToken()) {
       auth.signout();
-      $window.localStorage.removeItem('auth0_token');
+      $window.localStorage.removeItem('auth0Token');
+      $window.localStorage.removeItem('auth0RefreshToken');
     }
   };
 

@@ -15,20 +15,12 @@ module.exports = simpleDI.inject(['stripe'], function (stripe) {
         });
       }
 
-      var algo;
-
       stripeObject.customers.create({
         description: req.body.description,
         source: req.body.id
       }).then(function(customer) {
-        algo = {
-          amount: parseInt(req.body.amount),
-          currency: req.body.currency,
-          customer: customer.id
-        };
-
         return stripeObject.charges.create({
-          amount: req.body.amount,
+          amount: (parseInt(req.body.amount) * 100),
           currency: req.body.currency,
           customer: customer.id
         });
@@ -40,8 +32,7 @@ module.exports = simpleDI.inject(['stripe'], function (stripe) {
       }).catch(function(err) {
         return res.json(404, {
           message: 'Could not charge.',
-          error: err,
-          algo: algo
+          error: err
         });
       });
 

@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('mean')
-  .controller('CartCtrl', function ($scope, paymentService) {
+  .controller('CartCtrl', function ($scope, paymentService, $location, ngCart) {
+    $scope.total = ngCart.totalCost();
+    $scope.isCartEmpty = ngCart.getItems();
 
     $scope.settings = {
       paypal: {
@@ -16,19 +18,21 @@ angular.module('mean')
       if(response.error) {
         console.log(response.error);
       } else {
+        
         var data = {
           id: response.id,
-          amount: 400,
+          amount: $scope.total,
           currency: 'USD',
           description: 'test description'
         };
 
-        // paymentService.stripe(data)
-        //   .then(function(res){
-        //     console.log(res);
-        //   }, function(err) {
-        //     console.log(err);
-        //   });
+        paymentService.stripe(data)
+          .then(function(){
+            ngCart.empty();
+            $location.path('#/');
+          }, function(err) {
+            console.log(err);
+          });
       }
     }
 

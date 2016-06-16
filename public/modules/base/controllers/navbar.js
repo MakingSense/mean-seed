@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean').controller('NavbarCtrl', function ($scope, $rootScope, $location, $sessionStorage, authService, menuService) {
+angular.module('mean').controller('NavbarCtrl', function ($scope, $rootScope, $location, $sessionStorage, authService, menuService, userService) {
 
   $scope.menu = {
     base: []
@@ -19,7 +19,7 @@ angular.module('mean').controller('NavbarCtrl', function ($scope, $rootScope, $l
         $scope.menu = response;
       })
       .error(function (error, status, headers, config) {
-        // TODO: handle this scenario (or not)
+        // userService.refreshToken();
       });
   };
 

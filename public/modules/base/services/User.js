@@ -27,12 +27,27 @@ angular.module('mean').service('userService', function ($http, $localStorage, $q
       username: credentials.username,
       password: credentials.password,
       connection: $localStorage.auth0Connection
-    }, function(profile, idToken, accessToken, state, refreshToken) {
+    }, function(profile, idToken, accessToken) {
       authService.saveToken(idToken);
+      // authService.saveRefreshToken(accessToken);
       deferred.resolve(profile);
     }, function(error) {
       deferred.reject('Error: ' + error);
     }, 'Auth0');
+
+    return deferred.promise;
+  };
+
+  this.refreshToken = function () {
+    var deferred = $q.defer();
+
+    auth.refreshIdToken(authService.getRefreshToken())
+      .then(function(res) {
+        authService.saveToken(res);
+        deferred.resolve();
+      }, function(err) {
+        deferred.reject('Error: ' + err);
+      });
 
     return deferred.promise;
   };

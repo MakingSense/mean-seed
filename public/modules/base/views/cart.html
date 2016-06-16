@@ -4,7 +4,7 @@
     <ngcart-cart template-url="/modules/base/views/partials/cart.html"></ngcart-cart>
   </div>
 
-  <div class="row">
+  <div class="row" ng-if="isCartEmpty">
     <h2>Checkout</h2>
     <div class="col-sm-6 col-md-3" >
       <ngcart-checkout service="paypal"

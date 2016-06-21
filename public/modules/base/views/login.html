@@ -1,13 +1,12 @@
 <div class="container">
   <div class="card card-container">
-    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-    <p id="profile-name" class="profile-name-card"></p>
+    <img id="profile-img" class="profile-img-card" src="assets/avatar_2x.png" />
     <form class="form-signin" role="form" name="form" autofill-submit="login(form)" novalidate>
       <span id="reauth-username" class="reauth-username"></span>
 
-      <div ng-class="{'has-error': form.username.$error.mongoose}">
-        <input type="text" placeholder="Username" class="form-control"
-               id="inputUsername" name="username" ng-model="user.username" required autofocus mongoose-error autofill>
+      <div ng-class="{'has-error': form.email.$error.mongoose || (form.email.$dirty && form.email.$invalid)}">
+        <input type="email" placeholder="Email" class="form-control"
+               id="inputUsername" name="email" ng-model="user.email" required autofocus mongoose-error autofill>
         <p ng-show="form.username.$error.required && submitted" class="error">Field required</p>
       </div>
 
@@ -17,7 +16,7 @@
         <p ng-show="form.password.$error.required && submitted" class="error">Field required</p>
       </div>
 
-      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block btn-signin" ng-disabled="form.$invalid" type="submit">Sign in</button>
 
     </form>
     <a href="#/signup" class="forgot-password">

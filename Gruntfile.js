@@ -48,7 +48,7 @@ module.exports = function (grunt) {
         cmd: 'bower install --force'
       },
       webdriver: {
-        cmd: 'node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update --force'
+        cmd: 'node ./node_modules/protractor/bin/webdriver-manager update --force'
       }
     },
 

@@ -29,7 +29,7 @@ angular.module('mean', [
         controller: 'SignupCtrl',
         requireAuth: false
       })
-      //===== mean-cli hook =====//
+      //===== meanp-cli hook =====//
       .otherwise({
         redirectTo: '/'
       });

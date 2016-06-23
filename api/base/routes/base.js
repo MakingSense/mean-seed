@@ -8,7 +8,8 @@ module.exports = simpleDI.inject([
   'base/authorizationMiddleware',
   'base/commonController',
   'base/usersController'
-], function (authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController) {
+  /*===== cart hook #1 =====*/
+], function (authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController/*===== cart hook #2 =====*/) {
 
   return function baseRoutes(app) {
     // Config Route
@@ -39,5 +40,8 @@ module.exports = simpleDI.inject([
       authorizationMiddleware.getAuthorizationFn('menu', 'view'),
       commonController.menu
     );
+
+    /*===== cart hook #3 =====*/
+    
   };
 });

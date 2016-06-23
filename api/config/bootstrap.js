@@ -22,6 +22,7 @@ module.exports = simpleDI.inject([], function () {
   simpleDI.define('base/authController', 'base/controllers/auth');
   simpleDI.define('base/commonController', 'base/controllers/common');
   simpleDI.define('base/usersController', 'base/controllers/users');
+  /*===== cart hook =====*/
 
   // Define services
   simpleDI.define('base/authorizationService', 'base/services/authorization');

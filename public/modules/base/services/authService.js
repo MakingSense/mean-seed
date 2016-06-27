@@ -18,7 +18,7 @@ angular.module('mean').factory('authService', ['$http', '$window', 'auth', funct
   authService.logout = function () {
     if (authService.getToken()) {
       auth.signout();
-      $window.localStorage.removeItem('auth0_token');
+      $window.localStorage.removeItem('auth0Token');
     }
   };
 

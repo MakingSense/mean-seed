@@ -1,15 +1,25 @@
-<div class="login">
-  <form role="form" name="form" autofill-submit="login(form)" novalidate>
-    <div ng-class="{'has-error': form.username.$error.mongoose}">
-      <input type="text" placeholder="Username" name="username" ng-model="user.username" required autofocus mongoose-error autofill>
-      <p ng-show="form.username.$error.required && submitted" class="error">Field required</p>
-    </div>
-    <div ng-class="{'has-error': form.password.$error.mongoose}">
-      <input type="password" placeholder="Password" name="password" ng-model="user.password" required mongoose-error autofill>
-      <p ng-show="form.password.$error.required && submitted" class="error">Field required</p>
-    </div>
-    <p ng-show="submitted && errorMessage" class="error">{{ errorMessage }}</p>
-    <button type="submit">Sign in</button>
-    <a href="#/signup" role="button">Create an account</a>
-  </form>
-</div>
+<div class="container">
+  <div class="card card-container">
+    <img id="profile-img" class="profile-img-card" src="assets/avatar_2x.png" />
+    <form class="form-signin" role="form" name="form" autofill-submit="login(form)" novalidate>
+      <span id="reauth-username" class="reauth-username"></span>
+
+      <div ng-class="{'has-error': form.email.$error.mongoose || (form.email.$dirty && form.email.$invalid)}">
+        <input type="email" placeholder="Email" class="form-control"
+               id="inputUsername" name="email" ng-model="user.email" required autofocus mongoose-error autofill>
+        <p ng-show="form.username.$error.required && submitted" class="error">Field required</p>
+      </div>
+
+      <div ng-class="{'has-error': form.password.$error.mongoose}">
+        <input type="password" id="inputPassword" placeholder="Password"
+               class="form-control" name="password" ng-model="user.password" required mongoose-error autofill>
+        <p ng-show="form.password.$error.required && submitted" class="error">Field required</p>
+      </div>
+
+      <button class="btn btn-lg btn-primary btn-block btn-signin" ng-disabled="form.$invalid" type="submit">Sign in</button>
+
+    </form>
+    <a href="#/signup" class="forgot-password">
+      Create an account
+    </a>
+  </div>

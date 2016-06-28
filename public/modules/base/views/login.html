@@ -4,9 +4,9 @@
     <form class="form-signin" role="form" name="form" autofill-submit="login(form)" novalidate>
       <span id="reauth-username" class="reauth-username"></span>
 
-      <div ng-class="{'has-error': form.email.$error.mongoose || (form.email.$dirty && form.email.$invalid)}">
+      <div ng-class="{'has-error': form.username.$error.mongoose || (form.username.$dirty && form.username.$invalid)}">
         <input type="email" placeholder="Email" class="form-control"
-               id="inputUsername" name="email" ng-model="user.email" required autofocus mongoose-error autofill>
+               id="inputUsername" name="username" ng-model="user.username" required autofocus mongoose-error autofill>
         <p ng-show="form.username.$error.required && submitted" class="error">Field required</p>
       </div>
 
@@ -23,3 +23,4 @@
       Create an account
     </a>
   </div>
+

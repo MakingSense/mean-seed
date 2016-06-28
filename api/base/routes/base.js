@@ -8,14 +8,21 @@ module.exports = simpleDI.inject([
   'base/authorizationMiddleware',
   'base/commonController',
   'base/usersController'
-], function (authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController) {
+  /*===== cart hook #1 =====*/
+], function (authController, authenticationMiddleware, authorizationMiddleware, commonController, usersController/*===== cart hook #2 =====*/) {
 
   return function baseRoutes(app) {
+    // Config Route
+    app.get('/config',
+      commonController.config
+    );
+
     // User Routes
     app.post('/auth/users',
       authorizationMiddleware.getAuthorizationFn('signup', 'create'),
       usersController.create
     );
+
     app.get('/auth/users/:userId',
       authenticationMiddleware.verifySignature,
       authorizationMiddleware.getAuthorizationFn('users', 'view'),
@@ -29,8 +36,12 @@ module.exports = simpleDI.inject([
 
     app.get('/api/common/menu/',
       authenticationMiddleware.verifySignature,
+      authenticationMiddleware.verifySecret,
       authorizationMiddleware.getAuthorizationFn('menu', 'view'),
       commonController.menu
     );
+
+    /*===== cart hook #3 =====*/
+    
   };
 });

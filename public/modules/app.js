@@ -6,7 +6,8 @@ angular.module('mean', [
   'ngSanitize',
   'ngStorage',
   'ngRoute',
-  'autofill-directive'
+  'autofill-directive',
+  'auth0'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
@@ -28,14 +29,25 @@ angular.module('mean', [
         controller: 'SignupCtrl',
         requireAuth: false
       })
-      //===== mean-cli hook =====//
+      //===== meanp-cli hook =====//
       .otherwise({
         redirectTo: '/'
       });
     $locationProvider.html5Mode(false);
+
   })
 
-.run(function ($route, $rootScope, $location, $window, authService) {
+.run(function ($route, $rootScope, $location, $window, configService, authService, auth, $localStorage) {
+  configService.get()
+    .then(function() {
+      auth.init({
+        domain: $localStorage.auth0Domain,
+        clientID: $localStorage.auth0ClientId,
+        loginUrl: '/login'
+      });
+    }, function(err) {
+      // TODO: Handle or not error trying to retrieve config
+    });
 
   $rootScope.$on('$locationChangeStart', function (ev, next, current) {
     var nextPath = $location.path();

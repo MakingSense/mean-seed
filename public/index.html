@@ -28,6 +28,8 @@
 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- //===== meanp-cli stripe hook =====// -->
 </head>
 
 <body ng-app="mean">
@@ -55,6 +57,8 @@
   <script src="lib/angular-http-auth/src/http-auth-interceptor.js"></script>
   <script src="lib/autofill-directive/autofill-directive.js"></script>
   <script src="lib/underscore/underscore-min.js"></script>
+  <script src="lib/auth0.js/build/auth0.js"></script>
+  <script src="lib/auth0-angular/build/auth0-angular.js"></script>
   <!-- endbuild -->
 
   <!-- build:js scripts/app.js?v=0.1.0 -->
@@ -63,6 +67,7 @@
   <!-- Services -->
   <script src="modules/base/services/User.js"></script>
   <script src="modules/base/services/authService.js"></script>
+  <script src="modules/base/services/configService.js"></script>
   <script src="modules/base/services/menus.js"></script>
   <!-- Directives -->
   <script src="modules/base/directives/confirmMessage.js"></script>
@@ -74,6 +79,8 @@
   <script src="modules/base/controllers/navbar.js"></script>
   <script src="modules/base/controllers/signup.js"></script>
   <!-- endbuild -->
+
+  <!-- //===== meanp-cli hook =====// -->
 
   <!-- build:remove -->
   <!-- Required for livereload -->

@@ -18,6 +18,9 @@ npm install
 
 Read more about installing [Node](https://nodejs.org/download/), [Bower](http://bower.io/) and [Grunt client](http://gruntjs.com/getting-started).
 
+Environment variables:
+Remember to set up Auth0 credentials using the ".env" file. Please go ahead and use the existent one to put the proper information.
+
 ### Installing MongoDB
 
 Go to [MongoDB official downloads](http://www.mongodb.org/downloads) and follow the [instructions](http://docs.mongodb.org/manual/installation/)

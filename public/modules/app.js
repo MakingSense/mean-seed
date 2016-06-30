@@ -28,19 +28,11 @@ angular.module('mean', [
   })
 
 .run(function ($route, $rootScope, $location, $window, configService, authService, auth, $localStorage) {
-  configService.get()
-    .then(function() {
-      auth.init({
-        domain: $localStorage.auth0Domain,
-        clientID: $localStorage.auth0ClientId,
-        loginUrl: '/login'
-      });
-    }, function(err) {
-      // TODO: Handle or not error trying to retrieve config
-    });
+  
+  //===== meanp-cli login cgf hook =====//
 
   $rootScope.$on('$locationChangeStart', function (ev, next, current) {
-    
+
     //===== meanp-cli login hook =====//
 
   });

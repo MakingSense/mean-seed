@@ -19,16 +19,6 @@ angular.module('mean', [
         controller: 'MainCtrl',
         requireAuth: true
       })
-      .when('/login', {
-        templateUrl: 'modules/base/views/login.html',
-        controller: 'LoginCtrl',
-        requireAuth: false
-      })
-      .when('/signup', {
-        templateUrl: 'modules/base/views/signup.html',
-        controller: 'SignupCtrl',
-        requireAuth: false
-      })
       //===== meanp-cli hook =====//
       .otherwise({
         redirectTo: '/'
@@ -50,12 +40,8 @@ angular.module('mean', [
     });
 
   $rootScope.$on('$locationChangeStart', function (ev, next, current) {
-    var nextPath = $location.path();
-    var nextRoute = $route.routes[nextPath];
-
-    if (nextRoute && nextRoute.requireAuth && !authService.isAuthed()) {
-      $location.path('/login');
-    }
+    
+    //===== meanp-cli login hook =====//
 
   });
 

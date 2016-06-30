@@ -40,9 +40,7 @@ angular.module('mean', [
     });
 
   $rootScope.$on('$locationChangeStart', function (ev, next, current) {
-    var nextPath = $location.path();
-    var nextRoute = $route.routes[nextPath];
-
+    
     //===== meanp-cli login hook =====//
 
   });

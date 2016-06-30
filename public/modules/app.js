@@ -28,7 +28,7 @@ angular.module('mean', [
   })
 
 .run(function ($route, $rootScope, $location, $window, configService, authService, auth, $localStorage) {
-  
+
   //===== meanp-cli login cgf hook =====//
 
   $rootScope.$on('$locationChangeStart', function (ev, next, current) {
@@ -39,7 +39,7 @@ angular.module('mean', [
 
   // Check if the user is authenticated
   $rootScope.isAuthed = function () {
-    return authService.isAuthed() !== null && authService.isAuthed() !== false;
+    return true;
   };
 
   // Store current user info

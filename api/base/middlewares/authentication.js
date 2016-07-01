@@ -2,9 +2,9 @@
 
 var simpleDI = require('config/simpleDI');
 
-module.exports = simpleDI.inject(['jsonwebtoken', 'express-jwt'], function (jwt, expressJwt) {
+module.exports = simpleDI.inject(['jsonwebtoken', 'express-jwt'/*===== jwt hook1 =====*/], function (jwt, expressJwt/*===== jwt hook2 =====*/) {
 
-  /*===== jwt hook =====*/
+  /*===== jwt hook3 =====*/
 
   var validateAndEnforceJwt = expressJwt({
     secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, 'base64')

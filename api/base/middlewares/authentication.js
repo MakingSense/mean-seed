@@ -4,6 +4,8 @@ var simpleDI = require('config/simpleDI');
 
 module.exports = simpleDI.inject(['jsonwebtoken', 'express-jwt'], function (jwt, expressJwt) {
 
+  /*===== jwt hook =====*/
+
   var validateAndEnforceJwt = expressJwt({
     secret: new Buffer(process.env.AUTH0_CLIENT_SECRET, 'base64')
   });
@@ -26,8 +28,7 @@ module.exports = simpleDI.inject(['jsonwebtoken', 'express-jwt'], function (jwt,
           message: 'No token provided.'
         });
       } else {
-        req.decoded = token;
-        next();
+        req.decoded = token;next();
       }
     },
 

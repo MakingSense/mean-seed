@@ -187,7 +187,8 @@ module.exports = function (grunt) {
               '<%= paths.lib %>/angular-route/angular-route.js',
               '<%= paths.lib %>/angular-http-auth/src/http-auth-interceptor.js',
               '<%= paths.lib %>/autofill-directive/autofill-directive.js',
-              '<%= paths.lib %>/underscore/underscore-min.js'
+              '<%= paths.lib %>/underscore/underscore-min.js',
+              '<%= paths.lib %>/AngularJS-Toaster/toaster.min.js'
             ]
           },
           {

@@ -15,7 +15,9 @@
     "express-jwt": "^3.4.0",
     "jsonwebtoken": "5.0.2",
     "mongoose": "~3.5.5",
-    "underscore": "~1.5.2"
+    "nodemon": "^1.9.2",
+    "underscore": "~1.5.2",
+    "uuid": "^2.0.2"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -58,6 +60,7 @@
     "postinstall": "grunt shell --force",
     "pretest": "npm install",
     "test": "grunt validate",
-    "e2e-test": "grunt e2e"
+    "e2e-test": "grunt e2e",
+    "dev": "nodemon server.js"
   }
 }

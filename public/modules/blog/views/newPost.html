@@ -1,0 +1,13 @@
+<!-- New post -->
+
+<h3>Compose a new post</h3>
+<form ng-submit="addPost()" role="form">
+    <hr>
+    <input type="text" ng-model="titlePost" class="form-control inPost" placeholder="Write the post title ...">
+    <textarea class="form-control tePost" ng-model="bodyPost" rows="5" placeholder="Write your post ..."></textarea>
+    <div class="btn-cont-right">
+        <button type="submit" class="btn btn-primary" value="add" >Post !</button>
+        <a type="button" class="btn btn-default"  href="#/blog">Cancel</a>
+    </div>
+    <hr>
+</form>

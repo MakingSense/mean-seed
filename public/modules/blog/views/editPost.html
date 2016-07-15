@@ -1,0 +1,17 @@
+<!-- Edit post form -->
+
+<hr>
+<form ng-submit="updatePost()" role="form">
+    <h3><input type="text" ng-model="current.title" class="form-control inPost" placeholder="Title"></h3>
+    <textarea class="form-control tePost" ng-model="current.text" rows="5"></textarea>
+    <div class="btn-cont">
+        <div class="btn-cont-left">
+            <button type="submit" class="btn btn-link" value="add"><span class="glyphicon glyphicon-floppy-save"></span>  Save</button>
+            <a type="button" class="btn btn-link"  href="#/blog/{{current.id}}">Cancel</a>
+        </div>
+        <div class="btn-cont-right">
+            <a type="button" class="btn btn-link"  href="#/blog"><span class="glyphicon glyphicon-chevron-left"></span>  Go back</a>
+        </div>
+    </div>
+</form>
+

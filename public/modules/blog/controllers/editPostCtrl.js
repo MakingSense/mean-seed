@@ -19,8 +19,8 @@ angular.module('mean')
     $scope.updatePost = function() {
         blogService.update($scope.current._id, $scope.current)
             .success(function (current, status, headers, config) {
-                $location.path("/posts/"+$scope.current._id);
-                toaster.pop('success', "Post updated successfully!");
+                $location.path('/posts/'+$scope.current._id);
+                toaster.pop('success', 'Post updated successfully!');
              })
             .error(function(current, status, headers, config) {
                 toaster.pop('error', current);

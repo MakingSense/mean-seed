@@ -11,8 +11,8 @@ angular.module('mean')
         };
         blogService.create(postData)
             .success(function (current, status, headers, config) {
-                $location.path("/blog");
-                toaster.pop('success', "Post saved successfully!");
+                $location.path('/blog');
+                toaster.pop('success', 'Post saved successfully!');
             })
             .error(function(current, status, headers, config) {
                 toaster.pop('error', current);

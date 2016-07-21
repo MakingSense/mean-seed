@@ -412,6 +412,10 @@ module.exports = function (grunt) {
     'mochaTest'
   ]);
 
+  grunt.registerTask('mocha', [
+    'mochaTest'
+  ]);
+
   /**
    * End to end tests running. Protractor requires express to be up & running
    */

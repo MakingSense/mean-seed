@@ -9,12 +9,12 @@ module.exports = simpleDI.inject(['blog/blogService'], function (blogService) {
     //Get All posts
     getPosts: function(req, res){
       blogService.getPosts(function(error, ret){
-          if (error){
-            res.json(400, error)
-          }
+        if (error){
+          return res.json(400, error);
+        }
 
-          res.send(ret);
-      })
+        res.send(ret);
+      });
     },
 
     //Get specific Post by id
@@ -22,11 +22,15 @@ module.exports = simpleDI.inject(['blog/blogService'], function (blogService) {
       var id = req.params.id;
       blogService.show(id, function(error, ret){
         if (error){
-          res.json(400, error)
+          return res.json(400, error);
         }
 
-        res.send(ret)
-      })
+        if (ret == undefined){
+          res.json(404, {message: 'Post not found'})
+        } else {
+          res.send(ret);
+        }
+      });
     },
 
     //Create/Store Post
@@ -36,10 +40,10 @@ module.exports = simpleDI.inject(['blog/blogService'], function (blogService) {
 
       blogService.create(title, text, function(error, ret){
         if (error){
-          res.json(400, error)
+          return res.json(400, error);
         }
 
-        res.send(ret)
+        res.send(ret);
 
       });
     },
@@ -51,10 +55,10 @@ module.exports = simpleDI.inject(['blog/blogService'], function (blogService) {
       var text = req.body.text;
       blogService.edit(id, title, text, function(error, ret){
         if (error){
-          res.json(400, error)
+          return res.json(400, error);
         }
 
-        res.send(ret)
+        res.send(ret);
       });
     },
 
@@ -63,10 +67,10 @@ module.exports = simpleDI.inject(['blog/blogService'], function (blogService) {
       var id = req.params.id;
       blogService.delete(id, function(error, ret){
         if (error){
-          res.json(400, error)
+          return res.json(400, error);
         }
 
-        res.send(ret)
+        res.send(ret);
       });
     }
 

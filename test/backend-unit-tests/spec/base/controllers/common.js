@@ -18,7 +18,12 @@ describe('Base#CommonController', function () {
               "name": "Home",
               "path": "/",
               "subMenu": null
-                        }]
+              },
+              {
+                "name": "Blog",
+                "path": "/blog",
+                "subMenu": null
+              }]
           });
           done();
         }

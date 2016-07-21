@@ -16,8 +16,8 @@ angular.module('mean')
     $scope.removePost = function () {
         blogService.remove($scope.current._id)
             .success(function (current, status, headers, config) {
-                $location.path("/blog/");
-                toaster.pop('success', "Post removed successfully!");
+                $location.path('/blog/');
+                toaster.pop('success', 'Post removed successfully!');
             })
             .error(function(current, status, headers, config) {
                 toaster.pop('error', current);

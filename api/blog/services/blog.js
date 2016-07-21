@@ -8,15 +8,16 @@ module.exports = simpleDI.inject(['blog/blogModel'], function (Blog) {
 
     getPosts: function(callback){
       Blog.find(function (err, myPosts) {
-        if (err) return callback(err, null);
+        if (err) { return callback(err, null);}
         return callback(null, myPosts);
       });
     },
+
     //Get specific Post by id
     show: function(id, callback){
       Blog.findOne({_id: id}, function (err, selPost) {
-        if (err) return callback(err, null);
-        callback(null, selPost);
+        if (err) { return callback(err, null);}
+        return callback(null, selPost);
       });
     },
 
@@ -27,9 +28,9 @@ module.exports = simpleDI.inject(['blog/blogModel'], function (Blog) {
         text: text
       });
 
-      newPost.save( function(err, result){
-        if (err) return callback(err, null);
-        callback(null, result);
+      newPost.save(function(err, result){
+        if (err) { return callback(err, null);}
+        return callback(null, result);
       });
 
     },
@@ -40,18 +41,18 @@ module.exports = simpleDI.inject(['blog/blogModel'], function (Blog) {
         selPost.title = title;
         selPost.text = text;
 
-        selPost.save( function(err, result){
-          if (err) return callback(err, null);
-          callback(null, result);
+        selPost.save(function(err, result){
+          if (err) { return callback(err, null);}
+          return callback(null, result);
         });
       });
     },
 
     //Delete
-    delete: function(id, title, text, callback){
+    delete: function(id, callback){
       Blog.remove({_id: id}, function (err) {
-        if (err) return callback(err, null);
-        callback(null, true);
+        if (err) { return callback(err, null);}
+        return callback(null, true);
       });
     }
 

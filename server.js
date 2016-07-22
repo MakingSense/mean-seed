@@ -2,7 +2,8 @@
 
 // Module dependencies.
 var express = require('express'),
-  modulepath = require('app-module-path');
+  modulepath = require('app-module-path'),
+  uuid = require('uuid');
 
 modulepath.addPath(__dirname + '/api/'); //Add's path of api to require
 
@@ -28,7 +29,7 @@ var app = express();
 // Environments configuration
 app.configure(function () {
   app.use(express.errorHandler());
-  app.use(express.static(__dirname + appFolder));
+  app.use(express.static(__dirname + appFolder)); //This will serve AngularJSApp -> getting index.html
 });
 
 app.use(express.logger('dev'));
@@ -41,6 +42,9 @@ app.use(app.router);
 
 // Add base routes to app
 simpleDI.resolve('base/baseRoutes')(app);
+
+// Add blog routes to app
+simpleDI.resolve('blog/blogRoutes')(app);
 
 // Start server
 var port = appConfig.port;

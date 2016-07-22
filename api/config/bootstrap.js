@@ -17,15 +17,18 @@ module.exports = simpleDI.inject([], function () {
 
   // Define models
   simpleDI.define('base/userModel', 'base/models/user');
+  simpleDI.define('blog/blogModel', 'blog/models/blog');
 
   // Define controllers
   /*===== login hook auth #4 =====*/
   simpleDI.define('base/commonController', 'base/controllers/common');
   simpleDI.define('base/usersController', 'base/controllers/users');
+  simpleDI.define('blog/blogController', 'blog/controllers/blog');
   /*===== cart hook =====*/
 
   // Define services
   simpleDI.define('base/authorizationService', 'base/services/authorization');
+  simpleDI.define('blog/blogService', 'blog/services/blog');
 
   // Define middlewares
   simpleDI.define('base/authenticationMiddleware', 'base/middlewares/authentication');
@@ -33,5 +36,6 @@ module.exports = simpleDI.inject([], function () {
 
   // Define routes index and resolve using the express app's object
   simpleDI.define('base/baseRoutes', 'base/routes/base');
+  simpleDI.define('blog/blogRoutes', 'blog/routes/blog');
 
 });

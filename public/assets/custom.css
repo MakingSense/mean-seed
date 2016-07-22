@@ -1,0 +1,114 @@
+
+.htmlCustom {
+  background: url(../img/desk-blur.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.bodyCustom {
+  background-color: transparent!important;
+  box-shadow: none;
+}
+
+
+body {
+  background-color: #ffffff !important;
+  color: #333333;
+  width: 100%;
+  height: 100%;
+}
+
+textarea.tePost {
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 2%;
+}
+
+input.inPost {
+  font-size: 30px;
+  height: 40px;
+  line-height: 39px;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+
+.btn-Post{
+  float: right;
+  margin-top: 5%;
+  margin-left: 15px;
+}
+
+p.preview {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow:hidden;
+}
+
+.btn-cont-left {float: left;}
+.btn-cont {
+  height: 35px;
+  line-height: 30px;
+  border: 1px solid;
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid #eee;
+  border-left: none;
+  border-right: none;
+}
+
+
+p.user-post {color: #b3b3b1; margin-top: -1%;}
+
+
+a.post-title {color: #333333;}
+
+a.post-title:hover {color: #428bca; text-decoration:none;}
+
+div.deleteAlert {margin-top: 4%;}
+
+.btn-no {min-width: 90px;}
+
+.bottom-side {
+  position: relative;
+  min-height: 1px;
+  float: left;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  padding-right: 40px;
+  padding-left: 40px;
+  background-color: black;
+}
+
+.centerContent{
+  width: 80%;
+  margin: 0 auto !important;
+  padding: 1% 3% 0% 3%;
+  padding-top: 80px;
+}
+
+.height100{
+  height: 100%;
+}
+
+.loginForm {
+  width: 85%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

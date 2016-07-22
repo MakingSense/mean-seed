@@ -20,14 +20,18 @@ simpleDI.define('app/permissions', __dirname + '/config/permissions');
 // Define models
 simpleDI.define('base/userModel', 'base/models/user');
 simpleDI.define('base/roleModel', 'base/models/role');
+simpleDI.define('blog/blogModel', 'blog/models/blog');
 
 // Define controllers
 simpleDI.define('base/authController', 'base/controllers/auth');
 simpleDI.define('base/commonController', 'base/controllers/common');
 simpleDI.define('base/usersController', 'base/controllers/users');
+simpleDI.define('blog/blogController', 'blog/controllers/blog');
 
 // Define services
 simpleDI.define('base/authorizationService', 'base/services/authorization');
+simpleDI.define('blog/blogService', 'blog/services/blog');
 
 // Define middlewares
 simpleDI.define('base/authorizationMiddleware', 'base/middlewares/authorization');
+simpleDI.define('blog/blogRoutes', 'blog/routes/blog');

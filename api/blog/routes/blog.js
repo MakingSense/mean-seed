@@ -7,7 +7,12 @@ module.exports = simpleDI.inject([
 ], function (blogController) {
 
   return function blogRoutes(app) {
-    
+
+    // get all posts
+    app.get('/api/blog', function(req, res){
+      res.json(200, { message: 'Welcome' })
+    });
+
     // get all posts
     app.get('/api/myPosts',
       //Auth middleware?
@@ -37,19 +42,5 @@ module.exports = simpleDI.inject([
       //Auth middleware?
       blogController.delete
     );
-
-
-  //ToDo: remove it?
-// // route to log in
-//     app.post('/api/login', passport.authenticate('local'), function(req, res) {
-//       res.send(req.user);
-//     });
-//
-// // route to log out
-//     app.post('/api/logout', function(req, res){
-//       req.logOut();
-//       res.send(200);
-//     });
-
   };
 });

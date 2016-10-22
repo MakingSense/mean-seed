@@ -2,7 +2,7 @@
 MEAN-seed
 =========
 
-A bootstrapp application based on MongoDB, Express, Angular, Node, Passport.
+A bootstrapp application based on MongoDB, Express, Angular, Node, JWT.
 
 ### Requirements
 

@@ -1,0 +1,14 @@
+<!-- My posts  -->
+<h2>My posts</h2>
+<a href="#/addpost" type="button" class="btn btn-primary btn-Post"> Write new post </a>
+<p class="user-post">by Andrés Calamaro</p>
+<div>{{ posts.length }} posts found</div>
+<div ng-repeat="post in posts">
+    <hr>
+    <a class="post-title" href="#/posts/{{post._id}}">
+        <h3>{{post.title}}</h3>
+        <p class="preview">{{post.text}} </p>
+    </a>
+
+    <hr>
+</div>

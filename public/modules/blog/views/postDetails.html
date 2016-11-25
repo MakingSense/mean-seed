@@ -1,0 +1,15 @@
+<!-- Post details -->
+
+<hr>
+<h2>{{current.title}}</h2>
+<p class="user-post">by making sense team </p>
+<p>{{current.text}}</p>
+<div class="btn-cont">
+    <div class="btn-cont-left">
+        <a type="submit" class="btn btn-link" value="add" href="#/edit/{{current._id}}"><span class="glyphicon glyphicon-edit"></span>  Edit</a>
+        <a type="button" class="btn btn-link" data-toggle="modal" ng-click="removePost()"><span class="glyphicon glyphicon-trash"></span> Delete</a>
+    </div><!-- btn-cont-left -->
+    <div class="btn-cont-right">
+        <a type="button" class="btn btn-link"  href="#/blog"><span class="glyphicon glyphicon-chevron-left"></span> Go back</a>
+    </div>
+</div>

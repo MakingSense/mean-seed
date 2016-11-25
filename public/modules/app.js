@@ -7,7 +7,8 @@ angular.module('mean', [
   'ngStorage',
   'ngRoute',
   'autofill-directive',
-  'auth0'
+  'auth0',
+  'toaster'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
 
@@ -18,6 +19,31 @@ angular.module('mean', [
         templateUrl: 'modules/base/views/main.html',
         controller: 'MainCtrl',
         requireAuth: true
+      })
+      .when('/blog', {
+        templateUrl: 'modules/blog/views/myPosts.html',
+        controller: 'myPostsCtrl',
+        requireAuth: true
+      })
+      .when('/login', {
+          templateUrl: 'modules/blog/views/login.html',
+          controller: 'LoginCtrl'
+      })
+      .when('/addpost', {
+          controller: 'newPostCtrl',
+          templateUrl: 'modules/blog/views/newPost.html'
+      })
+      // .when('/toaster', {
+      //     controller: 'toasterCtrl',
+      //     templateUrl: 'modules/blog/views/toaster.html'
+      // })
+      .when('/posts/:postId', {
+          controller: 'postDetailsCtrl',
+          templateUrl: 'modules/blog/views/postDetails.html'
+      })
+      .when('/edit/:postId', {
+          controller: 'editPostCtrl',
+          templateUrl: 'modules/blog/views/editPost.html'
       })
       //===== meanp-cli hook =====//
       .otherwise({
